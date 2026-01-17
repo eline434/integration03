@@ -26,10 +26,6 @@ h1 {
     transition: transform 0.2s;
 }
 
-.outfit:hover {
-    transform: scale(1.05);
-}
-
 .outfit-1 {
     background-position: 0 0;
 }
