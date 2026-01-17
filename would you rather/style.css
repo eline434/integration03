@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.outfits-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.outfit {
+    width: 250px;
+    height: 600px;
+    background-image: url('assets/outfits.avif');
+    background-repeat: no-repeat;
+    background-size: auto 600px;
+    border: 2px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.outfit:hover {
+    transform: scale(1.05);
+}
+
+.outfit-1 {
+    background-position: 0 0;
+}
+
+.outfit-2 {
+    background-position: -500px 0;
+}
