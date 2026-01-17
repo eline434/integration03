@@ -5,9 +5,12 @@ var clicks = 0;
 var lastClicked = null;
 
 const showFinalResult = () => {
+    $of = document.querySelector('.of');
     const $container = document.querySelector('.outfits-container');
     const $final = document.querySelector('.final-character');
     let $chosen;
+
+    $of.classList.add('visually-hidden');
 
     if (lastClicked === 'outfit1') {
         $outfit2.classList.add('hidden');
