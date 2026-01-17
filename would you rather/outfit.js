@@ -7,19 +7,26 @@ var lastClicked = null;
 const showFinalResult = () => {
     const $container = document.querySelector('.outfits-container');
     const $final = document.querySelector('.final-character');
+    let $chosen;
 
     if (lastClicked === 'outfit1') {
         $outfit2.classList.add('hidden');
         $outfit1.classList.add('final-choice');
+        $chosen = $outfit1;
         $final.style.backgroundPosition = `-${outfitpos1 * 500 + 250}px 0`;
     } else {
         $outfit1.classList.add('hidden');
         $outfit2.classList.add('final-choice');
+        $chosen = $outfit2;
         $final.style.backgroundPosition = `-${outfitpos2 * 500 + 250}px 0`;
     }
 
     $final.classList.add('visible');
     $container.classList.add('final-state');
+
+    setTimeout(() => {
+        $chosen.classList.add('fade-out');
+    }, 500);
 }
 
 const init = () => {

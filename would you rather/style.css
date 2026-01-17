@@ -26,12 +26,12 @@ h1 {
     background-size: auto 600px;
     background-position: -250px 0;
     opacity: 0;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: transform 0.8s ease;
     z-index: -1;
 }
 
 .final-character.visible {
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .outfit {
@@ -40,23 +40,29 @@ h1 {
     background-image: url('assets/outfits.avif');
     background-repeat: no-repeat;
     background-size: auto 600px;
-    border: 2px solid #ccc;
     cursor: pointer;
     position: relative;
     z-index: 1;
 }
 
 .outfit.hidden {
-    opacity: 0;
-    transform: scale(0.5);
-    pointer-events: none;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 .outfit.final-choice {
     transform: translateX(0);
-    border: 3px solid #4CAF50;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     z-index: 2;
+    transition: opacity 0.5s ease;
+}
+
+.outfit.final-choice.fade-out {
+    opacity: 0;
 }
 
 .outfits-container.final-state {
