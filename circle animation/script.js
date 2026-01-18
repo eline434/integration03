@@ -4,8 +4,20 @@ const carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel-item');
 const totalItems = $items.length;
 
+function getRadius() {
+    const width = window.innerWidth;
+
+    if (width < 768) {
+        return 150; // Mobiel
+    } else if (width < 1024) {
+        return 200; // Tablet
+    } else {
+        return 300; // Desktop
+    }
+}
+
 function positionItems(rotation = 0) {
-    const radius = 300;
+    const radius = getRadius();
 
     $items.forEach((item, index) => {
         const angle = (360 / totalItems) * index + rotation;
