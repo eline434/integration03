@@ -8,7 +8,7 @@ function getRadius() {
     const width = window.innerWidth;
 
     if (width < 768) {
-        return 150; // Mobiel
+        return 100; // Mobiel
     } else if (width < 1024) {
         return 200; // Tablet
     } else {

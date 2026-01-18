@@ -17,8 +17,8 @@ body {
 
 .carousel {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
@@ -26,34 +26,12 @@ body {
 
 .carousel-item {
     position: absolute;
-    width: 80px;
+    width: 50px;
     height: auto;
     left: 50%;
     top: 50%;
     transform-origin: bottom center;
     transition: transform 0.1s ease-out;
-}
-
-@media (min-width: 768px) {
-    .carousel {
-        width: 400px;
-        height: 400px;
-    }
-
-    .carousel-item {
-        width: 100px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .carousel {
-        width: 600px;
-        height: 600px;
-    }
-
-    .carousel-item {
-        width: 120px;
-    }
 }
 
 .intro {
@@ -67,29 +45,75 @@ body {
 }
 
 .title {
-    -webkit-text-stroke-width: 48px;
+    -webkit-text-stroke-width: 15.07px;
     -webkit-text-stroke-color: #FAFAFA;
     font-family: Oxanium;
     color: #E20613;
-    font-size: 10.9375rem;
+    font-size: 3.43338rem;
     font-weight: 700;
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    margin-top: -5rem;
+    margin-top: -1.5rem;
     position: relative;
     z-index: -1;
 }
 
 .subtitle {
     color: #E20613;
-    -webkit-text-stroke-width: 14px;
+    -webkit-text-stroke-width: 4.39px;
     -webkit-text-stroke-color: #FAFAFA;
     font-family: Oxanium;
-    font-size: 3.125rem;
+    font-size: 0.981rem;
     font-weight: 700;
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    margin-left: 0.6rem;
+    margin-left: 0.2rem;
     position: relative;
     z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        width: 400px;
+        height: 400px;
+    }
+
+    .carousel-item {
+        width: 100px;
+    }
+
+    .title {
+        font-size: 7.5rem;
+        -webkit-text-stroke-width: 33px;
+        margin-top: -4rem;
+    }
+
+    .subtitle {
+        font-size: 2.5rem;
+        -webkit-text-stroke-width: 11px;
+        margin-left: 0.4rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel {
+        width: 600px;
+        height: 600px;
+    }
+
+    .carousel-item {
+        width: 120px;
+    }
+
+    .title {
+        font-size: 10.9375rem;
+        -webkit-text-stroke-width: 48px;
+        margin-top: -5rem;
+    }
+
+    .subtitle {
+        font-size: 3.125rem;
+        -webkit-text-stroke-width: 14px;
+        margin-left: 0.6rem;
+    }
 }
