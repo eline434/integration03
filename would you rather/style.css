@@ -31,7 +31,10 @@ h1 {
     position: absolute;
     width: 250px;
     height: 600px;
-    background-image: url('assets/outfits.avif');
+    background-image: image-set("assets/outfits.avif"
+            type("image/avif"),
+            "assets/outfits.jpg"
+            type("image/jpeg"));
     background-repeat: no-repeat;
     background-size: auto 600px;
     background-position: -250px 0;
@@ -47,7 +50,10 @@ h1 {
 .outfit {
     width: 250px;
     height: 600px;
-    background-image: url('assets/outfits.avif');
+    background-image: image-set("assets/outfits.avif"
+            type("image/avif"),
+            "assets/outfits.jpg"
+            type("image/jpeg"));
     background-repeat: no-repeat;
     background-size: auto 600px;
     cursor: pointer;
