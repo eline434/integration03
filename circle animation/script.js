@@ -1,5 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
+document.querySelectorAll('.js-only').forEach(el => {
+    el.classList.remove('js-only');
+});
+
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel-item');
 const totalItems = $items.length;
