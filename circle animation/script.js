@@ -50,77 +50,81 @@ gsap.to(rotationObject, {
     }
 });
 
-const $introtext = document.querySelectorAll('.intro__text');
-const $introsubtext = document.querySelectorAll('.intro__subtext');
 
-$introtext.forEach(text => {
-    gsap.set(text,
+function textChanger() {
+
+    const $introtext = document.querySelectorAll('.intro__text');
+    const $introsubtext = document.querySelectorAll('.intro__subtext');
+
+    $introtext.forEach(text => {
+        gsap.set(text,
+            {
+                scale: 0,
+            }
+        )
+    });
+
+    gsap.set('.intro__text--1',
         {
-            scale: 0,
+            scale: 1,
         }
     )
-});
 
-gsap.set('.intro__text--1',
-    {
-        scale: 1,
-    }
-)
+    $introsubtext.forEach(text => {
+        gsap.set(text,
+            {
+                scale: 0,
+            }
+        )
+    });
 
-$introsubtext.forEach(text => {
-    gsap.set(text,
+    gsap.set('.intro__subtext--1',
         {
-            scale: 0,
+            scale: 1,
         }
     )
-});
 
-gsap.set('.intro__subtext--1',
-    {
+    const tlIntro = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".header",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+        }
+    })
+
+    tlIntro.to('.intro__subtext--1', {
+        scale: 0,
+    })
+
+    tlIntro.to('.intro__text--1', {
+        scale: 0,
+    })
+
+    tlIntro.to('.intro__subtext--2', {
         scale: 1,
-    }
-)
+    })
 
-const tlIntro = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".header",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-    }
-})
+    tlIntro.to('.intro__text--2', {
+        scale: 1,
+    })
 
-tlIntro.to('.intro__subtext--1', {
-    scale: 0,
-})
+    tlIntro.to('.intro__text--2', {
+        scale: 0,
+    })
 
-tlIntro.to('.intro__text--1', {
-    scale: 0,
-})
+    tlIntro.to('.intro__text--3', {
+        scale: 1,
+    })
 
-tlIntro.to('.intro__subtext--2', {
-    scale: 1,
-})
+    tlIntro.to('.intro__text--3', {
+        scale: 0,
+    })
 
-tlIntro.to('.intro__text--2', {
-    scale: 1,
-})
-
-tlIntro.to('.intro__text--2', {
-    scale: 0,
-})
-
-tlIntro.to('.intro__text--3', {
-    scale: 1,
-})
-
-tlIntro.to('.intro__text--3', {
-    scale: 0,
-})
-
-tlIntro.to('.intro__text--4', {
-    scale: 1,
-})
-
+    tlIntro.to('.intro__text--4', {
+        scale: 1,
+    })
+}
 
 positionItems();
+textChanger()
