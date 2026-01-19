@@ -5,7 +5,7 @@ document.querySelectorAll('.js-only').forEach(el => {
 });
 
 const $carousel = document.getElementById('carousel');
-const $items = document.querySelectorAll('.carousel-item');
+const $items = document.querySelectorAll('.carousel__item');
 const totalItems = $items.length;
 
 function getRadius() {
@@ -40,9 +40,8 @@ function positionItems(rotation = 0) {
 
 const rotationObject = { rotation: 0 };
 
-gsap.to(rotationObject, {
-    rotation: 360 * 1,
-    ease: "none",
+// Carousel rotatie animatie
+const tlCarousel = gsap.timeline({
     scrollTrigger: {
         trigger: ".header",
         start: "top top",
@@ -53,6 +52,37 @@ gsap.to(rotationObject, {
         }
     }
 });
+
+tlCarousel.to(rotationObject, {
+    rotation: 360 * 1,
+    ease: "none",
+});
+
+// Split animatie - carousel opsplitsen in 2 groepen
+const $carousel1 = document.querySelectorAll('.carousel__item--1');
+const $carousel2 = document.querySelectorAll('.carousel__item--2');
+
+gsap.timeline({
+    scrollTrigger: {
+        trigger: ".carousel__animation",
+        start: "81% bottom",
+        end: "bottom bottom",
+        scrub: 1,
+        onUpdate: (self) => {
+            positionItems(rotationObject.rotation);
+        }
+    }
+})
+    .to($carousel1, {
+        x: '-15vw',
+        y: '15vh',
+        ease: "none",
+    }, 0)
+    .to($carousel2, {
+        x: '15vw',
+        y: '-15vh',
+        ease: "none",
+    }, 0);
 
 
 function textChanger() {
@@ -92,7 +122,7 @@ function textChanger() {
         scrollTrigger: {
             trigger: ".header",
             start: "top top",
-            end: "bottom bottom",
+            end: "75% bottom",
             scrub: 1,
         }
     })
