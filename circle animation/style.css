@@ -29,8 +29,8 @@ li {
 
 .carousel {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 12.5rem;
+    height: 12.5rem;
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
@@ -38,12 +38,163 @@ li {
 
 .carousel-item {
     position: absolute;
-    width: 50px;
+    width: 3.125rem;
     height: auto;
     left: 50%;
     top: 50%;
     transform-origin: bottom center;
     transition: transform 0.1s ease-out;
+}
+
+/* CSS Fallback positionering (zonder JavaScript) - radius 6.25rem (100px) */
+.carousel-item:nth-child(1) {
+    transform: translate(-50%, -100%) translate(0rem, -6.25rem) rotate(90deg);
+}
+
+.carousel-item:nth-child(2) {
+    transform: translate(-50%, -100%) translate(3.125rem, -5.4125rem) rotate(120deg);
+}
+
+.carousel-item:nth-child(3) {
+    transform: translate(-50%, -100%) translate(5.4125rem, -3.125rem) rotate(150deg);
+}
+
+.carousel-item:nth-child(4) {
+    transform: translate(-50%, -100%) translate(6.25rem, 0rem) rotate(180deg);
+}
+
+.carousel-item:nth-child(5) {
+    transform: translate(-50%, -100%) translate(5.4125rem, 3.125rem) rotate(210deg);
+}
+
+.carousel-item:nth-child(6) {
+    transform: translate(-50%, -100%) translate(3.125rem, 5.4125rem) rotate(240deg);
+}
+
+.carousel-item:nth-child(7) {
+    transform: translate(-50%, -100%) translate(0rem, 6.25rem) rotate(270deg);
+}
+
+.carousel-item:nth-child(8) {
+    transform: translate(-50%, -100%) translate(-3.125rem, 5.4125rem) rotate(300deg);
+}
+
+.carousel-item:nth-child(9) {
+    transform: translate(-50%, -100%) translate(-5.4125rem, 3.125rem) rotate(330deg);
+}
+
+.carousel-item:nth-child(10) {
+    transform: translate(-50%, -100%) translate(-6.25rem, 0rem) rotate(360deg);
+}
+
+.carousel-item:nth-child(11) {
+    transform: translate(-50%, -100%) translate(-5.4125rem, -3.125rem) rotate(390deg);
+}
+
+.carousel-item:nth-child(12) {
+    transform: translate(-50%, -100%) translate(-3.125rem, -5.4125rem) rotate(420deg);
+}
+
+/* Responsive fallback posities voor tablet */
+@media (min-width: 768px) {
+    .carousel-item:nth-child(1) {
+        transform: translate(-50%, -100%) translate(0rem, -12.5rem) rotate(90deg);
+    }
+
+    .carousel-item:nth-child(2) {
+        transform: translate(-50%, -100%) translate(6.25rem, -10.825rem) rotate(120deg);
+    }
+
+    .carousel-item:nth-child(3) {
+        transform: translate(-50%, -100%) translate(10.825rem, -6.25rem) rotate(150deg);
+    }
+
+    .carousel-item:nth-child(4) {
+        transform: translate(-50%, -100%) translate(12.5rem, 0rem) rotate(180deg);
+    }
+
+    .carousel-item:nth-child(5) {
+        transform: translate(-50%, -100%) translate(10.825rem, 6.25rem) rotate(210deg);
+    }
+
+    .carousel-item:nth-child(6) {
+        transform: translate(-50%, -100%) translate(6.25rem, 10.825rem) rotate(240deg);
+    }
+
+    .carousel-item:nth-child(7) {
+        transform: translate(-50%, -100%) translate(0rem, 12.5rem) rotate(270deg);
+    }
+
+    .carousel-item:nth-child(8) {
+        transform: translate(-50%, -100%) translate(-6.25rem, 10.825rem) rotate(300deg);
+    }
+
+    .carousel-item:nth-child(9) {
+        transform: translate(-50%, -100%) translate(-10.825rem, 6.25rem) rotate(330deg);
+    }
+
+    .carousel-item:nth-child(10) {
+        transform: translate(-50%, -100%) translate(-12.5rem, 0rem) rotate(360deg);
+    }
+
+    .carousel-item:nth-child(11) {
+        transform: translate(-50%, -100%) translate(-10.825rem, -6.25rem) rotate(390deg);
+    }
+
+    .carousel-item:nth-child(12) {
+        transform: translate(-50%, -100%) translate(-6.25rem, -10.825rem) rotate(420deg);
+    }
+}
+
+/* Responsive fallback posities voor desktop */
+@media (min-width: 1024px) {
+    .carousel-item:nth-child(1) {
+        transform: translate(-50%, -100%) translate(0rem, -18.75rem) rotate(90deg);
+    }
+
+    .carousel-item:nth-child(2) {
+        transform: translate(-50%, -100%) translate(9.375rem, -16.2375rem) rotate(120deg);
+    }
+
+    .carousel-item:nth-child(3) {
+        transform: translate(-50%, -100%) translate(16.2375rem, -9.375rem) rotate(150deg);
+    }
+
+    .carousel-item:nth-child(4) {
+        transform: translate(-50%, -100%) translate(18.75rem, 0rem) rotate(180deg);
+    }
+
+    .carousel-item:nth-child(5) {
+        transform: translate(-50%, -100%) translate(16.2375rem, 9.375rem) rotate(210deg);
+    }
+
+    .carousel-item:nth-child(6) {
+        transform: translate(-50%, -100%) translate(9.375rem, 16.2375rem) rotate(240deg);
+    }
+
+    .carousel-item:nth-child(7) {
+        transform: translate(-50%, -100%) translate(0rem, 18.75rem) rotate(270deg);
+    }
+
+    .carousel-item:nth-child(8) {
+        transform: translate(-50%, -100%) translate(-9.375rem, 16.2375rem) rotate(300deg);
+    }
+
+    .carousel-item:nth-child(9) {
+        transform: translate(-50%, -100%) translate(-16.2375rem, 9.375rem) rotate(330deg);
+    }
+
+    .carousel-item:nth-child(10) {
+        transform: translate(-50%, -100%) translate(-18.75rem, 0rem) rotate(360deg);
+    }
+
+    .carousel-item:nth-child(11) {
+        transform: translate(-50%, -100%) translate(-16.2375rem, -9.375rem) rotate(390deg);
+    }
+
+    .carousel-item:nth-child(12) {
+        transform: translate(-50%, -100%) translate(-9.375rem, -16.2375rem) rotate(420deg);
+    }
 }
 
 .intro {
@@ -71,7 +222,7 @@ li {
     font-size: 5.314rem;
     position: relative;
     z-index: -1;
-    -webkit-text-stroke-width: 8.5px;
+    -webkit-text-stroke-width: 0.53125rem;
     -webkit-text-stroke-color: #FAFAFA;
     font-weight: 700;
     paint-order: stroke fill;
@@ -81,7 +232,7 @@ li {
 
 .intro__subtext {
     color: #E20613;
-    -webkit-text-stroke-width: 6.3px;
+    -webkit-text-stroke-width: 0.39375rem;
     -webkit-text-stroke-color: #FFF;
     font-family: Oxanium;
     font-size: 0.98406rem;
@@ -93,14 +244,14 @@ li {
 }
 
 .title {
-    -webkit-text-stroke-width: 15.07px;
+    -webkit-text-stroke-width: 0.941875rem;
     -webkit-text-stroke-color: #FAFAFA;
     font-size: 3.43338rem;
     margin-top: -1.5rem;
 }
 
 .subtitle {
-    -webkit-text-stroke-width: 4.39px;
+    -webkit-text-stroke-width: 0.274375rem;
     -webkit-text-stroke-color: #FAFAFA;
     text-transform: uppercase;
     font-size: 0.981rem;
@@ -110,70 +261,70 @@ li {
 
 @media (min-width: 768px) {
     .carousel {
-        width: 400px;
-        height: 400px;
+        width: 25rem;
+        height: 25rem;
     }
 
     .carousel-item {
-        width: 100px;
+        width: 6.25rem;
     }
 
     .intro__text {
         font-size: 11rem;
-        -webkit-text-stroke-width: 18px;
+        -webkit-text-stroke-width: 1.125rem;
         margin-top: -4.4rem;
     }
 
     .intro__subtext {
         font-size: 2rem;
-        -webkit-text-stroke-width: 13px;
+        -webkit-text-stroke-width: 0.8125rem;
         margin-left: 0.6rem;
     }
 
     .title {
         font-size: 7.5rem;
-        -webkit-text-stroke-width: 33px;
+        -webkit-text-stroke-width: 2.0625rem;
         margin-top: -4rem;
     }
 
     .subtitle {
         font-size: 2.5rem;
-        -webkit-text-stroke-width: 11px;
+        -webkit-text-stroke-width: 0.6875rem;
         margin-left: 0.4rem;
     }
 }
 
 @media (min-width: 1024px) {
     .carousel {
-        width: 600px;
-        height: 600px;
+        width: 37.5rem;
+        height: 37.5rem;
     }
 
     .carousel-item {
-        width: 120px;
+        width: 7.5rem;
     }
 
     .intro__text {
         font-size: 16.875rem;
-        -webkit-text-stroke-width: 27px;
+        -webkit-text-stroke-width: 1.6875rem;
         margin-top: -6.7rem;
     }
 
     .intro__subtext {
         font-size: 3.125rem;
-        -webkit-text-stroke-width: 20px;
+        -webkit-text-stroke-width: 1.25rem;
         margin-left: 1rem;
     }
 
     .title {
         font-size: 10.9375rem;
-        -webkit-text-stroke-width: 48px;
+        -webkit-text-stroke-width: 3rem;
         margin-top: -5rem;
     }
 
     .subtitle {
         font-size: 3.125rem;
-        -webkit-text-stroke-width: 14px;
+        -webkit-text-stroke-width: 0.875rem;
         margin-left: 0.6rem;
     }
 }
