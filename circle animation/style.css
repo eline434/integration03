@@ -8,6 +8,10 @@ body {
     overflow-x: hidden;
 }
 
+li {
+    list-style: none;
+}
+
 .header {
     min-height: 300vh;
     position: relative;
@@ -44,19 +48,29 @@ body {
 
 .intro {
     position: fixed;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: 1;
+    overflow: hidden;
+    z-index: 1;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
+    transform: translate(-50%, -35%);
 
-    overflow: hidden;
 }
+
+.intro__item {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+
+
 
 .intro__text {
     font-family: Oxanium;
     color: #E20613;
+    text-transform: uppercase;
     font-size: 5.314rem;
     position: relative;
     z-index: -1;
@@ -65,7 +79,7 @@ body {
     font-weight: 700;
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    margin-top: -1.5rem;
+    margin-top: -2.1rem;
 }
 
 .intro__subtext {
@@ -91,6 +105,7 @@ body {
 .subtitle {
     -webkit-text-stroke-width: 4.39px;
     -webkit-text-stroke-color: #FAFAFA;
+    text-transform: uppercase;
     font-size: 0.981rem;
     font-weight: 700;
     margin-left: 0.2rem;

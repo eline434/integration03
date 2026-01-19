@@ -81,7 +81,7 @@ gsap.set('.intro__subtext--1',
     }
 )
 
-const tloctober20 = gsap.timeline({
+const tlIntro = gsap.timeline({
     scrollTrigger: {
         trigger: ".header",
         start: "top top",
@@ -90,35 +90,35 @@ const tloctober20 = gsap.timeline({
     }
 })
 
-tloctober20.to('.intro__subtext--1', {
+tlIntro.to('.intro__subtext--1', {
     scale: 0,
 })
 
-tloctober20.to('.intro__text--1', {
+tlIntro.to('.intro__text--1', {
     scale: 0,
 })
 
-tloctober20.to('.intro__subtext--2', {
+tlIntro.to('.intro__subtext--2', {
     scale: 1,
 })
 
-tloctober20.to('.intro__text--2', {
+tlIntro.to('.intro__text--2', {
     scale: 1,
 })
 
-tloctober20.to('.intro__text--2', {
+tlIntro.to('.intro__text--2', {
     scale: 0,
 })
 
-tloctober20.to('.intro__text--3', {
+tlIntro.to('.intro__text--3', {
     scale: 1,
 })
 
-tloctober20.to('.intro__text--3', {
+tlIntro.to('.intro__text--3', {
     scale: 0,
 })
 
-tloctober20.to('.intro__text--4', {
+tlIntro.to('.intro__text--4', {
     scale: 1,
 })
 
