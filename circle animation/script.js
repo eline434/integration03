@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const carousel = document.getElementById('carousel');
+const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel-item');
 const totalItems = $items.length;
 
@@ -8,11 +8,11 @@ function getRadius() {
     const width = window.innerWidth;
 
     if (width < 768) {
-        return 100; // Mobiel
+        return 100;
     } else if (width < 1024) {
-        return 200; // Tablet
+        return 200;
     } else {
-        return 300; // Desktop
+        return 300;
     }
 }
 
@@ -40,7 +40,7 @@ gsap.to(rotationObject, {
     rotation: 360 * 1,
     ease: "none",
     scrollTrigger: {
-        trigger: "body",
+        trigger: ".header",
         start: "top top",
         end: "bottom bottom",
         scrub: 1,
@@ -49,5 +49,78 @@ gsap.to(rotationObject, {
         }
     }
 });
+
+const $introtext = document.querySelectorAll('.intro__text');
+const $introsubtext = document.querySelectorAll('.intro__subtext');
+
+$introtext.forEach(text => {
+    gsap.set(text,
+        {
+            scale: 0,
+        }
+    )
+});
+
+gsap.set('.intro__text--1',
+    {
+        scale: 1,
+    }
+)
+
+$introsubtext.forEach(text => {
+    gsap.set(text,
+        {
+            scale: 0,
+        }
+    )
+});
+
+gsap.set('.intro__subtext--1',
+    {
+        scale: 1,
+    }
+)
+
+const tloctober20 = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".header",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+    }
+})
+
+tloctober20.to('.intro__subtext--1', {
+    scale: 0,
+})
+
+tloctober20.to('.intro__text--1', {
+    scale: 0,
+})
+
+tloctober20.to('.intro__subtext--2', {
+    scale: 1,
+})
+
+tloctober20.to('.intro__text--2', {
+    scale: 1,
+})
+
+tloctober20.to('.intro__text--2', {
+    scale: 0,
+})
+
+tloctober20.to('.intro__text--3', {
+    scale: 1,
+})
+
+tloctober20.to('.intro__text--3', {
+    scale: 0,
+})
+
+tloctober20.to('.intro__text--4', {
+    scale: 1,
+})
+
 
 positionItems();

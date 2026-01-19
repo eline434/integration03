@@ -1,8 +1,16 @@
+html {
+    background-color: #FAFAFA;
+}
+
 body {
     margin: 0;
     padding: 0;
-    min-height: 300vh;
     overflow-x: hidden;
+}
+
+.header {
+    min-height: 300vh;
+    position: relative;
 }
 
 .carousel-container {
@@ -35,41 +43,57 @@ body {
 }
 
 .intro {
-    justify-self: center;
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
+
+    overflow: hidden;
+}
+
+.intro__text {
+    font-family: Oxanium;
+    color: #E20613;
+    font-size: 5.314rem;
+    position: relative;
+    z-index: -1;
+    -webkit-text-stroke-width: 8.5px;
+    -webkit-text-stroke-color: #FAFAFA;
+    font-weight: 700;
+    paint-order: stroke fill;
+    -webkit-paint-order: stroke fill;
+    margin-top: -1.5rem;
+}
+
+.intro__subtext {
+    color: #E20613;
+    -webkit-text-stroke-width: 6.3px;
+    -webkit-text-stroke-color: #FFF;
+    font-family: Oxanium;
+    font-size: 0.98406rem;
+    font-style: normal;
+    font-weight: 700;
+    paint-order: stroke fill;
+    -webkit-paint-order: stroke fill;
+    margin-left: 0.2rem;
 }
 
 .title {
     -webkit-text-stroke-width: 15.07px;
     -webkit-text-stroke-color: #FAFAFA;
-    font-family: Oxanium;
-    color: #E20613;
     font-size: 3.43338rem;
-    font-weight: 700;
-    paint-order: stroke fill;
-    -webkit-paint-order: stroke fill;
     margin-top: -1.5rem;
-    position: relative;
-    z-index: -1;
 }
 
 .subtitle {
-    color: #E20613;
     -webkit-text-stroke-width: 4.39px;
     -webkit-text-stroke-color: #FAFAFA;
-    font-family: Oxanium;
     font-size: 0.981rem;
     font-weight: 700;
-    paint-order: stroke fill;
-    -webkit-paint-order: stroke fill;
     margin-left: 0.2rem;
-    position: relative;
-    z-index: 1;
 }
 
 @media (min-width: 768px) {
