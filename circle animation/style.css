@@ -64,9 +64,6 @@ li {
     grid-column: 1;
 }
 
-
-
-
 .intro__text {
     font-family: Oxanium;
     color: #E20613;
@@ -121,6 +118,18 @@ li {
         width: 100px;
     }
 
+    .intro__text {
+        font-size: 11rem;
+        -webkit-text-stroke-width: 18px;
+        margin-top: -4.4rem;
+    }
+
+    .intro__subtext {
+        font-size: 2rem;
+        -webkit-text-stroke-width: 13px;
+        margin-left: 0.6rem;
+    }
+
     .title {
         font-size: 7.5rem;
         -webkit-text-stroke-width: 33px;
@@ -142,6 +151,18 @@ li {
 
     .carousel-item {
         width: 120px;
+    }
+
+    .intro__text {
+        font-size: 16.875rem;
+        -webkit-text-stroke-width: 27px;
+        margin-top: -6.7rem;
+    }
+
+    .intro__subtext {
+        font-size: 3.125rem;
+        -webkit-text-stroke-width: 20px;
+        margin-left: 1rem;
     }
 
     .title {
