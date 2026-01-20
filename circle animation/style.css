@@ -13,11 +13,11 @@ li {
 }
 
 .header {
-    min-height: 400vh;
+    min-height: 300vh;
     position: relative;
 }
 
-.carousel__container {
+.carousel__animation--container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -68,7 +68,7 @@ li {
     display: none;
 }
 
-.intro__text {
+.intro__item--text {
     font-family: Oxanium;
     color: #E20613;
     text-transform: uppercase;
@@ -83,7 +83,7 @@ li {
     margin-top: -2.1rem;
 }
 
-.intro__subtext {
+.intro__item--subtext {
     color: #E20613;
     -webkit-text-stroke-width: 0.39375rem;
     -webkit-text-stroke-color: #FFF;
@@ -112,6 +112,34 @@ li {
     margin-left: 0.2rem;
 }
 
+.intro--text {
+    display: grid;
+    grid-template-rows: 2;
+    grid-template-columns: 2;
+    min-height: 100vh;
+}
+
+.intro--text__1 {
+    color: #131313;
+    font-family: "Kumbh Sans";
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 150%;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.intro--text__2 {
+    color: #131313;
+    font-family: "Kumbh Sans";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
+    grid-row: 2;
+    grid-column: 2;
+}
+
 @media (min-width: 768px) {
     .carousel {
         width: 25rem;
@@ -122,13 +150,13 @@ li {
         width: 6.25rem;
     }
 
-    .intro__text {
+    .intro__item--text {
         font-size: 11rem;
         -webkit-text-stroke-width: 1.125rem;
         margin-top: -4.4rem;
     }
 
-    .intro__subtext {
+    .intro__item--subtext {
         font-size: 2rem;
         -webkit-text-stroke-width: 0.8125rem;
         margin-left: 0.6rem;
@@ -157,13 +185,13 @@ li {
         width: 7.5rem;
     }
 
-    .intro__text {
+    .intro__item--text {
         font-size: 16.875rem;
         -webkit-text-stroke-width: 1.6875rem;
         margin-top: -6.7rem;
     }
 
-    .intro__subtext {
+    .intro__item--subtext {
         font-size: 3.125rem;
         -webkit-text-stroke-width: 1.25rem;
         margin-left: 1rem;
