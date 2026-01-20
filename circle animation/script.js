@@ -64,8 +64,7 @@ tlCarousel.to(rotationObject, {
 const $carousel1 = document.querySelectorAll('.carousel__item--1');
 const $carousel2 = document.querySelectorAll('.carousel__item--2');
 
-// Split animatie - verplaats middelpunten van beide cirkel-groepen
-gsap.timeline({
+const tlSplit = gsap.timeline({
     scrollTrigger: {
         trigger: ".carousel__animation",
         start: "60% bottom",
@@ -74,13 +73,20 @@ gsap.timeline({
         onUpdate: () => positionItems(rotationObject.rotation)
     }
 })
-    .to(offsetObject, {
+
+if (window.innerWidth >= 768) {
+    tlSplit.to(offsetObject, {
         x1: -window.innerWidth * 0.30,
-        y1: window.innerHeight * 0.35,
+        y1: window.innerHeight * 0.50,
         x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.35,
+        y2: -window.innerHeight * 0.50,
         ease: "none",
     }, 0);
+} else {
+    tlSplit.to('.carousel', {
+        opacity: 0,
+    })
+}
 
 
 function textChanger() {
@@ -120,7 +126,7 @@ function textChanger() {
         scrollTrigger: {
             trigger: ".header",
             start: "top top",
-            end: "75% bottom",
+            end: "bottom bottom",
             scrub: 1,
         }
     })
@@ -167,6 +173,33 @@ function textChanger() {
         duration: 1,
     }, "<")
 }
+
+const $first = document.querySelectorAll('.first__text');
+
+if (window.innerWidth >= 768) {
+    $first.forEach(text => {
+        gsap.set(text,
+            {
+                opacity: 0,
+            }
+        )
+    });
+
+    const tlFirst = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".first",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+        }
+    })
+
+    tlFirst.to('.first__text', {
+        opacity: 1,
+        duration: 1,
+    })
+}
+
 
 positionItems();
 textChanger()
