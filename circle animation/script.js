@@ -4,6 +4,8 @@ document.querySelectorAll('.js-only').forEach(el => {
     el.classList.remove('js-only');
 });
 
+document.querySelector('.intro').classList.add('intro-js');
+
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel__item');
 const totalItems = $items.length;
@@ -79,7 +81,7 @@ if (window.innerWidth >= 768) {
         x1: -window.innerWidth * 0.30,
         y1: window.innerHeight * 0.90,
         x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.10,
+        y2: -window.innerHeight * 0.00,
         ease: "none",
     }, 0);
 } else {
