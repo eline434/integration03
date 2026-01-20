@@ -2,6 +2,11 @@ html {
     background-color: #FAFAFA;
 }
 
+/* 
+.new {
+    height: 2000rem;
+} */
+
 body {
     margin: 0;
     padding: 0;
@@ -12,8 +17,12 @@ li {
     list-style: none;
 }
 
-p {
+.text {
     max-width: 21.25rem;
+}
+
+.carousel__animation {
+    position: relative;
 }
 
 .header {
@@ -22,13 +31,15 @@ p {
 }
 
 .carousel__animation--container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: sticky;
+    top: 40%;
+    transform: translateY(-50%);
     width: 100vw;
     height: 100vh;
     z-index: -2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel {
@@ -56,11 +67,11 @@ p {
     grid-template-rows: 1;
     grid-template-columns: 1;
     overflow: hidden;
+    justify-content: center;
     z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -35%);
-
 }
 
 .intro__item {
@@ -143,6 +154,10 @@ p {
 }
 
 @media (min-width: 768px) {
+    .text {
+        max-width: 30rem;
+    }
+
     .carousel {
         width: 25rem;
         height: 25rem;

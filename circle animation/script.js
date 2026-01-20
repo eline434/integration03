@@ -67,7 +67,7 @@ const $carousel2 = document.querySelectorAll('.carousel__item--2');
 const tlSplit = gsap.timeline({
     scrollTrigger: {
         trigger: ".carousel__animation",
-        start: "60% bottom",
+        start: "70% bottom",
         end: "90% bottom",
         scrub: 1,
         onUpdate: () => positionItems(rotationObject.rotation)
@@ -77,9 +77,9 @@ const tlSplit = gsap.timeline({
 if (window.innerWidth >= 768) {
     tlSplit.to(offsetObject, {
         x1: -window.innerWidth * 0.30,
-        y1: window.innerHeight * 0.50,
+        y1: window.innerHeight * 0.90,
         x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.50,
+        y2: -window.innerHeight * 0.10,
         ease: "none",
     }, 0);
 } else {
@@ -188,7 +188,7 @@ if (window.innerWidth >= 768) {
     const tlFirst = gsap.timeline({
         scrollTrigger: {
             trigger: ".first",
-            start: "top top",
+            start: "top 30%",
             end: "bottom bottom",
             scrub: 1,
         }
