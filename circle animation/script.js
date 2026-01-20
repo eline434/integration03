@@ -79,7 +79,7 @@ if (window.innerWidth >= 768) {
         x1: -window.innerWidth * 0.30,
         y1: window.innerHeight * 0.90,
         x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.10,
+        y2: -window.innerHeight * 0.0,
         ease: "none",
     }, 0);
 } else {
@@ -102,12 +102,6 @@ function textChanger() {
         )
     });
 
-    gsap.set('.intro__text--1',
-        {
-            scale: 1,
-        }
-    )
-
     $introsubtext.forEach(text => {
         gsap.set(text,
             {
@@ -115,6 +109,13 @@ function textChanger() {
             }
         )
     });
+
+    // Zet de eerste teksten op zichtbaar
+    gsap.set('.intro__text--1',
+        {
+            scale: 1,
+        }
+    )
 
     gsap.set('.intro__subtext--1',
         {
@@ -125,7 +126,7 @@ function textChanger() {
     const tlIntro = gsap.timeline({
         scrollTrigger: {
             trigger: ".header",
-            start: "top top",
+            start: "40% top",
             end: "bottom bottom",
             scrub: 1,
         }
