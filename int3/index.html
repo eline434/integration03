@@ -6,21 +6,37 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>int3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Oxanium:wght@200..800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
   <header>
     <img src="" alt="MoMu" class="header__logo">
-    <nav class="nav">
+    <nav class="header__nav">
       <ul class="nav__list">
-        <li class="nav__item nav__item--left">
-          <a href="../int2/index.html" class="nav__link">Int2</a>
+        <li class="nav__item">
+          <a href="" class="nav__link"><span class="nav__text">tickets</span> <svg width="29" height="30"
+              viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2.89844 9C2.89844 7.34315 4.19681 6 5.79844 6H23.1984C24.8001 6 26.0984 7.34315 26.0984 9V12C24.4968 12 23.1984 13.3431 23.1984 15C23.1984 16.6569 24.4968 18 26.0984 18V21C26.0984 22.6569 24.8001 24 23.1984 24H5.79844C4.19681 24 2.89844 22.6569 2.89844 21V18C4.50006 18 5.79844 16.6569 5.79844 15C5.79844 13.3431 4.50006 12 2.89844 12V9Z"
+                fill="#131313" />
+            </svg></a>
         </li>
-        <li class="nav__item nav__item--center">
-          <a href="../index.html" class="nav__link">Home</a>
-        </li>
-        <li class="nav__item nav__item--right">
-          <a href="../int4/index.html" class="nav__link">Int4</a>
+        <li class="nav__item dropdown"> designers <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+              fill="#21272A" />
+          </svg>
+          <div class="dropdown-content">
+            <a href="#">Walter Van Beirendonck</a>
+            <a href="#">Christian Dior</a>
+            <a href="#">dirk bikkembergs</a>
         </li>
       </ul>
     </nav>
@@ -28,18 +44,66 @@
   <div class="carousel__animation">
     <div class="carousel__animation--container">
       <div class="carousel" id="carousel">
-        <img src="assets/rotateIMG1.png" alt="Image 1" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG2.png" alt="Image 2" class="carousel__item carousel__item--2">
-        <img src="assets/rotateIMG3.png" alt="Image 3" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG4.png" alt="Image 4" class="carousel__item carousel__item--2">
-        <img src="assets/rotateIMG5.png" alt="Image 5" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG6.png" alt="Image 6" class="carousel__item carousel__item--2">
-        <img src="assets/rotateIMG7.png" alt="Image 7" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG8.png" alt="Image 8" class="carousel__item carousel__item--2">
-        <img src="assets/rotateIMG9.png" alt="Image 9" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG10.png" alt="Image 10" class="carousel__item carousel__item--2">
-        <img src="assets/rotateIMG11.png" alt="Image 11" class="carousel__item carousel__item--1">
-        <img src="assets/rotateIMG12.png" alt="Image 12" class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG1-50.avif 50w,
+                        assets/img/rotateIMG1-105.avif 105w,
+                        assets/img/rotateIMG1-145.avif 145w" src="assets/img/rotateIMG1.png" alt="Image 1"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG2-50.avif 50w,
+                        assets/img/rotateIMG2-105.avif 105w,
+                        assets/img/rotateIMG2-145.avif 145w" src="assets/img/rotateIMG2.png" alt="Image 2"
+          class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG3-50.avif 50w,
+                        assets/img/rotateIMG3-105.avif 105w,
+                        assets/img/rotateIMG3-145.avif 145w" src="assets/img/rotateIMG3.png" alt="Image 3"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG4-50.avif 50w,
+                        assets/img/rotateIMG4-105.avif 105w,
+                        assets/img/rotateIMG4-145.avif 145w" src="assets/img/rotateIMG4.png" alt="Image 4"
+          class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG5-50.avif 50w,
+                        assets/img/rotateIMG5-105.avif 105w,
+                        assets/img/rotateIMG5-145.avif 145w" src="assets/img/rotateIMG5.png" alt="Image 5"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG6-50.avif 50w,
+                        assets/img/rotateIMG6-105.avif 105w,
+                        assets/img/rotateIMG6-145.avif 145w" src="assets/img/rotateIMG6.png" alt="Image 6"
+          class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG7-50.avif 50w,
+                        assets/img/rotateIMG7-105.avif 105w,
+                        assets/img/rotateIMG7-145.avif 145w" src="assets/img/rotateIMG7.png" alt="Image 7"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG8-50.avif 50w,
+                        assets/img/rotateIMG8-105.avif 105w,
+                        assets/img/rotateIMG8-145.avif 145w" src="assets/img/rotateIMG8.png" alt="Image 8"
+          class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG9-50.avif 50w,
+                        assets/img/rotateIMG9-105.avif 105w,
+                        assets/img/rotateIMG9-145.avif 145w" src="assets/img/rotateIMG9.png" alt="Image 9"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG10-50.avif 50w,
+                        assets/img/rotateIMG10-105.avif 105w,
+                        assets/img/rotateIMG10-145.avif 145w" src="assets/img/rotateIMG10.png" alt="Image 10"
+          class="carousel__item carousel__item--2">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG11-50.avif 50w,
+                        assets/img/rotateIMG11-105.avif 105w,
+                        assets/img/rotateIMG11-145.avif 145w" src="assets/img/rotateIMG11.png" alt="Image 11"
+          class="carousel__item carousel__item--1">
+        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
+                        assets/img/rotateIMG12-50.avif 50w,
+                        assets/img/rotateIMG12-105.avif 105w,
+                        assets/img/rotateIMG12-145.avif 145w" src="assets/img/rotateIMG12.png" alt="Image 12"
+          class="carousel__item carousel__item--2">
       </div>
     </div>
     <section class="header">
