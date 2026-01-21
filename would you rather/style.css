@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.outfits-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 650px;
+}
+
+.final-character {
+    position: absolute;
+    width: 250px;
+    height: 600px;
+    background-image: url('assets/outfits.avif');
+    background-repeat: no-repeat;
+    background-size: auto 600px;
+    background-position: -250px 0;
+    opacity: 0;
+    transition: transform 0.8s ease;
+    z-index: -1;
+}
+
+.final-character.visible {
+    opacity: 1;
+}
+
+.outfit {
+    width: 250px;
+    height: 600px;
+    background-image: url('assets/outfits.avif');
+    background-repeat: no-repeat;
+    background-size: auto 600px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.outfit.hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.outfit.final-choice {
+    transform: translateX(0);
+    z-index: 2;
+    transition: opacity 1s ease;
+}
+
+.outfit.final-choice.fade-out {
+    opacity: 0;
+}
+
+.outfits-container.final-state {
+    justify-content: center;
+}
+
+.outfit-1 {
+    background-position: 0 0;
+}
+
+.outfit-2 {
+    background-position: -500px 0;
+}
