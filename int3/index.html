@@ -9,139 +9,428 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&family=Oxanium:wght@200..800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&family=Overpass+Mono:wght@300..700&family=Oxanium:wght@200..800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
-  <header>
-    <img src="" alt="MoMu" class="header__logo">
+  <header class="header">
+    <picture class="header__logo">
+      <source type="image/avif" srcset="assets/img/momu-145.avif 145w, assets/img/momu-350.avif 350w"
+        sizes="(min-width: 48em) 20.625rem, 9.0625rem">
+      <img src="assets/img/momu.png" alt="MoMu logo" loading="lazy" decoding="async">
+    </picture>
     <nav class="header__nav">
       <ul class="nav__list">
         <li class="nav__item">
-          <a href="" class="nav__link"><span class="nav__text">tickets</span> <svg width="29" height="30"
-              viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="#tickets" class="nav__link">
+            <span class="nav__text">tickets</span>
+            <svg width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
               <path
                 d="M2.89844 9C2.89844 7.34315 4.19681 6 5.79844 6H23.1984C24.8001 6 26.0984 7.34315 26.0984 9V12C24.4968 12 23.1984 13.3431 23.1984 15C23.1984 16.6569 24.4968 18 26.0984 18V21C26.0984 22.6569 24.8001 24 23.1984 24H5.79844C4.19681 24 2.89844 22.6569 2.89844 21V18C4.50006 18 5.79844 16.6569 5.79844 15C5.79844 13.3431 4.50006 12 2.89844 12V9Z"
                 fill="#131313" />
-            </svg></a>
+            </svg>
+          </a>
         </li>
-        <li class="nav__item dropdown"> designers <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
-              fill="#21272A" />
-          </svg>
-          <div class="dropdown-content">
-            <a href="#">Walter Van Beirendonck</a>
-            <a href="#">Christian Dior</a>
-            <a href="#">dirk bikkembergs</a>
+        <li class="nav__item nav__item--dropdown">
+          <span class="nav__link">
+            designers
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                fill="#21272A" />
+            </svg>
+          </span>
+          <div class="dropdown__content">
+            <a href="#walter-van-beirendonck" class="dropdown__link">Walter Van Beirendonck</a>
+            <a href="#christian-dior" class="dropdown__link">Christian Dior</a>
+            <a href="#dirk-bikkembergs" class="dropdown__link">Dirk Bikkembergs</a>
+          </div>
         </li>
       </ul>
     </nav>
   </header>
-  <div class="carousel__animation">
-    <div class="carousel__animation--container">
-      <div class="carousel" id="carousel">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG1-50.avif 50w,
-                        assets/img/rotateIMG1-105.avif 105w,
-                        assets/img/rotateIMG1-145.avif 145w" src="assets/img/rotateIMG1.png" alt="Image 1"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG2-50.avif 50w,
-                        assets/img/rotateIMG2-105.avif 105w,
-                        assets/img/rotateIMG2-145.avif 145w" src="assets/img/rotateIMG2.png" alt="Image 2"
-          class="carousel__item carousel__item--2">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG3-50.avif 50w,
-                        assets/img/rotateIMG3-105.avif 105w,
-                        assets/img/rotateIMG3-145.avif 145w" src="assets/img/rotateIMG3.png" alt="Image 3"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG4-50.avif 50w,
-                        assets/img/rotateIMG4-105.avif 105w,
-                        assets/img/rotateIMG4-145.avif 145w" src="assets/img/rotateIMG4.png" alt="Image 4"
-          class="carousel__item carousel__item--2">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG5-50.avif 50w,
-                        assets/img/rotateIMG5-105.avif 105w,
-                        assets/img/rotateIMG5-145.avif 145w" src="assets/img/rotateIMG5.png" alt="Image 5"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG6-50.avif 50w,
-                        assets/img/rotateIMG6-105.avif 105w,
-                        assets/img/rotateIMG6-145.avif 145w" src="assets/img/rotateIMG6.png" alt="Image 6"
-          class="carousel__item carousel__item--2">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG7-50.avif 50w,
-                        assets/img/rotateIMG7-105.avif 105w,
-                        assets/img/rotateIMG7-145.avif 145w" src="assets/img/rotateIMG7.png" alt="Image 7"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG8-50.avif 50w,
-                        assets/img/rotateIMG8-105.avif 105w,
-                        assets/img/rotateIMG8-145.avif 145w" src="assets/img/rotateIMG8.png" alt="Image 8"
-          class="carousel__item carousel__item--2">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG9-50.avif 50w,
-                        assets/img/rotateIMG9-105.avif 105w,
-                        assets/img/rotateIMG9-145.avif 145w" src="assets/img/rotateIMG9.png" alt="Image 9"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG10-50.avif 50w,
-                        assets/img/rotateIMG10-105.avif 105w,
-                        assets/img/rotateIMG10-145.avif 145w" src="assets/img/rotateIMG10.png" alt="Image 10"
-          class="carousel__item carousel__item--2">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG11-50.avif 50w,
-                        assets/img/rotateIMG11-105.avif 105w,
-                        assets/img/rotateIMG11-145.avif 145w" src="assets/img/rotateIMG11.png" alt="Image 11"
-          class="carousel__item carousel__item--1">
-        <img sizes="(min-width: 768px) 105vw,(min-width: 1024px) 145px, 50" srcset="
-                        assets/img/rotateIMG12-50.avif 50w,
-                        assets/img/rotateIMG12-105.avif 105w,
-                        assets/img/rotateIMG12-145.avif 145w" src="assets/img/rotateIMG12.png" alt="Image 12"
-          class="carousel__item carousel__item--2">
-      </div>
-    </div>
-    <section class="header">
-      <ul class="intro">
-        <li class="intro__item">
-          <p class="subtitle intro__item--subtext intro__subtext--1">Dirk</p>
-          <h1 class="title intro__item--text intro__text--1">Bikkembergs</h1>
+  <main>
+    <nav class="page__nav">
+      <ul class="page__list">
+        <li class="page__item">
+          <a href="#intro" class="page__link">
+            intro
+          </a>
         </li>
-        <li class="intro__item js-only">
-          <p class="intro__item--subtext intro__subtext--2">geïnspireerd door</p>
-          <p class="intro__item--text intro__text--2">Atleten</p>
+        <li class="page__item">
+          <a href="#geschiedenis" class="page__link">
+            geschiedenis
+          </a>
         </li>
-        <li class="intro__item js-only">
-          <p class="intro__item--subtext intro__subtext--2">geïnspireerd door</p>
-          <p class="intro__item--text intro__text--3">Militair</p>
-        </li>
-        <li class="intro__item js-only">
-          <p class="intro__item--subtext intro__subtext--2">geïnspireerd door</p>
-          <p class="intro__item--text intro__text--4">mannen</p>
+        <li class="page__item">
+          <a href="#tweestrijd" class="page__link">
+            de tweestrijd
+          </a>
         </li>
       </ul>
+    </nav>
+    <div class="carousel__animation">
+      <div class="carousel__animation--container carousel__animation--container-js">
+        <div class="carousel" id="carousel">
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG1-50.avif 50w, assets/img/rotateIMG1-105.avif 105w, assets/img/rotateIMG1-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG1.png" alt="Designer piece 1" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG2-50.avif 50w, assets/img/rotateIMG2-105.avif 105w, assets/img/rotateIMG2-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG2.png" alt="Designer piece 2" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG3-50.avif 50w, assets/img/rotateIMG3-105.avif 105w, assets/img/rotateIMG3-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG3.png" alt="Designer piece 3" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG4-50.avif 50w, assets/img/rotateIMG4-105.avif 105w, assets/img/rotateIMG4-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG4.png" alt="Designer piece 4" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG5-50.avif 50w, assets/img/rotateIMG5-105.avif 105w, assets/img/rotateIMG5-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG5.png" alt="Designer piece 5" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG6-50.avif 50w, assets/img/rotateIMG6-105.avif 105w, assets/img/rotateIMG6-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG6.png" alt="Designer piece 6" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG7-50.avif 50w, assets/img/rotateIMG7-105.avif 105w, assets/img/rotateIMG7-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG7.png" alt="Designer piece 7" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG8-50.avif 50w, assets/img/rotateIMG8-105.avif 105w, assets/img/rotateIMG8-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG8.png" alt="Designer piece 8" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG9-50.avif 50w, assets/img/rotateIMG9-105.avif 105w, assets/img/rotateIMG9-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG9.png" alt="Designer piece 9" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG10-50.avif 50w, assets/img/rotateIMG10-105.avif 105w, assets/img/rotateIMG10-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG10.png" alt="Designer piece 10" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--1">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG11-50.avif 50w, assets/img/rotateIMG11-105.avif 105w, assets/img/rotateIMG11-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG11.png" alt="Designer piece 11" loading="lazy" decoding="async">
+          </picture>
+          <picture class="carousel__item carousel__item--2">
+            <source type="image/avif"
+              srcset="assets/img/rotateIMG12-50.avif 50w, assets/img/rotateIMG12-105.avif 105w, assets/img/rotateIMG12-145.avif 145w"
+              sizes="(min-width: 64em) 7.5rem, (min-width: 48em) 6.25rem, 3.125rem">
+            <img src="assets/img/rotateIMG12.png" alt="Designer piece 12" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </div>
+      <section class="carousel__section">
+        <ul class="intro">
+          <li class="intro__item">
+            <p class="intro__subtitle">Dirk</p>
+            <h1 class="intro__title">Bikkembergs</h1>
+          </li>
+          <li class="intro__item js-only">
+            <p class="intro__item--subtext">geïnspireerd door</p>
+            <p class="intro__item--text">Atleten</p>
+          </li>
+          <li class="intro__item js-only">
+            <p class="intro__item--subtext">geïnspireerd door</p>
+            <p class="intro__item--text">Militair</p>
+          </li>
+          <li class="intro__item js-only">
+            <p class="intro__item--subtext">geïnspireerd door</p>
+            <p class="intro__item--text">mannen</p>
+          </li>
+        </ul>
+      </section>
+      <section class="section--first">
+        <div class="section__text section__text--primary">
+          <p class="text">In de geschiedenis van de mode werd het lichaam van de
+            man
+            lange
+            tijd
+            genegeerd.
+            Mode was iets
+            voor vrouwen en
+            homoseksuelen, mannen waren meer gericht op daden, logica en het hebben van controle. Mannen keken naar
+            anderen, maar ze werden zelf zelden bekeken.</p>
+        </div>
+        <div class="section__text section__text--secondary">
+          <p class="text">Als je naar de collecties van Dirk Bikkembergs kijkt,
+            zie
+            je meer
+            dan
+            alleen
+            kleren. Je ziet
+            mannen met <span class="color">sterke lichamen</span>,
+            zoals atleten of sporters, die hard hebben getraind en klaar zijn om iets te doen.</p>
+        </div>
+      </section>
+    </div>
+    <section class="section--new">
+      <p class="bigtext">Wat heeft hij in beweging gezet?</p>
+      <p class="bigtext">Waarom voelt Dirks mode anders?</p>
+      <picture class="split__image split__image--nojs">
+        <source type="image/avif"
+          srcset="assets/img/splitIMG-260.avif 260w, assets/img/splitIMG-397.avif 397w, assets/img/splitIMG-505.avif 505w"
+          sizes="(min-width: 64em) 32rem, (min-width: 48em) 22rem, 16.25rem">
+        <img src="assets/img/splitIMG.png" alt="image of woman" loading="lazy" decoding="async">
+      </picture>
+      <picture class="split__image js-only">
+        <source type="image/avif"
+          srcset="assets/img/splitIMG-small-260.avif 260w, assets/img/splitIMG-small-397.avif 397w, assets/img/splitIMG-big-569.avif 569w"
+          sizes="(min-width: 64em) 32rem, (min-width: 48em) 22rem, 16.25rem">
+        <img src="assets/img/splitIMG-small.png" alt="image of woman" loading="lazy" decoding="async">
+      </picture>
+      <picture class="">
+        <source type="image/avif"
+          srcset="assets/img/splitIMG-small-260.avif 260w, assets/img/splitIMG-small-397.avif 397w, assets/img/splitIMG-big-569.avif 569w"
+          sizes="(min-width: 64em) 32rem, (min-width: 48em) 22rem, 16.25rem">
+        <img src="assets/img/splitIMG-small.png" alt="image of woman" loading="lazy" decoding="async">
+      </picture>
     </section>
-    <section class="first">
-      <p class="text first__text first__text--1">In de geschiedenis van de mode werd het lichaam van de man lange
-        tijd
-        genegeerd.
-        Mode was iets
-        voor vrouwen en
-        homoseksuelen, mannen waren meer gericht op daden, logica en het hebben van controle. Mannen keken naar
-        anderen, maar ze werden zelf zelden bekeken.</p>
-      <p class="text first__text first__text--2">Als je naar de collecties van Dirk Bikkembergs kijkt, zie je meer
-        dan
-        alleen
-        kleren. Je ziet
-        mannen met sterke lichamen,
-        zoals atleten of sporters, die hard hebben getraind en klaar zijn om iets te doen.</p>
+    <section class="lichaam">
+      <h2 class="title">lichaam in <br><span class="title__offset">de voorgrond</span></h2>
+      <p class="text">Dirk Bikkembergs keert dat perspectief om. Vanaf het begin van zijn carrière staat het <span
+          class="color">lichaam
+          centraal</span>. Het
+        lichaam is
+        niet zomaar een neutrale drager van kleding, maar een oppervlak met betekenis. Je kunt de <span
+          class="color">spieren</span> zien, de
+        lijnen van de
+        kleding volgen de vorm van het lichaam en de silhouetten geven de indruk van <span
+          class="color">beweging</span>. <span class="color">Kracht</span>, <span class="color">discipline</span> en
+        <span class="color">viriliteit</span>
+        zijn de belangrijkste elementen van zijn esthetiek. Zijn mode lijkt een statement te maken over wat een <span
+          class="color">man</span> is.
+      </p>
+      <p class="text">Maar door dat lichaam zo duidelijk te laten zien, gebeurt er iets bijzonders. Het wordt niet
+        alleen iets wat
+        <span class="color">voor iets
+          anders</span> staat, maar ook iets wat je echt ziet. Iets waar mensen naar <span class="color">kijken</span>.
+        Iets wat mensen aantrekkelijk kunnen
+        vinden.
+      </p>
+      <div class="lichaam__vragen">
+        <p class="bigtext lichaam__vraag--1">Hoe komt hij hier tot?</p>
+        <p class="bigtext lichaam__vraag--2">pure interesse?</p>
+        <p class="bigtext lichaam__vraag--3">obsessie?</p>
+      </div>
     </section>
-  </div>
+    <section class="verhalen">
+      <div class="">
+        <h2 class="title">Beelden als <br>verhalen</h2>
+        <p class="text">In de <strong>beginjaren</strong> van zijn carrière creëert Bikkembergs een heel <strong>eigen
+            wereld</strong> van beelden. Het is
+          van beelden. Het is
+          alsof je door
+          een serie
+          korte verhalen bladert. In zijn catalogi en reclamecampagnes zie je verschillende <strong>soorten
+            mannen</strong>: de atleet,
+          de
+          werkman,
+          de opstandeling, de ontdekkingsreiziger. Telkens weer zie je het lichaam <strong>in beweging</strong>:
+          hardlopen, werken,
+          vechten,
+          uitrusten na een zware inspanning.</p>
+        <p class="text">Deze beelden geven een gevoel van heldhaftigheid, maar ook van nabijheid. Het lichaam wordt
+          sterk getoond,
+          maar het
+          blijft dichtbij. Het wordt aan de kijker gepresenteerd als iets om naar op te kijken, als een voorbeeld, als
+          iets om te
+          volgen en om te bekijken.</p>
+        <div class="outfits-container">
+          <div class="final-character"></div>
+          <div class="outfit outfit-1" data-outfit="1"></div>
+          <p class="of">of</p>
+          <div class="outfit outfit-2" data-outfit="2"></div>
+        </div>
+      </div>
+
+      <p class="text">Mannen worden vaak samen getoond. Ze duwen elkaar aan, geven elkaar een duwtje, houden elkaars
+        hand vast, meten
+        hun
+        kracht. Het is heel gewoon dat ze dicht bij elkaar staan. De manier waarop ze staan, laat zien dat hun spieren
+        gespannen
+        zijn, hun bovenlichamen zijn bloot en de manier waarop ze gebaren, laat zien dat ze zowel concurreren als elkaar
+        aanraken.</p>
+      <p class="text">Deze beelden geven een gevoel van heldhaftigheid, maar ook van nabijheid. Het lichaam wordt sterk
+        getoond, maar
+        het
+        blijft dichtbij. Het wordt aan de kijker gepresenteerd als iets om naar op te kijken, als een voorbeeld, als
+        iets om te
+        volgen en om te bekijken.</p>
+    </section>
+    <section>
+      <h2 class="title">Wanneer lichaam <br>beeld wordt</h2>
+      <p class="text">In de <span class="color">jaren negentig</span> verandert de manier waarop dingen worden
+        gepresenteerd. Het verhaal wordt
+        minder
+        belangrijk en de
+        omgeving wordt minder opvallend. De camera <span class="color">zoomt in op het lichaam</span>. Het lichaam is nu
+        het belangrijkste
+        onderwerp.
+        Modellen verschijnen met <span class="color">weinig kleren</span> aan, zonder enige achtergrond. Alles draait nu
+        om het beeld van de <span class="color">huid</span>,
+        de
+        <span class="color">spieren</span> en de houding van de man. De man wordt gezien als een vorm.
+      </p>
+
+      <p class="bigtext">1999</p>
+      <p class="bigtext">2000</p>
+      <p class="bigtext">2002</p>
+      <p class="bigtext">2007</p>
+      <p class="bigtext">2012</p>
+      <p class="bigtext">2018</p>
+    </section>
+    <section>
+      <h2 class="title">Mode en sport versmelten</h2>
+      <p class="text">Rond de <span class="color">eeuwwisseling</span> neemt Bikkembergs een belangrijke beslissing. Hij
+        <span class="color">combineert mode </span> en <span class="color">sport</span>.
+        Voetbal is
+        niet alleen
+        een bron van inspiratie, maar wordt onderdeel van zijn identiteit. De campagnes van Bikkembergs spelen zich af
+        op
+        stadions, trainingsvelden en in kleedkamers. In plaats van modellen gebruikt hij atleten om zijn kleding te
+        showen.
+      </p>
+      <p class="text">Die <span class="color">sportieve logica</span> sijpelt door in zijn beeldtaal. De camera richt
+        zich op torso’s, dijen en
+        buikspieren,
+        steeds
+        nadrukkelijker op het midden van het <span class="color">lichaam</span>. Zweet glanst op de huid, spieren
+        spannen zich onder technische
+        stoffen: de
+        grens tussen prestatie en presentatie vervaagt. Voor Bikkembergs belichaamt sport alles wat <span
+          class="color">mannelijkheid</span> belooft,
+        discipline, uithoudingsvermogen, competitie en het atletische lichaam wordt zo het ultieme symbool van kracht.
+        Maar
+        sport is ook een wereld van kijken: lichamen worden voortdurend bekeken, herhaald op schermen en bewonderd vanaf
+        de
+        tribune.</p>
+    </section>
+    <section class="blik">
+      <h2 class="title blik__title">De blik <br> die blijft hangen</h2>
+      <p class="text blik__text">Er ontstaat een soort <strong>tweestrijd</strong>. De man blijft iemand die
+        kracht uitstraalt, maar wordt ook iets wat je ziet. Vroeger
+        keek iedereen naar het lichaam van de vrouw, maar hier gebeurt dat met het lichaam van de man. Als dit bedoeld
+        is om te
+        laten zien hoe <strong>sterk</strong> een man is, dan geeft het ook ruimte voor een andere manier van kijken:
+        naar <strong>verlangen</strong>, naar
+        dichtbij zijn en naar het delen van lichamelijke momenten.</p>
+      <p class="text blik__text">In de beelden van Bikkembergs is kijken <strong>nooit onschuldig</strong>. De camera
+        staat dichtbij,
+        volgt de
+        rondingen van
+        schouders en
+        buikspieren, rust op huid en spanning. Het <strong>mannenlichaam</strong> wordt niet alleen voorgesteld als
+        <strong>actief</strong> en <strong>krachtig</strong>,
+        maar ook
+        als <strong>stilstaand</strong>, <strong>geposeerd</strong>, <strong>tentoongesteld</strong>.
+      </p>
+    </section>
+    <section>
+      <p class="bigtext">dit is een man</p>
+      <p class="bigtext">wat zien we nu echt?</p>
+      <p class="bigtext">verlangen?</p>
+      <p class="bigtext">kracht?</p>
+      <p class="bigtext">wat zie jij?</p>
+      <p class="bigtext">plaats jouw kader!</p>
+
+      <h2 class="title">Mannelijkheid als beeld</h2>
+      <p class="text">Dit werk laat zien dat mode niet alleen een afspiegeling is van hoe mannen moeten zijn, maar dat
+        het ook een
+        actieve rol
+        speelt in het vormgeven van die beelden. Beelden zijn niet gewoon neutrale afbeeldingen. Ze bepalen hoe we naar
+        dingen
+        kijken, wat we verwachten en welke mogelijkheden we zien.</p>
+      <p class="text">Bij Bikkembergs wordt het mannenlichaam een drager van tegenstrijdigheden. Het gaat om discipline
+        en
+        sensualiteit,
+        heroïek en intimiteit, norm en afwijking. Zijn werk laat zien dat mannelijkheid geen vaststaand gegeven is.
+        Mannelijkheid is een beeld dat telkens opnieuw wordt geconstrueerd.</p>
+    </section>
+    <footer class="footer--end">
+      <p class="bigtext footer--end__text">meer weten over Bikkenbergs?</p>
+      <picture class="footer__logo">
+        <source type="image/avif" srcset="assets/img/momu-145.avif 145w, assets/img/momu-350.avif 350w"
+          sizes="(min-width: 44em) 20.625rem, 9.0625rem">
+        <img src="assets/img/momu.png" alt="MoMu logo" loading="lazy" decoding="async">
+      </picture>
+      <div class="nav__item">
+        <a href="#tickets" class="nav__link">
+          <span>tickets</span>
+        </a>
+      </div>
+    </footer>
+  </main>
+  <footer class="footer">
+    <ul class="footer--nav">
+      <li class="">
+        <svg class="nav__item" width="20" height="20" viewBox="0 0 20 20" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M7.70711 3.29289C8.09763 3.68342 8.09763 4.31658 7.70711 4.70711L5.41421 7H11C14.866 7 18 10.134 18 14V16C18 16.5523 17.5523 17 17 17C16.4477 17 16 16.5523 16 16V14C16 11.2386 13.7614 9 11 9H5.41421L7.70711 11.2929C8.09763 11.6834 8.09763 12.3166 7.70711 12.7071C7.31658 13.0976 6.68342 13.0976 6.29289 12.7071L2.29289 8.70711C1.90237 8.31658 1.90237 7.68342 2.29289 7.29289L6.29289 3.29289C6.68342 2.90237 7.31658 2.90237 7.70711 3.29289Z"
+            fill="#E20613" />
+        </svg>
+        <p>Walter Van Beirendonck</p>
+      </li>
+      <li class="nav__item nav__item--dropdown">
+        <span class="nav__link">
+          designers
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+              fill="#21272A" />
+          </svg>
+        </span>
+        <div class="nav__item dropdown__content">
+          <a href="#walter-van-beirendonck" class="dropdown__link">Walter Van Beirendonck</a>
+          <a href="#christian-dior" class="dropdown__link">Christian Dior</a>
+          <a href="#dirk-bikkembergs" class="dropdown__link">Dirk Bikkembergs</a>
+        </div>
+      </li>
+      <li class="">
+        <svg class="nav__item" width="20" height="20" viewBox="0 0 20 20" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12.29289 3.29289C11.90237 3.68342 11.90237 4.31658 12.29289 4.70711L14.58579 7H9C5.134 7 2 10.134 2 14V16C2 16.5523 2.4477 17 3 17C3.5523 17 4 16.5523 4 16V14C4 11.2386 6.2386 9 9 9H14.58579L12.29289 11.2929C11.90237 11.6834 11.90237 12.3166 12.29289 12.7071C12.68342 13.0976 13.31658 13.0976 13.70711 12.7071L17.70711 8.70711C18.09763 8.31658 18.09763 7.68342 17.70711 7.29289L13.70711 3.29289C13.31658 2.90237 12.68342 2.90237 12.29289 3.29289Z"
+            fill="#E20613" />
+        </svg>
+        <p>Christian Dior</p>
+      </li>
+    </ul>
+    </div>
+    <p class="footer__text">© 2026 MoMu - Fashion Museum Antwerp</p>
+  </footer>
   <script type="module" src="/src/main.js"></script>
 </body>
 
