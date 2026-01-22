@@ -4,7 +4,7 @@
 :root {
     /* Colors */
     --color-bg: #FAFAFA;
-    --color-surface: #FCFCFC;
+    --color-surface: #FAFAFA;
     --color-text: #131313;
     --color-accent: #E20613;
     --color-neutral-light: #f1f1f1;
@@ -66,7 +66,8 @@ html {
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+    width: 100%;
 }
 
 ul {
@@ -104,13 +105,14 @@ a:hover {
 .bigtext {
     color: var(--color-accent);
     font-family: var(--font-display);
-    font-size: var(--font-size-display-sm);
+    font-size: clamp(2rem, 8.72vw, 6.25rem);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-normal);
+    text-transform: uppercase;
 }
 
 .text {
-    /* max-width: var(--max-width-text); */
+    max-width: 80vw;
     font-family: var(--font-primary);
     font-size: 1rem;
     line-height: var(--line-height-normal);
@@ -128,6 +130,10 @@ a:hover {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.bigscreen--only {
+    display: none;
 }
 
 /* ==========================================
@@ -374,20 +380,10 @@ a:hover {
     margin: var(--space-5);
     max-width: 100%;
     overflow: hidden;
+    display: grid;
+    grid-template-rows: repeat(2, max-content);
+    gap: 1.5rem;
 }
-
-.section__text--primary {
-    grid-row: 1;
-    grid-column: 1;
-    max-width: 30rem;
-}
-
-.section__text--secondary {
-    grid-row: 2;
-    grid-column: 2;
-    max-width: 30rem;
-}
-
 
 /* ==========================================
    Carousel Item Positioning (CSS Fallback)
@@ -440,14 +436,103 @@ a:hover {
     transform: translate(-50%, -100%) translate(-3.125rem, -5.4125rem) rotate(340deg);
 }
 
-.lichaam {
+.geschiedenis__vragen {
     display: grid;
-    grid-template-rows: repeat(4, max-content);
-    gap: 1.5rem;
-    padding: 6.5rem 1.5rem;
+    grid-template-rows: repeat(2, max-content);
+    gap: 4rem;
 }
 
-.title__offset {}
+.geschiedenis__vraag {
+    text-align: center;
+}
+
+.geschiedenis__vraag--1 {
+    transform: rotate(-7.729deg);
+}
+
+.geschiedenis__vraag--2 {
+    transform: rotate(8.266deg);
+}
+
+.split {
+    transform: rotate(5deg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.split__text {
+    font-size: 0.875rem;
+    font-weight: 200;
+    margin-bottom: -1.5rem;
+}
+
+.lichaam {
+    display: grid;
+    grid-template-rows: repeat(2, max-content);
+    gap: 1.5rem;
+    padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
+    background:
+        linear-gradient(rgba(252, 252, 252, 1), rgba(252, 252, 252, 0.75)),
+        url(../../assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
+}
+
+.lichaam__text {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 4rem;
+}
+
+.title__offset {
+    display: block;
+    text-align: right;
+}
+
+.lichaam__vragen {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    gap: 4rem;
+    background-image: url(../../assets/img/tekstbackground-phone.png);
+    background-size: cover;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.lichaam__vraag {
+    min-height: 10vh;
+    text-align: center;
+    font-size: clamp(2rem, 10.5vw, 6.25rem);
+}
+
+.lichaam__vraag--1 {
+    transform: rotate(-6.946deg);
+}
+
+.lichaam__vraag--2 {
+    transform: rotate(8.17deg);
+}
+
+.lichaam__vraag--3 {
+    transform: rotate(-3.023deg);
+}
+
+.verhalen {}
+
+.verhalen__text {
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+    margin-bottom: 4rem;
+    color: var(--color-bg);
+    background-color: var(--color-text);
+    padding-top: 5rem;
+}
 
 .blik {
     color: #FAFAFA;
@@ -460,6 +545,11 @@ a:hover {
 
 .blik__title {
     text-align: right;
+}
+
+.footer--nav {
+    display: flex;
+    align-items: space-between;
 }
 
 /* ==========================================
@@ -523,6 +613,18 @@ a:hover {
         justify-self: center;
     }
 
+    .section__text--primary {
+        grid-row: 1;
+        grid-column: 1;
+        max-width: 30rem;
+    }
+
+    .section__text--secondary {
+        grid-row: 2;
+        grid-column: 2;
+        max-width: 30rem;
+    }
+
     .carousel__animation {
         margin-top: 40rem;
     }
@@ -579,15 +681,27 @@ a:hover {
     .carousel__item:nth-child(12) {
         transform: translate(-50%, -100%) translate(-6.25rem, -10.825rem) rotate(340deg);
     }
-}
 
-.footer--nav {
-    display: flex;
-    align-items: space-between;
+    .split__text {
+        font-size: 1.2rem;
+        margin-bottom: -1.8rem;
+    }
+
+    .lichaam__vragen {
+        background-image: url(../../assets/img/tekstbackground-big.png);
+    }
 }
 
 /* Desktop: 1024px = 64em */
 @media (min-width: 64em) {
+    .bigscreen--only {
+        display: block;
+    }
+
+    .phone--only {
+        display: none;
+    }
+
     .carousel {
         width: 37.5rem;
         height: 37.5rem;
@@ -668,5 +782,10 @@ a:hover {
 
     .carousel__item:nth-child(12) {
         transform: translate(-50%, -100%) translate(-9.375rem, -16.2375rem) rotate(340deg);
+    }
+
+    .split__text {
+        font-size: 2rem;
+        margin-bottom: -3rem;
     }
 }
