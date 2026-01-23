@@ -192,7 +192,7 @@ a:hover {
     display: flex;
     justify-content: center;
     gap: 2.5rem;
-    border-bottom: #131313 2px solid;
+    border-bottom: #131313 0.125rem solid;
     max-width: 30rem;
 }
 
@@ -471,7 +471,7 @@ a:hover {
 }
 
 .splitIMG {
-    box-shadow: 0 4px 50px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
 }
 
 .lichaam {
