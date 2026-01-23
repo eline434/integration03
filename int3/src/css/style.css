@@ -733,6 +733,10 @@ a:hover {
 .beeld__nummer {
     transform: rotate(16.103deg);
     color: transparent;
+    -webkit-text-stroke-width: 10px;
+    -webkit-text-stroke-color: #FAFAFA;
+    paint-order: stroke fill;
+    -webkit-paint-order: stroke fill;
 }
 
 .beeld__img:hover .beeld__nummer {
