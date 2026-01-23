@@ -62,7 +62,7 @@ function performSplit() {
 
     gsap.to([$splitContainer, ...$splitText], {
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         ease: 'power2.inOut'
     });
 
@@ -79,7 +79,37 @@ function performSplit() {
     const splitAfterCenterX = splitAfterRect.left + splitAfterRect.width / 2;
     const splitAfterCenterY = splitAfterRect.top + splitAfterRect.height / 2;
 
+    const imgGroupRect = $imgGroup.getBoundingClientRect();
+    const imgGroupBottom = imgGroupRect.bottom;
+    const imgGroupCenterX = imgGroupRect.left + imgGroupRect.width / 2;
+    const offsetToImgGroupEnd = imgGroupBottom - splitAfterCenterY;
+
     const windowWidth = window.innerWidth;
+
+    let splitAfterX, splitAfterRotation;
+    if (windowWidth >= 768) {
+        splitAfterX = imgGroupCenterX - splitAfterCenterX;
+        splitAfterRotation = 0;
+    } else { // Mobile
+        splitAfterX = -40;
+        splitAfterRotation = -10.644;
+    }
+
+    gsap.to($splitAfter, {
+        y: offsetToImgGroupEnd,
+        x: splitAfterX,
+        rotation: splitAfterRotation,
+        duration: 1.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+            trigger: $imgGroup,
+            start: 'top 80%',
+            end: 'bottom 70%',
+            scrub: 1,
+            once: true
+        }
+    });
+
     let rotations;
 
     if (windowWidth >= 768) {

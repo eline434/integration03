@@ -543,7 +543,7 @@ a:hover {
 }
 
 .IMGgroup {
-    min-height: 100vh;
+    max-height: max-content;
     justify-content: center;
     display: grid;
     grid-template-columns: 5rem 3rem 5rem 4rem 7rem;
