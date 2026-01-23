@@ -1,4 +1,4 @@
-gsap.registerPlugin(Draggable);
+gsap.registerPlugin(Draggable, ScrollTrigger);
 
 const $dragger = document.querySelector('.split__dragger');
 const $topImage = document.querySelector('.split__image--top');
@@ -8,7 +8,7 @@ let dragStartX = 0;
 let hasSplit = false;
 
 let lastTap = 0;
-const isMobileOrTablet = window.innerWidth < 1024; // 64em = 1024px
+const isMobileOrTablet = window.innerWidth < 1024;
 
 if (isMobileOrTablet) {
     $dragger.addEventListener('touchend', function (e) {
@@ -73,31 +73,44 @@ function performSplit() {
         ease: 'power2.inOut'
     });
 
-    // Animeer IMGgroup images vanaf split__after positie naar hun posities
-    const imgGroupImages = document.querySelectorAll('.IMGgroup__img');
+    const $imgGroupImages = document.querySelectorAll('.IMGgroup__img');
+    const $imgGroup = document.querySelector('.IMGgroup');
     const splitAfterRect = $splitAfter.getBoundingClientRect();
     const splitAfterCenterX = splitAfterRect.left + splitAfterRect.width / 2;
     const splitAfterCenterY = splitAfterRect.top + splitAfterRect.height / 2;
 
-    // Rotation values uit CSS
-    const rotations = {
-        'IMGgroup__img--1': 2.357,
-        'IMGgroup__img--2': 12.446,
-        'IMGgroup__img--3': 3.005,
-        'IMGgroup__img--4': -9.855,
-        'IMGgroup__img--5': -4.078,
-        'IMGgroup__img--6': 6.548,
-        'IMGgroup__img--7': -2.006
-    };
+    const windowWidth = window.innerWidth;
+    let rotations;
 
-    imgGroupImages.forEach((img) => {
+    if (windowWidth >= 768) {
+        rotations = {
+            'IMGgroup__img--1': 13.219,
+            'IMGgroup__img--2': 17.973,
+            'IMGgroup__img--3': -9.92,
+            'IMGgroup__img--4': -16.345,
+            'IMGgroup__img--5': -0.113,
+            'IMGgroup__img--6': 25.53,
+            'IMGgroup__img--7': -2.006
+        };
+    } else {
+        rotations = {
+            'IMGgroup__img--1': 2.357,
+            'IMGgroup__img--2': 12.446,
+            'IMGgroup__img--3': 3.005,
+            'IMGgroup__img--4': -9.855,
+            'IMGgroup__img--5': -4.078,
+            'IMGgroup__img--6': 6.548,
+            'IMGgroup__img--7': -2.006
+        };
+    }
+
+    $imgGroupImages.forEach((img) => {
         const imgRect = img.getBoundingClientRect();
         const imgCenterX = imgRect.left + imgRect.width / 2;
         const imgCenterY = imgRect.top + imgRect.height / 2;
         const offsetX = splitAfterCenterX - imgCenterX;
         const offsetY = splitAfterCenterY - imgCenterY;
-        
-        // Vind de rotation uit het rotations object
+
         let targetRotation = 0;
         for (const className in rotations) {
             if (img.classList.contains(className)) {
@@ -119,8 +132,14 @@ function performSplit() {
                 rotation: targetRotation,
                 opacity: 1,
                 duration: 1.5,
-                delay: 2,
-                ease: 'power2.out'
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: $imgGroup,
+                    start: 'top 80%',
+                    end: 'bottom 70%',
+                    scrub: 1,
+                    once: true
+                }
             }
         );
     });
