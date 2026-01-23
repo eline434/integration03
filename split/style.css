@@ -463,6 +463,7 @@ a:hover {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .split__text {
@@ -473,6 +474,7 @@ a:hover {
 .split__container {
     position: relative;
     display: inline-block;
+    z-index: 2;
 }
 
 .split__dragger {
@@ -493,6 +495,7 @@ a:hover {
 .split__image {
     display: block;
     position: relative;
+    width: 16.25rem;
 }
 
 .split__image--top {
@@ -505,7 +508,7 @@ a:hover {
     top: 0;
     left: 0;
     clip-path: inset(49% 0 0 0);
-    z-index: 1;
+    z-index: 2;
 }
 
 .split__image img {
@@ -514,8 +517,29 @@ a:hover {
     height: auto;
 }
 
-.splitIMG {
+.split__after {
+    position: absolute;
+    top: 32rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 0;
     box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
+    width: fit-content;
+    opacity: 0;
+    pointer-events: none;
+    transform: rotate(5deg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1.25rem;
+}
+
+.split__after img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .lichaam {
@@ -1122,6 +1146,14 @@ a:hover {
         margin-bottom: -1.8rem;
     }
 
+    .split__image {
+        width: 22rem;
+    }
+
+    .split__after {
+        top: 45.6rem;
+    }
+
     .lichaam__text {
         grid-template-columns: 1fr repeat(2, max-content) 1fr;
         grid-template-rows: repeat(2, max-content);
@@ -1442,6 +1474,10 @@ a:hover {
     .split__text {
         font-size: 2rem;
         margin-bottom: -3rem;
+    }
+
+    .split__image {
+        width: 36rem;
     }
 
     .final-character {
