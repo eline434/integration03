@@ -504,7 +504,9 @@ a:hover {
     grid-template-rows: repeat(3, max-content);
     gap: 4rem;
     background-image: url(../../assets/img/tekstbackground-phone.png);
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -809,10 +811,15 @@ a:hover {
 .mannelijkheid__interaction {
     display: grid;
     grid-template-rows: repeat(3, max-content);
-    grid-template-columns: repeat(3, max-content);
-    padding: 0rem 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
     gap: 0.5rem;
     justify-self: center;
+    background-image: url(../../assets/img/tekstbackground-phone.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
 }
 
 .mannelijkheid__interaction--frame {
@@ -838,6 +845,7 @@ a:hover {
     grid-row: 3;
     grid-column: span 3;
     justify-self: center;
+    width: 15.125rem;
 }
 
 .mannelijkheid__text {
@@ -884,6 +892,7 @@ a:hover {
 .tickets__momu {
     grid-row: 3;
     grid-column: 2;
+    color: var(--color-accent);
 }
 
 .footer--end__nav {
@@ -891,7 +900,7 @@ a:hover {
 }
 
 .footer {
-    width: 100vw;
+    max-width: 100vw;
     padding: var(--space-6) var(--space-4);
 }
 
@@ -899,7 +908,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    max-width: 100vw;
 }
 
 .footer--nav .dropdown__content {
@@ -925,6 +934,10 @@ a:hover {
 
 .nav__description--2 {
     text-align: right;
+}
+
+.footer__text {
+    padding-top: 1rem;
 }
 
 /* ==========================================
@@ -1092,6 +1105,9 @@ a:hover {
 
     .lichaam__vragen {
         background-image: url(../../assets/img/tekstbackground-big.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
 
     .verhalen__text {
@@ -1142,6 +1158,14 @@ a:hover {
         background-image: none;
     }
 
+    .sport {
+        padding-left: 10vw;
+    }
+
+    .sport__img {
+        margin-top: -9rem;
+    }
+
     .blik {
         display: grid;
         grid-template-columns: 1fr repeat(2, max-content) 1fr;
@@ -1166,17 +1190,37 @@ a:hover {
         grid-row: 2;
     }
 
+    .frame-l {
+        transform: scale(1.905);
+    }
+
+    .frame-m {
+        transform: scale(1.9);
+    }
+
+    .frame-s {
+        transform: scale(1.9);
+    }
+
+    .frame-xs {
+        transform: scale(1.902);
+    }
+
     .mannelijkheid__interaction {
         display: grid;
         grid-template-rows: repeat(2, max-content);
-        grid-template-columns: repeat(3, max-content);
-        padding: 0rem 1.5rem;
-        gap: 3rem
+        grid-template-columns: 1fr max-content 1fr;
+        padding: 0rem;
+        gap: 3rem;
+        background-image: url(../../assets/img/tekstbackground-big.png);
+        width: 100vw;
+        /* justify-self: stretch; */
     }
 
     .mannelijkheid__interaction--IMG {
         grid-row: span 2;
         grid-column: 2;
+        width: 28.75rem;
     }
 
     .mannelijkheid__text {
