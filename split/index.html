@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,24 +15,32 @@
             <p class="bigtext geschiedenis__vraag geschiedenis__vraag--2">Waarom voelt Dirks<br> mode anders?</p>
         </div>
         <div class="split">
-            <p class="title js-only split__text phone--only">druk om te knippen</p>
-            <p class="title js-only split__text bigscreen--only">swipe om te knippen</p>
-            <picture class="split__image">
-                <source type="image/avif"
-                    srcset="img/splitIMG-260.avif 260w, img/splitIMG-397.avif 397w, img/splitIMG-505.avif 505w"
-                    sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem">
-                <img src="img/splitIMG.png" srcset="img/splitIMG.png 505w"
-                    sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem" alt="image of woman"
-                    loading="lazy" decoding="async">
-            </picture>
+            <p class="title split__text phone--only">druk om te knippen</p>
+            <p class="title split__text bigscreen--only">swipe om te knippen</p>
+            <div class="split__container">
+                <div class="split__dragger"></div>
+                <picture class="split__image split__image--top">
+                    <source type="image/avif"
+                        srcset="img/splitIMG-260.avif 260w, img/splitIMG-397.avif 397w, img/splitIMG-505.avif 505w"
+                        sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem">
+                    <img src="img/splitIMG.png" srcset="img/splitIMG.png 505w"
+                        sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem" alt="image of woman"
+                        loading="lazy" decoding="async">
+                </picture>
+                <picture class="split__image split__image--bottom">
+                    <source type="image/avif"
+                        srcset="img/splitIMG-260.avif 260w, img/splitIMG-397.avif 397w, img/splitIMG-505.avif 505w"
+                        sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem">
+                    <img src="img/splitIMG.png" srcset="img/splitIMG.png 505w"
+                        sizes="(min-width: 64em) 36rem, (min-width: 48em) 22rem, 16.25rem" alt="image of woman"
+                        loading="lazy" decoding="async">
+                </picture>
+            </div>
         </div>
-        <!-- <picture class="splitIMG">
-            <source type="image/avif"
-              srcset="img/splitIMG-big-397.avif 397w, img/splitIMG-big-505.avif 505w, img/splitIMG-big-569.avif 569w"
-              sizes="(min-width: 64em) 32rem, (min-width: 48em) 20rem, 15.25rem">
-            <img src="img/IMGaftersplit.png" alt="image of man" loading="lazy" decoding="async">
-          </picture> -->
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

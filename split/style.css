@@ -461,13 +461,57 @@ a:hover {
     text-align: center;
     display: flex;
     flex-direction: column;
-
+    align-items: center;
+    gap: 1rem;
 }
 
 .split__text {
     font-size: 0.875rem;
     font-weight: 200;
-    margin-bottom: -1.5rem;
+}
+
+.split__container {
+    position: relative;
+    display: inline-block;
+}
+
+.split__dragger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: grab;
+    z-index: 10;
+    touch-action: none;
+}
+
+.split__dragger:active {
+    cursor: grabbing;
+}
+
+.split__image {
+    display: block;
+    position: relative;
+}
+
+.split__image--top {
+    clip-path: inset(0 0 51% 0);
+    z-index: 2;
+}
+
+.split__image--bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: inset(49% 0 0 0);
+    z-index: 1;
+}
+
+.split__image img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .splitIMG {
