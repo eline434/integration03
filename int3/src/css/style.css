@@ -829,8 +829,8 @@ a:hover {
 }
 
 .mannelijkheid__interaction {
-    padding-left: 10vw;
-    padding-right: 10vw;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     display: grid;
     grid-template-rows: repeat(3, max-content);
     grid-template-columns: repeat(3, 1fr);
