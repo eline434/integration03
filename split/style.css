@@ -542,6 +542,83 @@ a:hover {
     height: auto;
 }
 
+.IMGgroup {
+    min-height: 100vh;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 5rem 3rem 5rem 4rem 7rem;
+    grid-template-rows: 9rem 7rem 11rem 13rem;
+    position: relative;
+    z-index: -1;
+}
+
+.IMGgroup__img {
+    border-radius: 0.59638rem;
+    box-shadow: 0 1.908px 23.856px 1.908px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+}
+
+.IMGgroup__img--1 {
+    height: 13.12044rem;
+    transform: rotate(2.357deg);
+    aspect-ratio: 139.84/209.93;
+    grid-column: 5;
+    grid-row: 4;
+}
+
+.IMGgroup__img--2 {
+    height: 12.73319rem;
+    transform: rotate(12.446deg);
+    aspect-ratio: 148.55/203.73;
+    grid-column: 4;
+    grid-row: 1 / span 2;
+    margin-top: 4rem;
+}
+
+.IMGgroup__img--3 {
+    height: 6.71688rem;
+    transform: rotate(3.005deg);
+    aspect-ratio: 116.75/107.47;
+    grid-column: 5;
+    grid-row: 3;
+    margin-top: 2rem;
+}
+
+.IMGgroup__img--4 {
+    height: 14.06869rem;
+    transform: rotate(-9.855deg);
+    aspect-ratio: 150.42/225.10;
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.IMGgroup__img--5 {
+    height: 10.48644rem;
+    transform: rotate(-4.078deg);
+    aspect-ratio: 111.68/167.78;
+    grid-column: 3;
+    grid-row: 1;
+    margin-left: -0.5rem;
+}
+
+.IMGgroup__img--6 {
+    height: 10.17356rem;
+    transform: rotate(6.548deg);
+    aspect-ratio: 100.14/162.78;
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: -2rem;
+}
+
+.IMGgroup__img--7 {
+    height: 6.28606rem;
+    transform: rotate(-2.006deg);
+    aspect-ratio: 91.69/100.58;
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 3rem;
+}
+
 .lichaam {
     display: grid;
     grid-template-rows: repeat(2, max-content);
@@ -1154,6 +1231,66 @@ a:hover {
         top: 45.6rem;
     }
 
+    .IMGgroup {
+        grid-template-columns: 6rem 7rem 13rem 7rem 7rem;
+        grid-template-rows: 9rem 7rem 11rem 13rem;
+    }
+
+    .IMGgroup__img--1 {
+        height: 11.83888rem;
+        transform: rotate(13.219deg);
+        grid-column: 4;
+        grid-row: 2;
+        margin-top: -2rem;
+    }
+
+    .IMGgroup__img--2 {
+        height: 13.21694rem;
+        transform: rotate(17.973deg);
+        grid-column: 2;
+        grid-row: 3 / span 2;
+    }
+
+    .IMGgroup__img--3 {
+        height: 6.97206rem;
+        transform: rotate(-9.92deg);
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .IMGgroup__img--4 {
+        height: 14.60319rem;
+        transform: rotate(-16.345deg);
+        grid-column: 2;
+        grid-row: 2;
+        margin-top: -2rem;
+    }
+
+    .IMGgroup__img--5 {
+        height: 9.11006rem;
+        transform: rotate(-0.113deg);
+        grid-column: 4;
+        grid-row: 3/4;
+        margin-top: 3rem;
+        margin-left: 2.5rem;
+    }
+
+    .IMGgroup__img--6 {
+        height: 11.49981rem;
+        transform: rotate(25.53deg);
+        grid-column: 5;
+        grid-row: 4;
+        margin-top: -4rem;
+        margin-left: 1rem;
+    }
+
+    .IMGgroup__img--7 {
+        height: 7.10556rem;
+        transform: rotate(-2.006deg);
+        grid-column: 5;
+        grid-row: 2;
+    }
+
     .lichaam__text {
         grid-template-columns: 1fr repeat(2, max-content) 1fr;
         grid-template-rows: repeat(2, max-content);
@@ -1478,6 +1615,50 @@ a:hover {
 
     .split__image {
         width: 36rem;
+    }
+
+    .IMGgroup {
+        grid-template-columns: 12rem 16rem 23rem 13rem 14rem;
+        grid-template-rows: 10rem 11rem 10rem 15rem;
+    }
+
+    .IMGgroup__img {
+        border-radius: 1.25rem;
+    }
+
+    .IMGgroup__img--1 {
+        height: auto;
+        margin-top: -4rem;
+    }
+
+    .IMGgroup__img--2 {
+        height: auto;
+    }
+
+    .IMGgroup__img--3 {
+        height: auto;
+        margin-left: 1rem;
+    }
+
+    .IMGgroup__img--4 {
+        height: auto;
+        margin-top: -4rem;
+    }
+
+    .IMGgroup__img--5 {
+        height: auto;
+        margin-top: 6rem;
+        margin-left: 5rem;
+    }
+
+    .IMGgroup__img--6 {
+        height: auto;
+        margin-top: -8rem;
+        margin-left: 2rem;
+    }
+
+    .IMGgroup__img--7 {
+        height: auto;
     }
 
     .final-character {
