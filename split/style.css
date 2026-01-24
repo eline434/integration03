@@ -469,6 +469,7 @@ a:hover {
 .split__text {
     font-size: 0.875rem;
     font-weight: 200;
+    margin-bottom: -2rem;
 }
 
 .split__container {
@@ -1220,7 +1221,7 @@ a:hover {
 
     .split__text {
         font-size: 1.2rem;
-        margin-bottom: -1.8rem;
+        margin-bottom: -2.8rem;
     }
 
     .split__image {
@@ -1610,7 +1611,7 @@ a:hover {
 
     .split__text {
         font-size: 2rem;
-        margin-bottom: -3rem;
+        margin-bottom: -3.3rem;
     }
 
     .split__image {
