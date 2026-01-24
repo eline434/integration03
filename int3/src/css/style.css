@@ -351,9 +351,9 @@ a:hover {
 .intro__title {
     -webkit-text-stroke-width: 0.941875rem;
     -webkit-text-stroke-color: var(--color-bg);
-    /* font-size: clamp(3rem, 91vw, 10.9375rem); */
-    font-size: var(--font-size-display-sm);
-    margin-top: -.5rem;
+    font-size: 11vw;
+    max-width: 80rem;
+    margin-top: -.3vw;
     color: var(--color-accent);
     font-family: var(--font-display);
     text-transform: uppercase;
@@ -889,7 +889,7 @@ a:hover {
 }
 
 .footer--end {
-    padding-top: 4rem;
+    padding-top: 10rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: max-content max-content 1fr;
@@ -1008,9 +1008,7 @@ a:hover {
     }
 
     .intro__title {
-        font-size: 7.5rem;
         -webkit-text-stroke-width: 2.0625rem;
-        margin-top: -1rem;
     }
 
     .intro__subtitle {
@@ -1366,9 +1364,7 @@ a:hover {
     }
 
     .intro__title {
-        font-size: 10.9375rem;
         -webkit-text-stroke-width: 3rem;
-        margin-top: -2rem;
     }
 
     .intro__subtitle {
