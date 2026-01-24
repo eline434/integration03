@@ -659,15 +659,18 @@ a:hover {
     background-size: cover;
     background-position: left;
     z-index: -1;
+    padding-top: calc(200vw - 740px);
 }
 
-.outfits__text-container {
+.outfits__text--container {
     position: relative;
     z-index: 2;
     display: grid;
     grid-template-rows: repeat(3, max-content);
     gap: 1.5rem;
-    padding: 6.5rem 1.5rem;
+    padding: 4rem 1.5rem;
+    padding-bottom: 6.5rem;
+    max-width: 33rem;
 }
 
 .beeld {
@@ -1181,6 +1184,10 @@ a:hover {
         background-image: none;
     }
 
+    .outfits__text {
+        max-width: 38rem;
+    }
+
     .sport {
         padding-left: 10vw;
     }
@@ -1447,6 +1454,10 @@ a:hover {
 
     .outfits-container {
         min-height: 40rem;
+    }
+
+    .outfits__background {
+        padding: 0;
     }
 
     .mannelijkheid__interaction--IMG {
