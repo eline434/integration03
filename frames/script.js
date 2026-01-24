@@ -1,5 +1,9 @@
 gsap.registerPlugin(Draggable);
 
+document.querySelectorAll('.js-only').forEach(el => {
+    el.classList.remove('js-only');
+});
+
 const $frames = document.querySelectorAll('.mannelijkheid__interaction--frame');
 const $referenceImg = document.querySelector('.mannelijkheid__interaction--IMG');
 const $textDisplay = document.querySelector('.mannelijkheid__interaction--textDisplay');
@@ -28,67 +32,67 @@ $frames.forEach((frame, index) => {
 
         if (frame.classList.contains('frame-l')) {
             if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 45 && percentageY <= 57) {
-                $textDisplay.textContent = 'verlangen';
+                $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
-                $textDisplay.textContent = 'mode';
+                $textDisplay.innerHTML = 'jij ziet<br>mode';
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
-                $textDisplay.textContent = 'zwart';
+                $textDisplay.innerHTML = 'jij ziet<br>zwart';
             }
         }
 
         if (frame.classList.contains('frame-m')) {
             if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 45 && percentageY <= 57) {
-                $textDisplay.textContent = 'verlangen';
+                $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
-                $textDisplay.textContent = 'mode';
+                $textDisplay.innerHTML = 'jij ziet<br>mode';
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
-                $textDisplay.textContent = 'zwart';
+                $textDisplay.innerHTML = 'jij ziet<br>zwart';
             }
         }
 
         if (frame.classList.contains('frame-s')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
-                $textDisplay.textContent = 'verlangen';
+                $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
             else if (percentageX >= 45 && percentageX <= 53 && percentageY >= 9 && percentageY <= 18) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 25 && percentageX <= 60 && percentageY >= 26 && percentageY <= 43) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
-                $textDisplay.textContent = 'mode';
+                $textDisplay.innerHTML = 'jij ziet<br>mode';
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
-                $textDisplay.textContent = 'zwart';
+                $textDisplay.innerHTML = 'jij ziet<br>zwart';
             }
         }
 
         if (frame.classList.contains('frame-xs')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
-                $textDisplay.textContent = 'verlangen';
+                $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
             else if (percentageX >= 45 && percentageX <= 53 && percentageY >= 9 && percentageY <= 18) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 25 && percentageX <= 60 && percentageY >= 26 && percentageY <= 43) {
-                $textDisplay.textContent = 'kracht';
+                $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
             else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
-                $textDisplay.textContent = 'mode';
+                $textDisplay.innerHTML = 'jij ziet<br>mode';
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
-                $textDisplay.textContent = 'zwart';
+                $textDisplay.innerHTML = 'jij ziet<br>zwart';
             }
         }
     }
