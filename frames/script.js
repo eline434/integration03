@@ -1,13 +1,13 @@
 gsap.registerPlugin(Draggable);
 
 const $frames = document.querySelectorAll('.mannelijkheid__interaction--frame');
-const referenceImg = document.querySelector('.mannelijkheid__interaction--IMG');
+const $referenceImg = document.querySelector('.mannelijkheid__interaction--IMG');
 
 $frames.forEach((frame, index) => {
 
     function calculateCenter() {
         const frameRect = frame.getBoundingClientRect();
-        const imgRect = referenceImg.getBoundingClientRect();
+        const imgRect = $referenceImg.getBoundingClientRect();
 
         const frameCenterX = frameRect.left + frameRect.width / 2;
         const frameCenterY = frameRect.top + frameRect.height / 2;
