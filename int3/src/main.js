@@ -4,7 +4,7 @@ document.querySelectorAll('.js-only').forEach(el => {
     el.classList.remove('js-only');
 });
 
-document.querySelector('.intro').classList.add('intro-js');
+document.querySelector('.carousel__section').classList.add('intro-js');
 
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel__item');
@@ -176,7 +176,7 @@ function textChanger() {
     }, "<")
 }
 
-const $first = document.querySelectorAll('.first__text');
+const $first = document.querySelectorAll('.section__text');
 
 if (window.innerWidth >= 768) {
     $first.forEach(text => {
@@ -189,14 +189,14 @@ if (window.innerWidth >= 768) {
 
     const tlFirst = gsap.timeline({
         scrollTrigger: {
-            trigger: ".first",
+            trigger: ".section--first",
             start: "top 30%",
             end: "bottom bottom",
             scrub: 1,
         }
     })
 
-    tlFirst.to('.first__text', {
+    tlFirst.to('.section__text', {
         opacity: 1,
         duration: 1,
     })
