@@ -23,78 +23,71 @@ $frames.forEach((frame, index) => {
             percentageY: ((relativeY / imgRect.height) * 100).toFixed(2) + '%'
         });
 
+        const percentageX = ((relativeX / imgRect.width) * 100).toFixed(2);
+        const percentageY = ((relativeY / imgRect.height) * 100).toFixed(2);
+
         if (frame.classList.contains('frame-l')) {
-            if (relativeX >= 145 && relativeX <= 280 && relativeY >= 170 && relativeY <= 315) {
-                console.log('kracht');
+            if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
                 $textDisplay.textContent = 'kracht';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 315 && relativeY <= 400) {
-                console.log('verlangen');
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 45 && percentageY <= 57) {
                 $textDisplay.textContent = 'verlangen';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 400 && relativeY <= 650) {
-                console.log('mode');
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
                 $textDisplay.textContent = 'mode';
             }
-            else if (relativeX >= 0 && relativeX <= imgRect.width && relativeY >= 0 && relativeY <= imgRect.height) {
-                console.log('zwart');
+            else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.textContent = 'zwart';
             }
         }
 
         if (frame.classList.contains('frame-m')) {
-            if (relativeX >= 145 && relativeX <= 280 && relativeY >= 170 && relativeY <= 315) {
-                console.log('kracht');
+            if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
                 $textDisplay.textContent = 'kracht';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 315 && relativeY <= 400) {
-                console.log('verlangen');
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 45 && percentageY <= 57) {
                 $textDisplay.textContent = 'verlangen';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 400 && relativeY <= 650) {
-                console.log('mode');
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
                 $textDisplay.textContent = 'mode';
             }
-            else if (relativeX >= 0 && relativeX <= imgRect.width && relativeY >= 0 && relativeY <= imgRect.height) {
-                console.log('zwart');
+            else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.textContent = 'zwart';
             }
         }
 
         if (frame.classList.contains('frame-s')) {
-            if (relativeX >= 165 && relativeX <= 280 && relativeY >= 170 && relativeY <= 400) {
-                console.log('verlangen');
+            if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
                 $textDisplay.textContent = 'verlangen';
             }
-            else if (relativeX >= 125 && relativeX <= 165 && relativeY >= 170 && relativeY <= 300) {
-                console.log('kracht');
+            else if (percentageX >= 45 && percentageX <= 53 && percentageY >= 9 && percentageY <= 18) {
                 $textDisplay.textContent = 'kracht';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 400 && relativeY <= 650) {
-                console.log('mode');
+            else if (percentageX >= 25 && percentageX <= 60 && percentageY >= 26 && percentageY <= 43) {
+                $textDisplay.textContent = 'kracht';
+            }
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
                 $textDisplay.textContent = 'mode';
             }
-            else if (relativeX >= 0 && relativeX <= imgRect.width && relativeY >= 0 && relativeY <= imgRect.height) {
-                console.log('zwart');
+            else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.textContent = 'zwart';
             }
         }
 
         if (frame.classList.contains('frame-xs')) {
-            if (relativeX >= 165 && relativeX <= 280 && relativeY >= 170 && relativeY <= 400) {
-                console.log('verlangen');
+            if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
                 $textDisplay.textContent = 'verlangen';
             }
-            else if (relativeX >= 125 && relativeX <= 165 && relativeY >= 170 && relativeY <= 300) {
-                console.log('kracht');
+            else if (percentageX >= 45 && percentageX <= 53 && percentageY >= 9 && percentageY <= 18) {
                 $textDisplay.textContent = 'kracht';
             }
-            else if (relativeX >= 145 && relativeX <= 280 && relativeY >= 400 && relativeY <= 650) {
-                console.log('mode');
+            else if (percentageX >= 25 && percentageX <= 60 && percentageY >= 26 && percentageY <= 43) {
+                $textDisplay.textContent = 'kracht';
+            }
+            else if (percentageX >= 30 && percentageX <= 60 && percentageY >= 57 && percentageY <= 93) {
                 $textDisplay.textContent = 'mode';
             }
-            else if (relativeX >= 0 && relativeX <= imgRect.width && relativeY >= 0 && relativeY <= imgRect.height) {
-                console.log('zwart');
+            else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.textContent = 'zwart';
             }
         }
