@@ -726,12 +726,15 @@ a:hover {
 
 .final-character {
     position: absolute;
-    width: 8rem;
-    height: 19.2rem;
-    background-image: url('../../assets/img/outfits.png');
+    width: 250px;
+    height: 600px;
+    background-image: image-set("../../assets/img/outfits.avif"
+            type("image/avif"),
+            "assets/outfits.jpg"
+            type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 19.2rem;
-    background-position: -8rem 0;
+    background-size: auto 600px;
+    background-position: -250px 0;
     opacity: 0;
     transition: transform 0.8s ease;
     z-index: -1;
@@ -748,15 +751,17 @@ a:hover {
 }
 
 .outfit {
-    width: 8rem;
-    height: 19.2rem;
-    background-image: url('../../assets/img/outfits.png');
+    width: 250px;
+    height: 600px;
+    background-image: image-set("../../assets/img/outfits.avif"
+            type("image/avif"),
+            "assets/outfits.jpg"
+            type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 19.2rem;
+    background-size: auto 600px;
     cursor: pointer;
     position: relative;
     z-index: 1;
-    background-color: var(--color-text);
 }
 
 @supports (background-image: url('test.avif')) {
