@@ -306,8 +306,8 @@ a:hover {
 .intro--js {
     position: fixed;
     display: grid;
-    grid-template-rows: 1;
-    grid-template-columns: 1;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
     overflow: hidden;
     justify-content: center;
     z-index: var(--z-content);
@@ -489,8 +489,7 @@ a:hover {
     display: grid;
     grid-template-rows: repeat(3, max-content);
     gap: 1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding: 0 7vw;
     margin-bottom: 4rem;
 }
 
@@ -832,6 +831,7 @@ a:hover {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     display: grid;
+    place-content: center;
     grid-template-rows: repeat(3, max-content);
     grid-template-columns: repeat(3, 1fr);
     padding-top: 1.5rem;
@@ -843,11 +843,6 @@ a:hover {
     background-size: contain;
     background-position: bottom;
     justify-self: stretch;
-}
-
-.mannelijkheid__interaction--frame {
-    justify-self: center;
-    align-self: center;
 }
 
 .frame-l {
@@ -970,6 +965,10 @@ a:hover {
 
 /* Tablet: 768px = 48em */
 @media (min-width: 48em) {
+    .title {
+        font-size: 2rem;
+    }
+
     .text {
         font-size: 1.125rem;
         max-width: 33rem;
@@ -1103,7 +1102,7 @@ a:hover {
     }
 
     .lichaam__text {
-        grid-template-columns: 1fr repeat(2, max-content) 1fr;
+        grid-template-columns: 1fr repeat(2, minmax(min-content, max-content)) 1fr;
         grid-template-rows: repeat(2, max-content);
     }
 
@@ -1130,13 +1129,13 @@ a:hover {
     .lichaam__vragen {
         background-image: url(../../assets/img/tekstbackground-big.png);
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         background-position: center;
     }
 
     .verhalen__text {
         padding: 11rem 0;
-        grid-template-columns: 1fr repeat(2, max-content) 1fr;
+        grid-template-columns: 1fr repeat(2, minmax(min-content, max-content)) 1fr;
     }
 
     .verhalen__text--title {
@@ -1192,7 +1191,7 @@ a:hover {
 
     .blik {
         display: grid;
-        grid-template-columns: 1fr repeat(2, max-content) 1fr;
+        grid-template-columns: 1fr repeat(2, minmax(min-content, max-content)) 1fr;
         grid-template-rows: repeat(2, max-content);
         padding: 6.5rem 1.5rem;
     }
@@ -1232,11 +1231,13 @@ a:hover {
 
     .mannelijkheid__interaction {
         display: grid;
+        min-height: 30rem;
         grid-template-rows: repeat(2, max-content);
         grid-template-columns: 1fr max-content 1fr;
         margin: 0;
         gap: 3rem;
         background-image: url(../../assets/img/tekstbackground-big.png);
+        background-size: cover;
         width: 100vw;
         justify-self: stretch;
     }
@@ -1249,7 +1250,7 @@ a:hover {
 
     .mannelijkheid__text {
         display: grid;
-        grid-template-columns: 1fr max-content max-content 1fr;
+        grid-template-columns: 1fr minmax(min-content, max-content) minmax(min-content, max-content) 1fr;
         grid-template-rows: repeat(2, max-content);
         padding: 5rem 10vw;
     }
