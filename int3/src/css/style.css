@@ -670,10 +670,13 @@ a:hover {
     gap: 1.5rem;
     padding: 4rem 1.5rem;
     padding-bottom: 6.5rem;
+}
+
+.outfits__text {
     max-width: 33rem;
 }
 
-.beeld {
+.beeld__text {
     display: grid;
     grid-template-rows: repeat(2, max-content);
     gap: 1.5rem;
@@ -1159,11 +1162,8 @@ a:hover {
         background-position: -11rem 0;
     }
 
-    .outfits {
-        background-image: url(../../assets/img/bikkembergsbackground-big.png);
-        background-position: 0 -40rem;
-        background-repeat: no-repeat;
-        background-size: cover;
+    .outfits__background {
+        background-image: url(../../assets/img/bikkembergsbackground-medium.png);
     }
 
     .outfit {
@@ -1178,10 +1178,6 @@ a:hover {
 
     .outfits-container {
         min-height: 30rem;
-    }
-
-    .outfits__background {
-        background-image: none;
     }
 
     .outfits__text {
@@ -1435,6 +1431,13 @@ a:hover {
         margin-bottom: -3rem;
     }
 
+    .outfits {
+        background-image: url(../../assets/img/bikkembergsbackground-big-L.png), url(../../assets/img/bikkembergsbackground-big-R.png);
+        background-position: left -40rem, right -40rem;
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
     .final-character {
         width: 15.625rem;
         height: 37.5rem;
@@ -1457,7 +1460,26 @@ a:hover {
     }
 
     .outfits__background {
+        background-image: none;
         padding: 0;
+        padding-top: calc(100vw - 1040px);
+    }
+
+    .outfits__text--container {
+        padding-left: 10vw;
+    }
+
+    .outfits__text--2 {
+        padding-top: 20vh;
+        padding-left: 15vw;
+    }
+
+    .outfits__text {
+        max-width: 30rem;
+    }
+
+    .beeld {
+        padding-top: 20vh;
     }
 
     .mannelijkheid__interaction--IMG {
