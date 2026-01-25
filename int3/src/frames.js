@@ -46,6 +46,8 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
         } else if (frame.classList.contains('frame-m')) {
             if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
@@ -59,6 +61,8 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
         } else if (frame.classList.contains('frame-s')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
@@ -75,6 +79,8 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
         } else if (frame.classList.contains('frame-xs')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
@@ -91,9 +97,9 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
-        } else {
-            $textDisplay.innerHTML = 'jij ziet';
         }
     }
 
