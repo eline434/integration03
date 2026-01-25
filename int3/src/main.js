@@ -4,7 +4,7 @@ document.querySelectorAll('.js-only').forEach(el => {
     el.classList.remove('js-only');
 });
 
-document.querySelector('.carousel__section').classList.add('intro-js');
+document.querySelector('.intro').classList.add('intro-js');
 
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel__item');
@@ -93,8 +93,8 @@ if (window.innerWidth >= 768) {
 
 function textChanger() {
 
-    const $introtext = document.querySelectorAll('.intro__item--text');
-    const $introsubtext = document.querySelectorAll('.intro__item--subtext');
+    const $introtext = document.querySelectorAll('.intro__maintext');
+    const $introsubtext = document.querySelectorAll('.intro__subtext');
 
     $introtext.forEach(text => {
         gsap.set(text,
@@ -110,13 +110,11 @@ function textChanger() {
         }
     )
 
-    $introsubtext.forEach(text => {
-        gsap.set(text,
-            {
-                scale: 0,
-            }
-        )
-    });
+    gsap.set('.intro__subtext--2',
+        {
+            scale: 0,
+        }
+    )
 
     gsap.set('.intro__subtext--1',
         {
@@ -126,7 +124,7 @@ function textChanger() {
 
     const tlIntro = gsap.timeline({
         scrollTrigger: {
-            trigger: ".header",
+            trigger: ".carousel__section",
             start: "top top",
             end: "bottom bottom",
             scrub: 1,

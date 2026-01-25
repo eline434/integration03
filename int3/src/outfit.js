@@ -3,9 +3,11 @@ var outfitpos1 = 0;
 var outfitpos2 = 1;
 var clicks = 0;
 var lastClicked = null;
+var $outfit1;
+var $outfit2;
+var $of;
 
 const showFinalResult = () => {
-    $of = document.querySelector('.of');
     const $container = document.querySelector('.outfits-container');
     const $final = document.querySelector('.final-character');
     let $chosen;
@@ -35,6 +37,7 @@ const showFinalResult = () => {
 const init = () => {
     $outfit1 = document.querySelector('.outfit-1');
     $outfit2 = document.querySelector('.outfit-2');
+    $of = document.querySelector('.of');
 
     $outfit1.addEventListener('click', (event) => {
         if (clicks >= 3) return;

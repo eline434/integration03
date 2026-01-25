@@ -273,10 +273,14 @@ a:hover {
     align-items: center;
 }
 
+
+.js .carousel__animation--container {
+    padding-bottom: 0;
+}
+
 .carousel {
     width: var(--carousel-size-sm);
     height: var(--carousel-size-sm);
-    /* margin: auto; */
 }
 
 .carousel__item {
@@ -298,19 +302,29 @@ a:hover {
 /* ==========================================
    Intro Section
    ========================================== */
+.carousel__item {
+    position: absolute;
+    width: 3.125rem;
+    height: auto;
+    left: 50%;
+    top: 50%;
+    transform-origin: bottom center;
+    transition: transform 0.1s ease-out;
+}
+
 .intro {
     display: flex;
     justify-content: center;
 }
 
-.intro--js {
+.intro-js {
     position: fixed;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     overflow: hidden;
     justify-content: center;
-    z-index: var(--z-content);
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -35%);
@@ -332,7 +346,7 @@ a:hover {
     font-weight: var(--font-weight-bold);
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    margin-top: -2.1rem;
+    padding-top: 5.5rem;
 }
 
 .intro__item--subtext {
@@ -759,6 +773,7 @@ a:hover {
             type("image/jpeg"));
     background-repeat: no-repeat;
     background-size: auto 600px;
+    background-color: var(--color-text);
     cursor: pointer;
     position: relative;
     z-index: 1;
