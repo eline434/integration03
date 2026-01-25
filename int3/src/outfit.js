@@ -65,7 +65,7 @@ const init = () => {
         lastClicked = 'outfit2';
 
         outfitpos1 = (outfitpos1 + 1) % maxoutfits;
-        if (outfitpos1 == outfitpos2) {
+        while (outfitpos1 > 0 && outfitpos1 <= outfitpos2) {
             outfitpos1 = (outfitpos1 + 1) % maxoutfits;
         }
         $outfit1.style.backgroundPosition = `-${outfitpos1 * 500}px 0`;

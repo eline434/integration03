@@ -225,7 +225,7 @@ if (window.innerWidth >= 768) {
         scrollTrigger: {
             trigger: ".section--first",
             start: "top 30vh",
-            end: "bottom bottom",
+            end: window.innerWidth < 768 ? "top bottom" : "bottom bottom",
             scrub: 1,
         }
     })
@@ -411,6 +411,7 @@ window.addEventListener('load', () => {
 // Extra refresh after images are loaded
 if (document.readyState === 'complete') {
     setTimeout(() => ScrollTrigger.refresh(), 100);
+    console.log('doc ready');
 } else {
     window.addEventListener('load', () => {
         setTimeout(() => ScrollTrigger.refresh(), 100);
