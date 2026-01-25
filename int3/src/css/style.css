@@ -546,13 +546,12 @@ a:hover {
 .split__after {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) rotate(5deg);
+    transform: translateX(-50%);
     z-index: 3;
     box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
     width: fit-content;
     opacity: 0;
     pointer-events: none;
-    transform: rotate(5deg);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1307,11 +1306,6 @@ a:hover {
 
     .split__image {
         width: 22rem;
-    }
-
-    .split__after {
-        position: relative;
-        top: -5rem;
     }
 
     .IMGgroup {

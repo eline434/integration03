@@ -79,6 +79,10 @@ function performSplit() {
         ease: 'power2.inOut'
     });
 
+    gsap.set($splitAfter, {
+        y: -850,
+    });
+
     gsap.to($splitAfter, {
         opacity: 1,
         duration: 1,
@@ -102,8 +106,8 @@ function performSplit() {
 
     let splitAfterX, splitAfterY, splitAfterRotation;
     if (windowWidth >= 768) {
-        splitAfterX = imgGroupCenterX - splitAfterCenterX;
-        splitAfterY = offsetToImgGroupCenter;
+        splitAfterX = (window.innerWidth / 2) - splitAfterCenterX + 40;
+        splitAfterY = -0;
         splitAfterRotation = -10.644;
     } else {
         splitAfterX = -40;
@@ -153,9 +157,6 @@ function performSplit() {
     $imgGroupImages.forEach((img) => {
         const imgRect = img.getBoundingClientRect();
         const imgCenterX = imgRect.left + imgRect.width / 2;
-        const imgCenterY = imgRect.top + imgRect.height / 2;
-        const offsetX = splitAfterCenterX - imgCenterX;
-        const offsetY = splitAfterCenterY - imgCenterY;
 
         let targetRotation = 0;
         for (const className in rotations) {
@@ -167,8 +168,8 @@ function performSplit() {
 
         gsap.fromTo(img,
             {
-                x: offsetX,
-                y: offsetY,
+                x: (window.innerWidth / 2) - imgCenterX,
+                y: -800,
                 rotation: 0,
                 opacity: 0
             },
