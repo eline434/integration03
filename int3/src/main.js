@@ -1,10 +1,35 @@
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "gsap";
+
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
 document.querySelectorAll('.js-only').forEach(el => {
     el.classList.remove('js-only');
 });
 
 document.querySelector('.intro').classList.add('intro-js');
+
+// Catwalk SVG growth animation
+const catwalkPaths = document.querySelectorAll('.catwalk path');
+catwalkPaths.forEach(path => {
+    gsap.fromTo(path,
+        {
+            drawSVG: '0%'
+        },
+        {
+            drawSVG: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.outfits',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        }
+    );
+});
 
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel__item');
