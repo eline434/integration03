@@ -94,7 +94,6 @@ if (window.innerWidth >= 768) {
 function textChanger() {
 
     const $introtext = document.querySelectorAll('.intro__maintext');
-    const $introsubtext = document.querySelectorAll('.intro__subtext');
 
     $introtext.forEach(text => {
         gsap.set(text,
@@ -107,6 +106,7 @@ function textChanger() {
     gsap.set('.intro__text--1',
         {
             scale: 1,
+            opacity: 0,
         }
     )
 
@@ -119,8 +119,19 @@ function textChanger() {
     gsap.set('.intro__subtext--1',
         {
             scale: 1,
+            opacity: 0,
         }
     )
+
+    gsap.to(['.intro__text--1', '.intro__subtext--1'], {
+        opacity: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: "body",
+            start: "5% top",
+            toggleActions: "play none none reverse"
+        }
+    })
 
     const tlIntro = gsap.timeline({
         scrollTrigger: {
@@ -188,7 +199,7 @@ if (window.innerWidth >= 768) {
     const tlFirst = gsap.timeline({
         scrollTrigger: {
             trigger: ".section--first",
-            start: "top 30%",
+            start: "top 30vh",
             end: "bottom bottom",
             scrub: 1,
         }
@@ -199,6 +210,44 @@ if (window.innerWidth >= 768) {
         duration: 1,
     })
 }
+
+gsap.set('.geschiedenis__vraag--1',
+    {
+        opacity: 0,
+        scale: 0,
+    }
+)
+
+gsap.set('.geschiedenis__vraag--2',
+    {
+        opacity: 0,
+        scale: 0,
+    }
+)
+
+gsap.to('.geschiedenis__vraag--1', {
+    opacity: 1,
+    scale: 1,
+    duration: 0.3,
+    scrollTrigger: {
+        trigger: ".geschiedenis__vragen",
+        start: "-10% top",
+        toggleActions: "play none none reverse"
+    }
+})
+
+gsap.to('.geschiedenis__vraag--2', {
+    opacity: 1,
+    scale: 1,
+    duration: 0.3,
+    scrollTrigger: {
+        trigger: ".geschiedenis__vragen",
+        start: "10% top",
+        toggleActions: "play none none reverse"
+    }
+})
+
+
 
 
 positionItems();
