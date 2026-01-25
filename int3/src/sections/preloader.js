@@ -50,7 +50,6 @@ const loadImageAsync = (path) => {
         const image = new Image();
         image.src = path;
         image.onload = () => resolve(image);
-        // Resolve ook bij error zodat preloader niet crasht
         image.onerror = () => {
             console.warn(`Failed to load image: ${path}`);
             resolve(null);
@@ -83,7 +82,6 @@ const complete = async (onComplete) => {
  * @param {Function} onComplete - Callback wanneer preloading klaar is
  */
 export const init = async (onComplete) => {
-    // Create and inject preloader HTML
     const preloaderHTML = `
         <div class="preloader">
             <div class="preloader__text">
@@ -100,11 +98,9 @@ export const init = async (onComplete) => {
     `;
     document.body.insertAdjacentHTML('afterbegin', preloaderHTML);
 
-    // Get references
     $preloaderPercentage = document.querySelector(".preloader__percentage");
     $preloaderVisual = document.querySelector(".preloader__visual");
 
-    // Start preloading
     $preloaderVisual.classList.add("preloader__visual--has-transition");
     updateProgress();
     document.documentElement.classList.add("is-loading");

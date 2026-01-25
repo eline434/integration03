@@ -53,12 +53,10 @@ function performSplit() {
     const $splitText = document.querySelectorAll('.split__text');
     const $splitAfter = document.querySelector('.split__after');
 
-    // Calculate position for .split__after
     const containerRect = $splitContainer.getBoundingClientRect();
     const splitRect = document.querySelector('.split').getBoundingClientRect();
-    const topPosition = containerRect.bottom - splitRect.top + 20; // 20px gap
+    const topPosition = containerRect.bottom - splitRect.top + 20;
 
-    // Set the top position
     $splitAfter.style.top = topPosition + 'px';
 
     gsap.to($topImage, {
@@ -82,11 +80,11 @@ function performSplit() {
     const windowWidth = window.innerWidth;
     let initialY;
     if (windowWidth >= 1024) {
-        initialY = -850;  // Desktop
+        initialY = -850;
     } else if (windowWidth >= 768) {
-        initialY = -450;  // Tablet
+        initialY = -450;
     } else {
-        initialY = -250;  // Mobile
+        initialY = -250;
     }
 
     gsap.set($splitAfter, {

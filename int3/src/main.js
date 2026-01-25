@@ -13,27 +13,6 @@ const enableJSFeatures = () => {
     document.querySelector('.intro')?.classList.add('intro-js');
 };
 
-const initCatwalkDrawSVG = () => {
-    if (prefersReducedMotion()) return;
-
-    const catwalkPaths = document.querySelectorAll('.catwalk path');
-    catwalkPaths.forEach(path => {
-        gsap.fromTo(path,
-            { drawSVG: '0%' },
-            {
-                drawSVG: '100%',
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.outfits',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true,
-                }
-            }
-        );
-    });
-};
-
 const initCarouselAnimation = () => {
     const $carousel = document.getElementById('carousel');
     const $items = document.querySelectorAll('.carousel__item');
@@ -380,50 +359,6 @@ const initMannelijkheidVragen = () => {
     });
 };
 
-const initMannelijkheidScroll = () => {
-    if (prefersReducedMotion()) return;
-
-    const vragen = gsap.utils.toArray(".mannelijkheid__vraag");
-    const $section = document.querySelector('.mannelijkheid__vragen');
-
-    if (!$section || vragen.length === 0) return;
-
-    // Initial positioning data
-    const vraagConfig = [
-        { y: 0, x: -200, rotation: 3.136 },
-        { y: 50, x: -600, rotation: -4.199 },
-        { y: -30, x: -950, rotation: 10.696 },
-        { y: 40, x: -1300, rotation: 1.623 },
-        { y: -20, x: -1600, rotation: -3.9 },
-        { y: 35, x: -2050, rotation: 10.28 }
-    ];
-
-    // Setup initial positions
-    vragen.forEach((vraag, index) => {
-        if (vraagConfig[index]) {
-            gsap.set(vraag, {
-                transformOrigin: '0% 50%',
-                ...vraagConfig[index]
-            });
-        }
-    });
-
-    // Horizontal scroll timeline
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: $section,
-            start: 'top 20%',
-            end: 'bottom 40%',
-            scrub: true,
-        }
-    });
-
-    const totalDistance = window.innerWidth + 2400;
-    vragen.forEach((vraag) => {
-        tl.to(vraag, { x: `+=${totalDistance}`, ease: 'none' }, 0);
-    });
-};
-
 const initBallAnimation = () => {
     if (prefersReducedMotion()) return;
 
@@ -479,12 +414,7 @@ const init = () => {
     initGeschiedenisVragen();
     initLichaamVragen();
     initMannelijkheidVragen();
-    initCatwalkDrawSVG();
     initBallAnimation();
-
-    window.addEventListener('load', () => {
-        ScrollTrigger.refresh();
-    });
 };
 
 preloader.init(init);
