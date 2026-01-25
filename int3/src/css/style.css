@@ -9,6 +9,8 @@
     --color-accent: #E20613;
     --color-neutral-light: #f1f1f1;
     --color-icon: #131313;
+    --color-preloader-bg: #131313;
+    --color-preloader-text: #FAFAFA;
 
     /* Typography */
     --font-primary: "Kumbh Sans", sans-serif;
@@ -48,6 +50,7 @@
     --max-width-text: 21.25rem;
 
     /* Z-index */
+    --z-preloader: 9999;
     --z-behind: -2;
     --z-content: 1;
 }
@@ -126,11 +129,11 @@ a:hover {
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
-    height: 1px;
+    height: 0.0625rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: 0.0625rem;
 }
 
 .bigscreen--only {
@@ -253,6 +256,7 @@ a:hover {
 .carousel__animation {
     position: relative;
     overflow-x: clip;
+    margin-top: 20rem;
 }
 
 .carousel__section {
@@ -323,11 +327,12 @@ a:hover {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     overflow: hidden;
-    justify-content: center;
+    justify-items: center;
+    align-items: center;
     z-index: 1;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -35%);
+    transform: translate(-50%, -50%);
 }
 
 .intro__item {
@@ -346,7 +351,6 @@ a:hover {
     font-weight: var(--font-weight-bold);
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    padding-top: 5.5rem;
 }
 
 .intro__item--subtext {
@@ -366,7 +370,6 @@ a:hover {
     -webkit-text-stroke-width: 0.941875rem;
     -webkit-text-stroke-color: var(--color-bg);
     font-size: 11vw;
-    max-width: 80rem;
     margin-top: -.3vw;
     color: var(--color-accent);
     font-family: var(--font-display);
@@ -387,6 +390,11 @@ a:hover {
     font-family: var(--font-display);
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
+}
+
+.intro__subtext--3 {
+    color: transparent;
+    -webkit-text-stroke-color: transparent;
 }
 
 /* ==========================================
@@ -459,7 +467,10 @@ a:hover {
 .geschiedenis__vragen {
     display: grid;
     grid-template-rows: repeat(2, max-content);
-    gap: 4rem;
+    gap: 8rem;
+    background-color: var(--color-bg);
+    padding-top: 4rem;
+    padding-bottom: 3rem;
 }
 
 .geschiedenis__vraag {
@@ -538,16 +549,13 @@ a:hover {
 
 .split__after {
     position: absolute;
-    top: 32rem;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
     box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
     width: fit-content;
     opacity: 0;
     pointer-events: none;
-    transform: rotate(5deg);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -573,7 +581,7 @@ a:hover {
 
 .IMGgroup__img {
     border-radius: 0.59638rem;
-    box-shadow: 0 1.908px 23.856px 1.908px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.11925rem 1.491rem 0.11925rem rgba(0, 0, 0, 0.25);
     opacity: 0;
 }
 
@@ -646,7 +654,7 @@ a:hover {
     padding-bottom: 2.5rem;
     background:
         linear-gradient(rgba(252, 252, 252, 1), rgba(252, 252, 252, 0.75)),
-        url(../../assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
+        url(../../src/assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
 }
 
 .lichaam__text {
@@ -666,7 +674,7 @@ a:hover {
     display: grid;
     grid-template-rows: repeat(3, max-content);
     gap: 4rem;
-    background-image: url(../../assets/img/tekstbackground-phone.png);
+    background-image: url(../../src/assets/img/tekstbackground-phone.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -709,6 +717,10 @@ a:hover {
     align-items: stretch;
     max-width: 100vw;
     /* overflow-x: hidden; */
+    background-image: url(../../src/assets/img/bikkembergsbackground-big-L.png), url(../../src/assets/img/bikkembergsbackground-big-R.png);
+    background-position: left -20vw, right -20vw;
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto 100vw, auto 100vw;
 }
 
 .catwalk {
@@ -742,26 +754,29 @@ a:hover {
     font-weight: 700;
 }
 
-.final-character {
-    position: absolute;
-    width: 250px;
-    height: 600px;
-    background-image: image-set("../../assets/img/outfits.avif"
+.img__outfit {
+    width: calc(26.4rem/2.4);
+    height: 26.4rem;
+    background-image: image-set("../../src/assets/img/outfits.avif"
             type("image/avif"),
-            "assets/outfits.jpg"
+            "src/assets/img/outfits.jpg"
             type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 600px;
-    background-position: -250px 0;
-    opacity: 0;
-    transition: transform 0.8s ease;
-    z-index: -1;
+    background-size: auto 100%;
 }
 
 @supports (background-image: url('test.avif')) {
-    .final-character {
-        background-image: url('../../assets/img/outfits.avif');
+    .img__outfit {
+        background-image: url('../../src/assets/img/outfits.avif');
     }
+}
+
+.final-character {
+    position: absolute;
+    background-position: 14.285714285% 0;
+    opacity: 0;
+    transition: transform 0.8s ease;
+    z-index: -1;
 }
 
 .final-character.visible {
@@ -769,34 +784,20 @@ a:hover {
 }
 
 .outfit {
-    width: 250px;
-    height: 600px;
-    background-image: image-set("../../assets/img/outfits.avif"
-            type("image/avif"),
-            "assets/outfits.jpg"
-            type("image/jpeg"));
-    background-repeat: no-repeat;
-    background-size: auto 600px;
     background-color: var(--color-text);
     cursor: pointer;
     position: relative;
     z-index: 1;
 }
 
-@supports (background-image: url('test.avif')) {
-    .outfit {
-        background-image: url('../../assets/img/outfits.avif');
-    }
-}
-
 .outfit.hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
-    height: 1px;
+    height: 0.0625rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: 0.0625rem;
 }
 
 .outfit.final-choice {
@@ -814,22 +815,22 @@ a:hover {
 }
 
 .outfit-1 {
-    background-position: 0 0;
+    background-position: 0% 0;
 }
 
 .outfit-2 {
-    background-position: -16rem 0;
+    background-position: calc(14.285714285% *2) 0;
 }
 
 .outfits__background {
     height: 55vh;
     width: 100%;
-    background-image: url('../../assets/img/bikkembergsbackground-gsm.png');
+    background-image: url('../../src/assets/img/bikkembergsbackground-gsm.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left;
     z-index: -1;
-    padding-top: calc(200vw - 740px);
+    padding-top: calc(200vw - 46.25rem);
 }
 
 .outfits__text--container {
@@ -848,58 +849,67 @@ a:hover {
 
 .beeld__text {
     display: grid;
-    grid-template-rows: repeat(2, max-content);
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
     gap: 1.5rem;
-    padding: 0rem 1.5rem;
+    padding: 0 1.5rem;
+    padding-left: 10vw;
+}
+
+.beeld__imgs {
+    display: flex;
+    margin-top: -5rem;
+    padding-bottom: 30rem;
+    position: relative;
+    z-index: 1;
 }
 
 .beeld__img {
     width: fit-content;
     height: 19.2rem;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
     align-content: center;
     text-align: center;
 }
 
 .beeld__img--1999 {
-    background-image: url('../../assets/img/1999.png');
+    background-image: url('../../src/assets/img/1999.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 .beeld__img--2000 {
-    background-image: url('../../assets/img/2000.png');
+    background-image: url('../../src/assets/img/2000.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 .beeld__img--2002 {
-    background-image: url('../../assets/img/2002.png');
+    background-image: url('../../src/assets/img/2002.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 .beeld__img--2007 {
-    background-image: url('../../assets/img/2007.png');
+    background-image: url('../../src/assets/img/2007.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 .beeld__img--2012 {
-    background-image: url('../../assets/img/2012.png');
+    background-image: url('../../src/assets/img/2012.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 .beeld__img--2018 {
-    background-image: url('../../assets/img/2018.png');
+    background-image: url('../../src/assets/img/2018.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -908,7 +918,7 @@ a:hover {
 .beeld__nummer {
     transform: rotate(16.103deg);
     color: transparent;
-    -webkit-text-stroke-width: 10px;
+    -webkit-text-stroke-width: 0.625rem;
     -webkit-text-stroke-color: transparent;
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
@@ -919,16 +929,27 @@ a:hover {
     -webkit-text-stroke-color: #FAFAFA;
 }
 
+.beeld__path {
+    position: relative;
+    z-index: 0;
+    margin-top: -50vw;
+    margin-left: -10vw;
+    height: auto;
+    width: 114vw;
+    rotate: 6deg;
+}
+
 .sport {
     display: grid;
     grid-template-rows: repeat(4, max-content);
     gap: 1.5rem;
     padding: 0rem 1.5rem;
-    padding-top: 15rem;
+    padding-top: 30vw;
+    margin-top: -30vw;
     padding-bottom: 7rem;
     background:
         linear-gradient(rgba(252, 252, 252, 0.75), rgba(252, 252, 252, 0.75)),
-        url(../../assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
+        url(../../src/assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
     max-width: 100vw;
     overflow: hidden;
 }
@@ -937,6 +958,11 @@ a:hover {
     transform: rotate(-37.05deg);
     justify-self: right;
     margin-right: -8rem;
+    z-index: 1;
+}
+
+.sport__text--2 {
+    z-index: 0;
 }
 
 .blik {
@@ -957,26 +983,51 @@ a:hover {
     grid-template-rows: repeat(3, max-content);
     background:
         linear-gradient(rgba(252, 252, 252, 0.75), rgba(252, 252, 252, 0.75)),
-        url(../../assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
+        url(../../src/assets/img/backgroundtexture.jpg) center / 90% 100% no-repeat;
 }
 
 .mannelijkheid__vragen {
     padding-top: 7.5rem;
-}
-
-.mannelijkheid__vragen .js-only {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    white-space: nowrap;
     padding-bottom: 3em;
     align-items: center;
-    max-width: 100vw;
-    overflow-x: hidden;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    min-height: 20vh;
+}
+
+.mannelijkheid__vraag--1 {
+    justify-self: end;
+    padding-right: 10vw;
+}
+
+.mannelijkheid__vraag--2 {
+    padding-left: 6vw;
+}
+
+.mannelijkheid__vraag--3 {
+    justify-self: center;
+    padding-top: 8vh;
+}
+
+.mannelijkheid__vraag--4 {
+    padding-top: 6vh;
+    justify-self: end;
+    padding-right: 8vw;
+}
+
+.mannelijkheid__vraag--5 {
+    margin-top: -10vh;
+}
+
+.mannelijkheid__vraag--6 {
+    padding-top: 8vh;
+    justify-self: end;
 }
 
 .mannelijkheid__vraag {
     padding-bottom: 2rem;
+    flex-shrink: 0;
 }
 
 .mannelijkheid__vraag--1 {
@@ -1014,7 +1065,7 @@ a:hover {
     padding-bottom: 2rem;
     gap: 1rem;
     justify-self: center;
-    background-image: url(../../assets/img/tekstbackground-phone.png);
+    background-image: url(../../src/assets/img/tekstbackground-phone.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: bottom;
@@ -1175,7 +1226,7 @@ a:hover {
     .intro__item--text {
         font-size: 11rem;
         -webkit-text-stroke-width: 1.125rem;
-        margin-top: -4.4rem;
+        padding-top: 2.5rem;
     }
 
     .intro__item--subtext {
@@ -1286,10 +1337,6 @@ a:hover {
         width: 22rem;
     }
 
-    .split__after {
-        top: 45.6rem;
-    }
-
     .IMGgroup {
         grid-template-columns: 6rem 7rem 18rem 7rem 7rem;
         grid-template-rows: 9rem 7rem 11rem 13rem;
@@ -1376,7 +1423,7 @@ a:hover {
     }
 
     .lichaam__vragen {
-        background-image: url(../../assets/img/tekstbackground-big.png);
+        background-image: url(../../src/assets/img/tekstbackground-big.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -1398,25 +1445,8 @@ a:hover {
         grid-column: 3;
     }
 
-    .final-character {
-        width: 11rem;
-        height: 26.4rem;
-        background-size: auto 26.4rem;
-        background-position: -11rem 0;
-    }
-
     .outfits__background {
-        background-image: url(../../assets/img/bikkembergsbackground-medium.png);
-    }
-
-    .outfit {
-        width: 11rem;
-        height: 26.4rem;
-        background-size: auto 26.4rem;
-    }
-
-    .outfit-2 {
-        background-position: -22rem 0;
+        background-image: url(../../src/assets/img/bikkembergsbackground-medium.png);
     }
 
     .outfits-container {
@@ -1484,7 +1514,7 @@ a:hover {
         grid-template-rows: repeat(2, max-content);
         grid-template-columns: 1fr max-content 1fr;
         margin: 0;
-        background-image: url(../../assets/img/tekstbackground-big.png);
+        background-image: url(../../src/assets/img/tekstbackground-big.png);
         background-size: cover;
         width: 100vw;
         justify-self: stretch;
@@ -1602,13 +1632,14 @@ a:hover {
     .intro__item--text {
         font-size: 16.875rem;
         -webkit-text-stroke-width: 1.6875rem;
-        margin-top: -6.7rem;
+        padding-top: 0;
+        margin-top: -1.8rem;
     }
 
     .intro__item--subtext {
         font-size: 3.125rem;
         -webkit-text-stroke-width: 1.25rem;
-        margin-left: 1rem;
+        margin-left: 5rem;
     }
 
     .intro__title {
@@ -1723,21 +1754,9 @@ a:hover {
         height: auto;
     }
 
-    .final-character {
+    .img__outfit {
         width: 15.625rem;
         height: 37.5rem;
-        background-size: auto 37.5rem;
-        background-position: -15.625rem 0;
-    }
-
-    .outfit {
-        width: 15.625rem;
-        height: 37.5rem;
-        background-size: auto 37.5rem;
-    }
-
-    .outfit-2 {
-        background-position: -31.25rem 0;
     }
 
     .outfits-container {
@@ -1747,7 +1766,7 @@ a:hover {
     .outfits__background {
         background-image: none;
         padding: 0;
-        padding-top: calc(100vw - 1040px);
+        padding-top: calc(100vw - 65rem);
     }
 
     .outfits__text--container {
@@ -1786,4 +1805,68 @@ a:hover {
     .frame-xs {
         transform: scale(1.902);
     }
+}
+
+/* ==========================================
+   Preloader
+   ========================================== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-preloader-bg);
+    color: var(--color-preloader-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-preloader);
+    font-family: var(--font-display);
+    font-size: var(--font-size-display-sm);
+    font-weight: var(--font-weight-bold);
+}
+
+.preloader__text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.preloader__football {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.preloader__percentage {
+    margin-left: 1rem;
+}
+
+.preloader__visual {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.5rem;
+    background-color: var(--color-accent);
+    transform-origin: bottom;
+    transform: scale3d(1, 0, 1);
+}
+
+.preloader__visual--has-transition {
+    transition: transform 0.3s ease-out;
+}
+
+.overflow-y-hidden {
+    overflow: hidden;
 }

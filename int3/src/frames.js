@@ -1,3 +1,7 @@
+import { gsap } from "gsap";
+
+import { Draggable } from "gsap/Draggable";
+
 gsap.registerPlugin(Draggable);
 
 document.querySelectorAll('.js-only').forEach(el => {
@@ -42,10 +46,10 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
-        }
-
-        if (frame.classList.contains('frame-m')) {
+        } else if (frame.classList.contains('frame-m')) {
             if (percentageX >= 30 && percentageX <= 60 && percentageY >= 10 && percentageY <= 45) {
                 $textDisplay.innerHTML = 'jij ziet<br>kracht';
             }
@@ -57,10 +61,10 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
-        }
-
-        if (frame.classList.contains('frame-s')) {
+        } else if (frame.classList.contains('frame-s')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
                 $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
@@ -75,10 +79,10 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
-        }
-
-        if (frame.classList.contains('frame-xs')) {
+        } else if (frame.classList.contains('frame-xs')) {
             if (percentageX >= 35 && percentageX <= 65 && percentageY >= 20 && percentageY <= 57) {
                 $textDisplay.innerHTML = 'jij ziet<br>verlangen';
             }
@@ -93,6 +97,8 @@ $frames.forEach((frame, index) => {
             }
             else if (percentageX >= 0 && percentageX <= 100 && percentageY >= 0 && percentageY <= 100) {
                 $textDisplay.innerHTML = 'jij ziet<br>zwart';
+            } else {
+                $textDisplay.innerHTML = 'jij ziet<br>...';
             }
         }
     }

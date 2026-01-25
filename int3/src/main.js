@@ -1,205 +1,490 @@
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import * as preloader from "./sections/preloader.js";
+import { prefersReducedMotion, getResponsiveRadius, breakpoints } from "./utils/mediaQuery.js";
 
-document.querySelectorAll('.js-only').forEach(el => {
-    el.classList.remove('js-only');
-});
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
-document.querySelector('.intro').classList.add('intro-js');
-
-const $carousel = document.getElementById('carousel');
-const $items = document.querySelectorAll('.carousel__item');
-const totalItems = $items.length;
-
-function getRadius() {
-    const width = window.innerWidth;
-
-    if (width < 768) {
-        return 100;
-    } else if (width < 1024) {
-        return 200;
-    } else {
-        return 300;
-    }
-}
-
-const rotationObject = { rotation: 0 };
-const offsetObject = { x1: 0, y1: 0, x2: 0, y2: 0 };
-
-function positionItems(rotation = 0) {
-    const radius = getRadius();
-
-    $items.forEach((item, index) => {
-        const angle = (360 / totalItems) * index + rotation;
-        const angleRad = (angle * Math.PI) / 180;
-
-        const x = Math.cos(angleRad) * radius;
-        const y = Math.sin(angleRad) * radius;
-
-        const isGroup1 = item.classList.contains('carousel__item--1');
-        const offsetX = isGroup1 ? offsetObject.x2 : offsetObject.x1;
-        const offsetY = isGroup1 ? offsetObject.y2 : offsetObject.y1;
-
-        item.style.transform = `
-            translate(-50%, -100%)
-            translate(${x + offsetX}px, ${y + offsetY}px)
-            rotate(${angle + 90}deg)
-        `;
+const enableJSFeatures = () => {
+    document.querySelectorAll('.js-only').forEach(el => {
+        el.classList.remove('js-only');
     });
-}
+    document.querySelector('.intro')?.classList.add('intro-js');
+};
 
-// Carousel rotatie animatie
-const tlCarousel = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-});
+const initCatwalkDrawSVG = () => {
+    if (prefersReducedMotion()) return;
 
-tlCarousel.to(rotationObject, {
-    rotation: 360 * 1,
-    ease: "none",
-});
+    const catwalkPaths = document.querySelectorAll('.catwalk path');
+    catwalkPaths.forEach(path => {
+        gsap.fromTo(path,
+            { drawSVG: '0%' },
+            {
+                drawSVG: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.outfits',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                }
+            }
+        );
+    });
+};
 
-const $carousel1 = document.querySelectorAll('.carousel__item--1');
-const $carousel2 = document.querySelectorAll('.carousel__item--2');
+const initCarouselAnimation = () => {
+    const $carousel = document.getElementById('carousel');
+    const $items = document.querySelectorAll('.carousel__item');
+    const totalItems = $items.length;
 
-const tlSplit = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "70% bottom",
-        end: "90% bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-})
+    if (!$carousel || totalItems === 0) return;
 
-if (window.innerWidth >= 768) {
-    tlSplit.to(offsetObject, {
-        x1: -window.innerWidth * 0.30,
-        y1: window.innerHeight * 0.90,
-        x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.00,
-        ease: "none",
-    }, 0);
-} else {
-    tlSplit.to('.carousel', {
-        opacity: 0,
-    })
-}
+    const rotationObject = { rotation: 0 };
+    const offsetObject = { x1: 0, y1: 0, x2: 0, y2: 0 };
 
+    const positionItems = (rotation = 0) => {
+        const radius = getResponsiveRadius();
 
-function textChanger() {
+        $items.forEach((item, index) => {
+            const angle = (360 / totalItems) * index + rotation;
+            const angleRad = (angle * Math.PI) / 180;
+
+            const x = Math.cos(angleRad) * radius;
+            const y = Math.sin(angleRad) * radius;
+
+            const isGroup1 = item.classList.contains('carousel__item--1');
+            const offsetX = isGroup1 ? offsetObject.x2 : offsetObject.x1;
+            const offsetY = isGroup1 ? offsetObject.y2 : offsetObject.y1;
+
+            item.style.transform = `
+                translate(-50%, -100%)
+                translate(${x + offsetX}px, ${y + offsetY}px)
+                rotate(${angle + 90}deg)
+            `;
+        });
+    };
+
+    positionItems();
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1px)", () => {
+        if (prefersReducedMotion()) return;
+
+        const tlCarousel = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true,
+                onUpdate: () => positionItems(rotationObject.rotation)
+            }
+        });
+
+        tlCarousel.to(rotationObject, {
+            rotation: 360,
+            ease: "none",
+        });
+    });
+
+    mm.add(breakpoints.tablet, () => {
+        if (prefersReducedMotion()) return;
+
+        const tlSplit = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "70% bottom",
+                end: "90% bottom",
+                scrub: true,
+                onUpdate: () => positionItems(rotationObject.rotation)
+            }
+        });
+
+        tlSplit.to(offsetObject, {
+            x1: -window.innerWidth * 0.30,
+            y1: window.innerHeight * 0.90,
+            x2: window.innerWidth * 0.30,
+            y2: -window.innerHeight * 0.00,
+            ease: "none",
+        }, 0);
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        if (prefersReducedMotion()) return;
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "70% bottom",
+                end: "90% bottom",
+                scrub: true,
+            }
+        }).to('.carousel', { opacity: 0 });
+    });
+};
+
+const initIntroTextAnimation = () => {
+    if (prefersReducedMotion()) return;
 
     const $introtext = document.querySelectorAll('.intro__maintext');
-    const $introsubtext = document.querySelectorAll('.intro__subtext');
+    const $intro = document.querySelector('.intro');
 
-    $introtext.forEach(text => {
-        gsap.set(text,
-            {
-                scale: 0,
-            }
-        )
+    $introtext.forEach(text => gsap.set(text, { scale: 0 }));
+    gsap.set('.intro__text--1', { scale: 1, opacity: 0 });
+    gsap.set('.intro__subtext--1', { scale: 1, opacity: 0 });
+    gsap.set('.intro__subtext--2', { scale: 0 });
+
+    gsap.to(['.intro__text--1', '.intro__subtext--1'], {
+        opacity: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: "body",
+            start: "5% top",
+            toggleActions: "play none none reverse"
+        }
     });
-
-    gsap.set('.intro__text--1',
-        {
-            scale: 1,
-        }
-    )
-
-    gsap.set('.intro__subtext--2',
-        {
-            scale: 0,
-        }
-    )
-
-    gsap.set('.intro__subtext--1',
-        {
-            scale: 1,
-        }
-    )
 
     const tlIntro = gsap.timeline({
         scrollTrigger: {
             trigger: ".carousel__section",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
-        }
-    })
-
-    tlIntro.to('.intro__subtext--1', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--1', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__subtext--2', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--2', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--2', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--3', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--3', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--4', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--4', {
-        opacity: 0,
-        duration: 1,
-    })
-
-    tlIntro.to('.intro__subtext--2', {
-        opacity: 0,
-        duration: 1,
-    }, "<")
-}
-
-const $first = document.querySelectorAll('.section__text');
-
-if (window.innerWidth >= 768) {
-    $first.forEach(text => {
-        gsap.set(text,
-            {
-                opacity: 0,
+            scrub: true,
+            onEnter: () => {
+                $intro?.classList.remove('visually-hidden');
+            },
+            onLeave: () => {
+                $intro?.classList.add('visually-hidden');
+            },
+            onEnterBack: () => {
+                $intro?.classList.remove('visually-hidden');
+            },
+            onLeaveBack: () => {
+                $intro?.classList.remove('visually-hidden');
             }
-        )
+        }
     });
 
-    const tlFirst = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".section--first",
-            start: "top 30%",
-            end: "bottom bottom",
-            scrub: 1,
+    tlIntro
+        .to('.intro__subtext--1', { scale: 0 })
+        .to('.intro__text--1', { scale: 0 })
+        .to('.intro__subtext--2', { scale: 1 })
+        .to('.intro__text--2', { scale: 1 })
+        .to('.intro__text--2', { scale: 0 })
+        .to('.intro__text--3', { scale: 1 })
+        .to('.intro__text--3', { scale: 0 })
+        .to('.intro__text--4', { scale: 1 })
+        .to('.intro__text--4', { opacity: 0, duration: 1 })
+        .to('.intro__subtext--2', { opacity: 0, duration: 1 }, "<");
+};
+
+
+const initSectionTextAnimation = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const $first = document.querySelectorAll('.section__text');
+
+        $first.forEach(text => gsap.set(text, { opacity: 0 }));
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section--first",
+                start: "top 30vh",
+                end: "bottom bottom",
+                scrub: true,
+            }
+        }).to('.section__text', { opacity: 1, duration: 1 });
+    });
+};
+
+const initGeschiedenisVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
+
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
+
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-30% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+};
+
+const initLichaamVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-13% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-30% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "-10% top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "10% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+};
+
+const initMannelijkheidVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const vragen = [
+            { el: '.mannelijkheid__vraag--1', rotation: 3.136, start: "-50% top" },
+            { el: '.mannelijkheid__vraag--2', rotation: -4.199, start: "-30% top" },
+            { el: '.mannelijkheid__vraag--3', rotation: 10.696, start: "-10% top" },
+            { el: '.mannelijkheid__vraag--4', rotation: 1.623, start: "10% top" },
+            { el: '.mannelijkheid__vraag--5', rotation: -3.9, start: "30% top" },
+            { el: '.mannelijkheid__vraag--6', rotation: 10.28, start: "50% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".mannelijkheid__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const vragen = [
+            { el: '.mannelijkheid__vraag--1', rotation: 3.136, start: "-70% top" },
+            { el: '.mannelijkheid__vraag--2', rotation: -4.199, start: "-50% top" },
+            { el: '.mannelijkheid__vraag--3', rotation: 10.696, start: "-30% top" },
+            { el: '.mannelijkheid__vraag--4', rotation: 1.623, start: "-10% top" },
+            { el: '.mannelijkheid__vraag--5', rotation: -3.9, start: "10% top" },
+            { el: '.mannelijkheid__vraag--6', rotation: 10.28, start: "30% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".mannelijkheid__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+};
+
+const initMannelijkheidScroll = () => {
+    if (prefersReducedMotion()) return;
+
+    const vragen = gsap.utils.toArray(".mannelijkheid__vraag");
+    const $section = document.querySelector('.mannelijkheid__vragen');
+
+    if (!$section || vragen.length === 0) return;
+
+    // Initial positioning data
+    const vraagConfig = [
+        { y: 0, x: -200, rotation: 3.136 },
+        { y: 50, x: -600, rotation: -4.199 },
+        { y: -30, x: -950, rotation: 10.696 },
+        { y: 40, x: -1300, rotation: 1.623 },
+        { y: -20, x: -1600, rotation: -3.9 },
+        { y: 35, x: -2050, rotation: 10.28 }
+    ];
+
+    // Setup initial positions
+    vragen.forEach((vraag, index) => {
+        if (vraagConfig[index]) {
+            gsap.set(vraag, {
+                transformOrigin: '0% 50%',
+                ...vraagConfig[index]
+            });
         }
-    })
+    });
 
-    tlFirst.to('.section__text', {
-        opacity: 1,
-        duration: 1,
-    })
-}
+    // Horizontal scroll timeline
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $section,
+            start: 'top 20%',
+            end: 'bottom 40%',
+            scrub: true,
+        }
+    });
+
+    const totalDistance = window.innerWidth + 2400;
+    vragen.forEach((vraag) => {
+        tl.to(vraag, { x: `+=${totalDistance}`, ease: 'none' }, 0);
+    });
+};
+
+const initBallAnimation = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "10% top",
+                end: "bottom 40%",
+                scrub: true,
+            }
+        });
+
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: "150vw", y: 600 });
+
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -143.629 });
+
+        tlball.from('.sport__text--2', { x: "150vw", y: -600 });
+        tlball.to('.sport__text--2', {});
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "top top",
+                end: "bottom 40%",
+                scrub: true,
+            }
+        });
+
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: window.innerWidth * 0.8, y: 540 });
+
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -170.629 });
+
+        tlball.from('.sport__text--2', { x: window.innerWidth * 0.8, y: -590 });
+        tlball.to('.sport__text--2', {});
+    });
+};
 
 
-positionItems();
-textChanger()
+const init = () => {
+    enableJSFeatures();
+    initCarouselAnimation();
+    initIntroTextAnimation();
+    initSectionTextAnimation();
+    initGeschiedenisVragen();
+    initLichaamVragen();
+    initMannelijkheidVragen();
+    initCatwalkDrawSVG();
+    initBallAnimation();
+
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
+};
+
+preloader.init(init);
