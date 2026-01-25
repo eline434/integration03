@@ -320,6 +320,66 @@ const initLichaamVragen = () => {
     });
 };
 
+const initMannelijkheidVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const vragen = [
+            { el: '.mannelijkheid__vraag--1', rotation: 3.136, start: "-50% top" },
+            { el: '.mannelijkheid__vraag--2', rotation: -4.199, start: "-30% top" },
+            { el: '.mannelijkheid__vraag--3', rotation: 10.696, start: "-10% top" },
+            { el: '.mannelijkheid__vraag--4', rotation: 1.623, start: "10% top" },
+            { el: '.mannelijkheid__vraag--5', rotation: -3.9, start: "30% top" },
+            { el: '.mannelijkheid__vraag--6', rotation: 10.28, start: "50% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".mannelijkheid__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const vragen = [
+            { el: '.mannelijkheid__vraag--1', rotation: 3.136, start: "-70% top" },
+            { el: '.mannelijkheid__vraag--2', rotation: -4.199, start: "-50% top" },
+            { el: '.mannelijkheid__vraag--3', rotation: 10.696, start: "-30% top" },
+            { el: '.mannelijkheid__vraag--4', rotation: 1.623, start: "-10% top" },
+            { el: '.mannelijkheid__vraag--5', rotation: -3.9, start: "10% top" },
+            { el: '.mannelijkheid__vraag--6', rotation: 10.28, start: "30% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".mannelijkheid__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+};
+
 const initMannelijkheidScroll = () => {
     if (prefersReducedMotion()) return;
 
@@ -418,9 +478,9 @@ const init = () => {
     initSectionTextAnimation();
     initGeschiedenisVragen();
     initLichaamVragen();
+    initMannelijkheidVragen();
     initCatwalkDrawSVG();
     initBallAnimation();
-    initMannelijkheidScroll();
 
     window.addEventListener('load', () => {
         ScrollTrigger.refresh();

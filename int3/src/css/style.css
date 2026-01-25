@@ -546,13 +546,12 @@ a:hover {
 .split__after {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) rotate(5deg);
+    transform: translateX(-50%);
     z-index: 3;
     box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
     width: fit-content;
     opacity: 0;
     pointer-events: none;
-    transform: rotate(5deg);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -985,16 +984,41 @@ a:hover {
 
 .mannelijkheid__vragen {
     padding-top: 7.5rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    white-space: nowrap;
     padding-bottom: 3em;
     align-items: center;
     width: 100vw;
     overflow: hidden;
     position: relative;
     min-height: 20vh;
+}
+
+.mannelijkheid__vraag--1 {
+    justify-self: end;
+    padding-right: 10vw;
+}
+
+.mannelijkheid__vraag--2 {
+    padding-left: 6vw;
+}
+
+.mannelijkheid__vraag--3 {
+    justify-self: center;
+    padding-top: 8vh;
+}
+
+.mannelijkheid__vraag--4 {
+    padding-top: 6vh;
+    justify-self: end;
+    padding-right: 8vw;
+}
+
+.mannelijkheid__vraag--5 {
+    margin-top: -10vh;
+}
+
+.mannelijkheid__vraag--6 {
+    padding-top: 8vh;
+    justify-self: end;
 }
 
 .mannelijkheid__vraag {
@@ -1307,11 +1331,6 @@ a:hover {
 
     .split__image {
         width: 22rem;
-    }
-
-    .split__after {
-        position: relative;
-        top: -5rem;
     }
 
     .IMGgroup {
