@@ -5,31 +5,143 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
-document.querySelectorAll('.js-only').forEach(el => {
-    el.classList.remove('js-only');
-});
+// // Create and inject preloader HTML
+// const preloaderHTML = `
+//   <div class="preloader">
+//     <div>
+//       Loading
+//       <span class="preloader__percentage">0%</span>
+//     </div>
+//     <div class="preloader__visual"></div>
+//   </div>
+// `;
+// document.body.insertAdjacentHTML('afterbegin', preloaderHTML);
 
-document.querySelector('.intro').classList.add('intro-js');
+// // Preloader functionality
+// const $preloaderPercentage = document.querySelector(".preloader__percentage");
+// const $preloaderVisual = document.querySelector(".preloader__visual");
+// let numImagesLoaded = 0;
 
-// Catwalk SVG growth animation
-const catwalkPaths = document.querySelectorAll('.catwalk path');
-catwalkPaths.forEach(path => {
-    gsap.fromTo(path,
-        {
-            drawSVG: '0%'
-        },
-        {
-            drawSVG: '100%',
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.outfits',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1
+// const imagePaths = [
+//     'assets/img/rotateIMG1-50.avif',
+//     'assets/img/rotateIMG1-105.avif',
+//     'assets/img/rotateIMG1-145.avif',
+//     'assets/img/rotateIMG2-50.avif',
+//     'assets/img/rotateIMG2-105.avif',
+//     'assets/img/rotateIMG2-145.avif',
+//     'assets/img/rotateIMG3-50.avif',
+//     'assets/img/rotateIMG3-105.avif',
+//     'assets/img/rotateIMG3-145.avif',
+//     'assets/img/rotateIMG4-50.avif',
+//     'assets/img/rotateIMG4-105.avif',
+//     'assets/img/rotateIMG4-145.avif',
+//     'assets/img/rotateIMG5-50.avif',
+//     'assets/img/rotateIMG5-105.avif',
+//     'assets/img/rotateIMG5-145.avif',
+//     'assets/img/rotateIMG6-50.avif',
+//     'assets/img/rotateIMG6-105.avif',
+//     'assets/img/rotateIMG6-145.avif',
+//     'assets/img/rotateIMG7-50.avif',
+//     'assets/img/rotateIMG7-105.avif',
+//     'assets/img/rotateIMG7-145.avif',
+//     'assets/img/rotateIMG8-50.avif',
+//     'assets/img/rotateIMG8-105.avif',
+//     'assets/img/rotateIMG8-145.avif',
+//     'assets/img/rotateIMG9-50.avif',
+//     'assets/img/rotateIMG9-105.avif',
+//     'assets/img/rotateIMG9-145.avif',
+//     'assets/img/rotateIMG10-50.avif',
+//     'assets/img/rotateIMG10-105.avif',
+//     'assets/img/rotateIMG10-145.avif',
+//     'assets/img/rotateIMG11-50.avif',
+//     'assets/img/rotateIMG11-105.avif',
+//     'assets/img/rotateIMG11-145.avif',
+//     'assets/img/rotateIMG12-50.avif',
+//     'assets/img/rotateIMG12-105.avif',
+//     'assets/img/rotateIMG12-145.avif'
+// ];
+
+// const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// const loadImageAsync = (path) => {
+//     return new Promise((resolve, reject) => {
+//         const image = new Image();
+//         image.src = path;
+//         image.onload = () => resolve(image);
+//         image.onerror = reject;
+//     });
+// };
+
+// const onProgress = () => {
+//     const relativeProgress = numImagesLoaded / imagePaths.length;
+//     const progressPercentage = Math.round(relativeProgress * 100);
+//     $preloaderPercentage.textContent = `${progressPercentage}%`;
+//     $preloaderVisual.style.transform = `scale3d(1, ${relativeProgress}, 1)`;
+// };
+
+// const preloadComplete = async () => {
+//     await delay(350);
+//     document.querySelector("body").classList.remove("overflow-y-hidden");
+//     gsap.to(".preloader", {
+//         duration: 0.5,
+//         autoAlpha: 0,
+//         onComplete: () => {
+//             document.documentElement.classList.remove("is-loading");
+//             // Initialize all animations after preloader is done
+//             init();
+//             ScrollTrigger.refresh();
+//         },
+//     });
+// };
+
+// const initPreloader = async () => {
+//     $preloaderVisual.classList.add("preloader__visual--has-transition");
+//     onProgress();
+//     document.documentElement.classList.add("is-loading");
+//     document.querySelector("body").classList.add("overflow-y-hidden");
+
+//     await Promise.all(
+//         imagePaths.map(async (path) => {
+//             const image = await loadImageAsync(path);
+//             numImagesLoaded++;
+//             onProgress();
+//             return image;
+//         })
+//     );
+
+//     preloadComplete();
+// };
+
+// initPreloader();
+
+const addClass = () => {
+    document.querySelectorAll('.js-only').forEach(el => {
+        el.classList.remove('js-only');
+    });
+
+    document.querySelector('.intro').classList.add('intro-js');
+}
+
+const catwalkDrawSVG = () => {
+    const catwalkPaths = document.querySelectorAll('.catwalk path');
+    catwalkPaths.forEach(path => {
+        gsap.fromTo(path,
+            {
+                drawSVG: '0%'
+            },
+            {
+                drawSVG: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.outfits',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1
+                }
             }
-        }
-    );
-});
+        );
+    });
+}
 
 const $carousel = document.getElementById('carousel');
 const $items = document.querySelectorAll('.carousel__item');
@@ -73,46 +185,45 @@ function positionItems(rotation = 0) {
 }
 
 // Carousel rotatie animatie
-const tlCarousel = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-});
+const carousel__animation = () => {
+    const tlCarousel = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".carousel__animation",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1,
+            onUpdate: () => positionItems(rotationObject.rotation)
+        }
+    });
 
-tlCarousel.to(rotationObject, {
-    rotation: 360 * 1,
-    ease: "none",
-});
-
-const $carousel1 = document.querySelectorAll('.carousel__item--1');
-const $carousel2 = document.querySelectorAll('.carousel__item--2');
-
-const tlSplit = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "70% bottom",
-        end: "90% bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-})
-
-if (window.innerWidth >= 768) {
-    tlSplit.to(offsetObject, {
-        x1: -window.innerWidth * 0.30,
-        y1: window.innerHeight * 0.90,
-        x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.00,
+    tlCarousel.to(rotationObject, {
+        rotation: 360 * 1,
         ease: "none",
-    }, 0);
-} else {
-    tlSplit.to('.carousel', {
-        opacity: 0,
+    });
+
+    const tlSplit = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".carousel__animation",
+            start: "70% bottom",
+            end: "90% bottom",
+            scrub: 1,
+            onUpdate: () => positionItems(rotationObject.rotation)
+        }
     })
+
+    if (window.innerWidth >= 768) {
+        tlSplit.to(offsetObject, {
+            x1: -window.innerWidth * 0.30,
+            y1: window.innerHeight * 0.90,
+            x2: window.innerWidth * 0.30,
+            y2: -window.innerHeight * 0.00,
+            ease: "none",
+        }, 0);
+    } else {
+        tlSplit.to('.carousel', {
+            opacity: 0,
+        })
+    }
 }
 
 
@@ -212,127 +323,130 @@ function textChanger() {
 
 const $first = document.querySelectorAll('.section__text');
 
-if (window.innerWidth >= 768) {
-    $first.forEach(text => {
-        gsap.set(text,
-            {
-                opacity: 0,
-            }
-        )
-    });
+const textAppear = () => {
+    if (window.innerWidth >= 768) {
+        $first.forEach(text => {
+            gsap.set(text,
+                {
+                    opacity: 0,
+                }
+            )
+        });
 
-    const tlFirst = gsap.timeline({
+        const tlFirst = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section--first",
+                start: "top 30vh",
+                end: window.innerWidth < 768 ? "top bottom" : "bottom bottom",
+                scrub: 1,
+            }
+        })
+
+        tlFirst.to('.section__text', {
+            opacity: 1,
+            duration: 1,
+        })
+    }
+}
+
+const popupGeschiedenisVragen = () => {
+    gsap.set('.geschiedenis__vraag--1',
+        {
+            opacity: 0,
+            scale: 0,
+        }
+    )
+
+    gsap.set('.geschiedenis__vraag--2',
+        {
+            opacity: 0,
+            scale: 0,
+        }
+    )
+
+    gsap.to('.geschiedenis__vraag--1', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
         scrollTrigger: {
-            trigger: ".section--first",
-            start: "top 30vh",
-            end: window.innerWidth < 768 ? "top bottom" : "bottom bottom",
-            scrub: 1,
+            trigger: ".geschiedenis__vragen",
+            start: "-10% top",
+            toggleActions: "play none none reverse"
         }
     })
 
-    tlFirst.to('.section__text', {
+    gsap.to('.geschiedenis__vraag--2', {
         opacity: 1,
-        duration: 1,
+        scale: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: ".geschiedenis__vragen",
+            start: "10% top",
+            toggleActions: "play none none reverse"
+        }
+    })
+}
+const popupLichaamVragen = () => {
+    console.log('lichaam vragen');
+
+    gsap.set('.lichaam__vraag--1',
+        {
+            opacity: 0,
+            scale: 0,
+            rotation: -6.946
+        }
+    )
+
+    gsap.set('.lichaam__vraag--2',
+        {
+            opacity: 0,
+            scale: 0,
+            rotation: 8.17
+        }
+    )
+
+    gsap.set('.lichaam__vraag--3',
+        {
+            opacity: 0,
+            scale: 0,
+            rotation: -3.023
+        }
+    )
+
+    gsap.to('.lichaam__vraag--1', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: ".lichaam__vragen",
+            start: "-15% top",
+            toggleActions: "play none none reverse"
+        }
+    })
+
+    gsap.to('.lichaam__vraag--2', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: ".lichaam__vragen",
+            start: "top top",
+            toggleActions: "play none none reverse"
+        }
+    })
+
+    gsap.to('.lichaam__vraag--3', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: ".lichaam__vragen",
+            start: "15% top",
+            toggleActions: "play none none reverse"
+        }
     })
 }
 
-gsap.set('.geschiedenis__vraag--1',
-    {
-        opacity: 0,
-        scale: 0,
-    }
-)
-
-gsap.set('.geschiedenis__vraag--2',
-    {
-        opacity: 0,
-        scale: 0,
-    }
-)
-
-gsap.to('.geschiedenis__vraag--1', {
-    opacity: 1,
-    scale: 1,
-    duration: 0.3,
-    scrollTrigger: {
-        trigger: ".geschiedenis__vragen",
-        start: "-10% top",
-        toggleActions: "play none none reverse"
-    }
-})
-
-gsap.to('.geschiedenis__vraag--2', {
-    opacity: 1,
-    scale: 1,
-    duration: 0.3,
-    scrollTrigger: {
-        trigger: ".geschiedenis__vragen",
-        start: "10% top",
-        toggleActions: "play none none reverse"
-    }
-})
-
-gsap.set('.lichaam__vraag--1',
-    {
-        opacity: 0,
-        scale: 0,
-        rotation: -6.946
-    }
-)
-
-gsap.set('.lichaam__vraag--2',
-    {
-        opacity: 0,
-        scale: 0,
-        rotation: 8.17
-    }
-)
-
-gsap.set('.lichaam__vraag--3',
-    {
-        opacity: 0,
-        scale: 0,
-        rotation: -3.023
-    }
-)
-
-gsap.to('.lichaam__vraag--1', {
-    opacity: 1,
-    scale: 1,
-    rotation: -6.946,
-    duration: 0.3,
-    scrollTrigger: {
-        trigger: ".lichaam__vragen",
-        start: "-15% top",
-        toggleActions: "play none none reverse"
-    }
-})
-
-gsap.to('.lichaam__vraag--2', {
-    opacity: 1,
-    scale: 1,
-    rotation: 8.17,
-    duration: 0.3,
-    scrollTrigger: {
-        trigger: ".lichaam__vragen",
-        start: "top top",
-        toggleActions: "play none none reverse"
-    }
-})
-
-gsap.to('.lichaam__vraag--3', {
-    opacity: 1,
-    scale: 1,
-    rotation: -3.023,
-    duration: 0.3,
-    scrollTrigger: {
-        trigger: ".lichaam__vragen",
-        start: "15% top",
-        toggleActions: "play none none reverse"
-    }
-})
-
-// Mannelijkheid horizontal scroll animation
 const mannelijkheidScroll = () => {
     const vragen = gsap.utils.toArray(".mannelijkheid__vraag");
     const $section = document.querySelector('.mannelijkheid__vragen');
@@ -401,8 +515,6 @@ const mannelijkheidScroll = () => {
     });
 };
 
-mannelijkheidScroll();
-
 // Refresh ScrollTrigger after all content is loaded
 window.addEventListener('load', () => {
     ScrollTrigger.refresh();
@@ -418,6 +530,16 @@ if (document.readyState === 'complete') {
     });
 }
 
+const init = () => {
+    addClass();
+    positionItems();
+    carousel__animation();
+    textChanger();
+    textAppear();
+    popupGeschiedenisVragen();
+    popupLichaamVragen();
+    catwalkDrawSVG();
+    mannelijkheidScroll();
+}
 
-positionItems();
-textChanger()
+init();
