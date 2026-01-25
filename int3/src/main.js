@@ -33,7 +33,7 @@ const initCatwalkDrawSVG = () => {
                     trigger: '.outfits',
                     start: 'top bottom',
                     end: 'bottom top',
-                    scrub: 1
+                    scrub: true,
                 }
             }
         );
@@ -90,7 +90,7 @@ const initCarouselAnimation = () => {
                 trigger: ".carousel__animation",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 1,
+                scrub: true,
                 onUpdate: () => positionItems(rotationObject.rotation)
             }
         });
@@ -110,7 +110,7 @@ const initCarouselAnimation = () => {
                 trigger: ".carousel__animation",
                 start: "70% bottom",
                 end: "90% bottom",
-                scrub: 1,
+                scrub: true,
                 onUpdate: () => positionItems(rotationObject.rotation)
             }
         });
@@ -133,20 +133,18 @@ const initCarouselAnimation = () => {
                 trigger: ".carousel__animation",
                 start: "70% bottom",
                 end: "90% bottom",
-                scrub: 1,
+                scrub: true,
             }
         }).to('.carousel', { opacity: 0 });
     });
 };
 
-/**
- * Intro text animation - scroll-triggered text swaps
- */
 const initIntroTextAnimation = () => {
     if (prefersReducedMotion()) return;
 
     const $introtext = document.querySelectorAll('.intro__maintext');
-    
+    const $intro = document.querySelector('.intro');
+
     // Initial setup
     $introtext.forEach(text => gsap.set(text, { scale: 0 }));
     gsap.set('.intro__text--1', { scale: 1, opacity: 0 });
@@ -170,7 +168,23 @@ const initIntroTextAnimation = () => {
             trigger: ".carousel__section",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1,
+            scrub: true,
+            onEnter: () => {
+                // Verwijder visually-hidden als animatie start
+                $intro?.classList.remove('visually-hidden');
+            },
+            onLeave: () => {
+                // Voeg visually-hidden toe als we voorbij de sectie scrollen
+                $intro?.classList.add('visually-hidden');
+            },
+            onEnterBack: () => {
+                // Verwijder visually-hidden als we terugscrolling
+                $intro?.classList.remove('visually-hidden');
+            },
+            onLeaveBack: () => {
+                // Optioneel: voeg toe als we terug naar boven scrollen
+                $intro?.classList.remove('visually-hidden');
+            }
         }
     });
 
@@ -187,17 +201,15 @@ const initIntroTextAnimation = () => {
         .to('.intro__subtext--2', { opacity: 0, duration: 1 }, "<");
 };
 
-/**
- * Section text fade in - alleen op tablet+
- */
+
 const initSectionTextAnimation = () => {
     if (prefersReducedMotion()) return;
 
     const mm = gsap.matchMedia();
-    
+
     mm.add(breakpoints.tablet, () => {
         const $first = document.querySelectorAll('.section__text');
-        
+
         $first.forEach(text => gsap.set(text, { opacity: 0 }));
 
         gsap.timeline({
@@ -205,15 +217,12 @@ const initSectionTextAnimation = () => {
                 trigger: ".section--first",
                 start: "top 30vh",
                 end: "bottom bottom",
-                scrub: 1,
+                scrub: true,
             }
         }).to('.section__text', { opacity: 1, duration: 1 });
     });
 };
 
-/**
- * Geschiedenis vragen popup animations
- */
 const initGeschiedenisVragen = () => {
     if (prefersReducedMotion()) return;
 
@@ -245,9 +254,6 @@ const initGeschiedenisVragen = () => {
     });
 };
 
-/**
- * Lichaam vragen popup animations met rotaties
- */
 const initLichaamVragen = () => {
     if (prefersReducedMotion()) return;
 
@@ -259,7 +265,7 @@ const initLichaamVragen = () => {
 
     vragen.forEach(({ el, rotation, start }) => {
         gsap.set(el, { opacity: 0, scale: 0, rotation });
-        
+
         gsap.to(el, {
             opacity: 1,
             scale: 1,
@@ -274,9 +280,6 @@ const initLichaamVragen = () => {
     });
 };
 
-/**
- * Mannelijkheid horizontal scroll animation
- */
 const initMannelijkheidScroll = () => {
     if (prefersReducedMotion()) return;
 
@@ -311,7 +314,7 @@ const initMannelijkheidScroll = () => {
             trigger: $section,
             start: 'top 20%',
             end: 'bottom 40%',
-            scrub: 1,
+            scrub: true,
         }
     });
 
@@ -321,10 +324,6 @@ const initMannelijkheidScroll = () => {
     });
 };
 
-/**
- * Main init function - Progressive enhancement
- * Runs after preloader completes
- */
 const init = () => {
     enableJSFeatures();
     initCarouselAnimation();
@@ -341,5 +340,4 @@ const init = () => {
     });
 };
 
-// Start preloader, then initialize all animations
 preloader.init(init);
