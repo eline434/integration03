@@ -452,6 +452,10 @@ a:hover {
     transform: translate(-50%, -100%) translate(-3.125rem, -5.4125rem) rotate(340deg);
 }
 
+.start__geschiedenis {
+    padding-bottom: 4rem;
+}
+
 .geschiedenis__vragen {
     display: grid;
     grid-template-rows: repeat(2, max-content);
