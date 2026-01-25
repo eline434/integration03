@@ -984,16 +984,41 @@ a:hover {
 
 .mannelijkheid__vragen {
     padding-top: 7.5rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    white-space: nowrap;
     padding-bottom: 3em;
     align-items: center;
     width: 100vw;
     overflow: hidden;
     position: relative;
     min-height: 20vh;
+}
+
+.mannelijkheid__vraag--1 {
+    justify-self: end;
+    padding-right: 10vw;
+}
+
+.mannelijkheid__vraag--2 {
+    padding-left: 6vw;
+}
+
+.mannelijkheid__vraag--3 {
+    justify-self: center;
+    padding-top: 8vh;
+}
+
+.mannelijkheid__vraag--4 {
+    padding-top: 6vh;
+    justify-self: end;
+    padding-right: 8vw;
+}
+
+.mannelijkheid__vraag--5 {
+    margin-top: -10vh;
+}
+
+.mannelijkheid__vraag--6 {
+    padding-top: 8vh;
+    justify-self: end;
 }
 
 .mannelijkheid__vraag {
