@@ -205,31 +205,64 @@ const initSectionTextAnimation = () => {
 const initGeschiedenisVragen = () => {
     if (prefersReducedMotion()) return;
 
-    gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
-        opacity: 0,
-        scale: 0,
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
+
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
     });
 
-    gsap.to('.geschiedenis__vraag--1', {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        scrollTrigger: {
-            trigger: ".geschiedenis__vragen",
-            start: "-10% top",
-            toggleActions: "play none none reverse"
-        }
-    });
+    mm.add(breakpoints.mobile, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
 
-    gsap.to('.geschiedenis__vraag--2', {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        scrollTrigger: {
-            trigger: ".geschiedenis__vragen",
-            start: "10% top",
-            toggleActions: "play none none reverse"
-        }
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-30% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
     });
 };
 
