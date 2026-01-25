@@ -1,127 +1,170 @@
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import * as preloader from "./sections/preloader.js";
+import { prefersReducedMotion, getResponsiveRadius, breakpoints } from "./utils/mediaQuery.js";
 
-document.querySelectorAll('.js-only').forEach(el => {
-    el.classList.remove('js-only');
-});
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
-document.querySelector('.intro').classList.add('intro-js');
-
-const $carousel = document.getElementById('carousel');
-const $items = document.querySelectorAll('.carousel__item');
-const totalItems = $items.length;
-
-function getRadius() {
-    const width = window.innerWidth;
-
-    if (width < 768) {
-        return 100;
-    } else if (width < 1024) {
-        return 200;
-    } else {
-        return 300;
-    }
-}
-
-const rotationObject = { rotation: 0 };
-const offsetObject = { x1: 0, y1: 0, x2: 0, y2: 0 };
-
-function positionItems(rotation = 0) {
-    const radius = getRadius();
-
-    $items.forEach((item, index) => {
-        const angle = (360 / totalItems) * index + rotation;
-        const angleRad = (angle * Math.PI) / 180;
-
-        const x = Math.cos(angleRad) * radius;
-        const y = Math.sin(angleRad) * radius;
-
-        const isGroup1 = item.classList.contains('carousel__item--1');
-        const offsetX = isGroup1 ? offsetObject.x2 : offsetObject.x1;
-        const offsetY = isGroup1 ? offsetObject.y2 : offsetObject.y1;
-
-        item.style.transform = `
-            translate(-50%, -100%)
-            translate(${x + offsetX}px, ${y + offsetY}px)
-            rotate(${angle + 90}deg)
-        `;
+/**
+ * Progressive enhancement: verwijder js-only classes
+ */
+const enableJSFeatures = () => {
+    document.querySelectorAll('.js-only').forEach(el => {
+        el.classList.remove('js-only');
     });
-}
+    document.querySelector('.intro')?.classList.add('intro-js');
+};
 
-// Carousel rotatie animatie
-const tlCarousel = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-});
+/**
+ * Catwalk SVG draw animation
+ */
+const initCatwalkDrawSVG = () => {
+    if (prefersReducedMotion()) return;
 
-tlCarousel.to(rotationObject, {
-    rotation: 360 * 1,
-    ease: "none",
-});
+    const catwalkPaths = document.querySelectorAll('.catwalk path');
+    catwalkPaths.forEach(path => {
+        gsap.fromTo(path,
+            { drawSVG: '0%' },
+            {
+                drawSVG: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.outfits',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1
+                }
+            }
+        );
+    });
+};
 
-const $carousel1 = document.querySelectorAll('.carousel__item--1');
-const $carousel2 = document.querySelectorAll('.carousel__item--2');
+/**
+ * Carousel animation met responsive breakpoints
+ */
+const initCarouselAnimation = () => {
+    const $carousel = document.getElementById('carousel');
+    const $items = document.querySelectorAll('.carousel__item');
+    const totalItems = $items.length;
 
-const tlSplit = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".carousel__animation",
-        start: "70% bottom",
-        end: "90% bottom",
-        scrub: 1,
-        onUpdate: () => positionItems(rotationObject.rotation)
-    }
-})
+    if (!$carousel || totalItems === 0) return;
 
-if (window.innerWidth >= 768) {
-    tlSplit.to(offsetObject, {
-        x1: -window.innerWidth * 0.30,
-        y1: window.innerHeight * 0.90,
-        x2: window.innerWidth * 0.30,
-        y2: -window.innerHeight * 0.00,
-        ease: "none",
-    }, 0);
-} else {
-    tlSplit.to('.carousel', {
-        opacity: 0,
-    })
-}
+    const rotationObject = { rotation: 0 };
+    const offsetObject = { x1: 0, y1: 0, x2: 0, y2: 0 };
 
+    const positionItems = (rotation = 0) => {
+        const radius = getResponsiveRadius();
 
-function textChanger() {
+        $items.forEach((item, index) => {
+            const angle = (360 / totalItems) * index + rotation;
+            const angleRad = (angle * Math.PI) / 180;
+
+            const x = Math.cos(angleRad) * radius;
+            const y = Math.sin(angleRad) * radius;
+
+            const isGroup1 = item.classList.contains('carousel__item--1');
+            const offsetX = isGroup1 ? offsetObject.x2 : offsetObject.x1;
+            const offsetY = isGroup1 ? offsetObject.y2 : offsetObject.y1;
+
+            item.style.transform = `
+                translate(-50%, -100%)
+                translate(${x + offsetX}px, ${y + offsetY}px)
+                rotate(${angle + 90}deg)
+            `;
+        });
+    };
+
+    // Initial positioning
+    positionItems();
+
+    // Gebruik gsap.matchMedia voor responsive animaties
+    const mm = gsap.matchMedia();
+
+    // Carousel rotation animation - werkt op alle breakpoints
+    mm.add("(min-width: 1px)", () => {
+        if (prefersReducedMotion()) return;
+
+        const tlCarousel = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                onUpdate: () => positionItems(rotationObject.rotation)
+            }
+        });
+
+        tlCarousel.to(rotationObject, {
+            rotation: 360,
+            ease: "none",
+        });
+    });
+
+    // Split animation - alleen op tablet+
+    mm.add(breakpoints.tablet, () => {
+        if (prefersReducedMotion()) return;
+
+        const tlSplit = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "70% bottom",
+                end: "90% bottom",
+                scrub: 1,
+                onUpdate: () => positionItems(rotationObject.rotation)
+            }
+        });
+
+        tlSplit.to(offsetObject, {
+            x1: -window.innerWidth * 0.30,
+            y1: window.innerHeight * 0.90,
+            x2: window.innerWidth * 0.30,
+            y2: -window.innerHeight * 0.00,
+            ease: "none",
+        }, 0);
+    });
+
+    // Mobile: fade out carousel
+    mm.add(breakpoints.mobile, () => {
+        if (prefersReducedMotion()) return;
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".carousel__animation",
+                start: "70% bottom",
+                end: "90% bottom",
+                scrub: 1,
+            }
+        }).to('.carousel', { opacity: 0 });
+    });
+};
+
+/**
+ * Intro text animation - scroll-triggered text swaps
+ */
+const initIntroTextAnimation = () => {
+    if (prefersReducedMotion()) return;
 
     const $introtext = document.querySelectorAll('.intro__maintext');
-    const $introsubtext = document.querySelectorAll('.intro__subtext');
+    
+    // Initial setup
+    $introtext.forEach(text => gsap.set(text, { scale: 0 }));
+    gsap.set('.intro__text--1', { scale: 1, opacity: 0 });
+    gsap.set('.intro__subtext--1', { scale: 1, opacity: 0 });
+    gsap.set('.intro__subtext--2', { scale: 0 });
 
-    $introtext.forEach(text => {
-        gsap.set(text,
-            {
-                scale: 0,
-            }
-        )
+    // Fade in first text
+    gsap.to(['.intro__text--1', '.intro__subtext--1'], {
+        opacity: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: "body",
+            start: "5% top",
+            toggleActions: "play none none reverse"
+        }
     });
 
-    gsap.set('.intro__text--1',
-        {
-            scale: 1,
-        }
-    )
-
-    gsap.set('.intro__subtext--2',
-        {
-            scale: 0,
-        }
-    )
-
-    gsap.set('.intro__subtext--1',
-        {
-            scale: 1,
-        }
-    )
-
+    // Text swap timeline
     const tlIntro = gsap.timeline({
         scrollTrigger: {
             trigger: ".carousel__section",
@@ -129,77 +172,174 @@ function textChanger() {
             end: "bottom bottom",
             scrub: 1,
         }
-    })
-
-    tlIntro.to('.intro__subtext--1', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--1', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__subtext--2', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--2', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--2', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--3', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--3', {
-        scale: 0,
-    })
-
-    tlIntro.to('.intro__text--4', {
-        scale: 1,
-    })
-
-    tlIntro.to('.intro__text--4', {
-        opacity: 0,
-        duration: 1,
-    })
-
-    tlIntro.to('.intro__subtext--2', {
-        opacity: 0,
-        duration: 1,
-    }, "<")
-}
-
-const $first = document.querySelectorAll('.section__text');
-
-if (window.innerWidth >= 768) {
-    $first.forEach(text => {
-        gsap.set(text,
-            {
-                opacity: 0,
-            }
-        )
     });
 
-    const tlFirst = gsap.timeline({
+    tlIntro
+        .to('.intro__subtext--1', { scale: 0 })
+        .to('.intro__text--1', { scale: 0 })
+        .to('.intro__subtext--2', { scale: 1 })
+        .to('.intro__text--2', { scale: 1 })
+        .to('.intro__text--2', { scale: 0 })
+        .to('.intro__text--3', { scale: 1 })
+        .to('.intro__text--3', { scale: 0 })
+        .to('.intro__text--4', { scale: 1 })
+        .to('.intro__text--4', { opacity: 0, duration: 1 })
+        .to('.intro__subtext--2', { opacity: 0, duration: 1 }, "<");
+};
+
+/**
+ * Section text fade in - alleen op tablet+
+ */
+const initSectionTextAnimation = () => {
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+    
+    mm.add(breakpoints.tablet, () => {
+        const $first = document.querySelectorAll('.section__text');
+        
+        $first.forEach(text => gsap.set(text, { opacity: 0 }));
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section--first",
+                start: "top 30vh",
+                end: "bottom bottom",
+                scrub: 1,
+            }
+        }).to('.section__text', { opacity: 1, duration: 1 });
+    });
+};
+
+/**
+ * Geschiedenis vragen popup animations
+ */
+const initGeschiedenisVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+        opacity: 0,
+        scale: 0,
+    });
+
+    gsap.to('.geschiedenis__vraag--1', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
         scrollTrigger: {
-            trigger: ".section--first",
-            start: "top 30%",
-            end: "bottom bottom",
+            trigger: ".geschiedenis__vragen",
+            start: "-10% top",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    gsap.to('.geschiedenis__vraag--2', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        scrollTrigger: {
+            trigger: ".geschiedenis__vragen",
+            start: "10% top",
+            toggleActions: "play none none reverse"
+        }
+    });
+};
+
+/**
+ * Lichaam vragen popup animations met rotaties
+ */
+const initLichaamVragen = () => {
+    if (prefersReducedMotion()) return;
+
+    const vragen = [
+        { el: '.lichaam__vraag--1', rotation: -6.946, start: "-15% top" },
+        { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
+        { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
+    ];
+
+    vragen.forEach(({ el, rotation, start }) => {
+        gsap.set(el, { opacity: 0, scale: 0, rotation });
+        
+        gsap.to(el, {
+            opacity: 1,
+            scale: 1,
+            rotation,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".lichaam__vragen",
+                start,
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+};
+
+/**
+ * Mannelijkheid horizontal scroll animation
+ */
+const initMannelijkheidScroll = () => {
+    if (prefersReducedMotion()) return;
+
+    const vragen = gsap.utils.toArray(".mannelijkheid__vraag");
+    const $section = document.querySelector('.mannelijkheid__vragen');
+
+    if (!$section || vragen.length === 0) return;
+
+    // Initial positioning data
+    const vraagConfig = [
+        { y: 0, x: -200, rotation: 3.136 },
+        { y: 50, x: -600, rotation: -4.199 },
+        { y: -30, x: -950, rotation: 10.696 },
+        { y: 40, x: -1300, rotation: 1.623 },
+        { y: -20, x: -1600, rotation: -3.9 },
+        { y: 35, x: -2050, rotation: 10.28 }
+    ];
+
+    // Setup initial positions
+    vragen.forEach((vraag, index) => {
+        if (vraagConfig[index]) {
+            gsap.set(vraag, {
+                transformOrigin: '0% 50%',
+                ...vraagConfig[index]
+            });
+        }
+    });
+
+    // Horizontal scroll timeline
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $section,
+            start: 'top 20%',
+            end: 'bottom 40%',
             scrub: 1,
         }
-    })
+    });
 
-    tlFirst.to('.section__text', {
-        opacity: 1,
-        duration: 1,
-    })
-}
+    const totalDistance = window.innerWidth + 2400;
+    vragen.forEach((vraag) => {
+        tl.to(vraag, { x: `+=${totalDistance}`, ease: 'none' }, 0);
+    });
+};
 
+/**
+ * Main init function - Progressive enhancement
+ * Runs after preloader completes
+ */
+const init = () => {
+    enableJSFeatures();
+    initCarouselAnimation();
+    initIntroTextAnimation();
+    initSectionTextAnimation();
+    initGeschiedenisVragen();
+    initLichaamVragen();
+    initCatwalkDrawSVG();
+    initMannelijkheidScroll();
 
-positionItems();
-textChanger()
+    // Refresh ScrollTrigger after content loads
+    window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+    });
+};
+
+// Start preloader, then initialize all animations
+preloader.init(init);

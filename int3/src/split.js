@@ -1,3 +1,8 @@
+import { gsap } from "gsap";
+
+import { Draggable } from "gsap/Draggable";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
 const $dragger = document.querySelector('.split__dragger');
@@ -47,6 +52,14 @@ function performSplit() {
     const $splitContainer = document.querySelector('.split__container');
     const $splitText = document.querySelectorAll('.split__text');
     const $splitAfter = document.querySelector('.split__after');
+
+    // Calculate position for .split__after
+    const containerRect = $splitContainer.getBoundingClientRect();
+    const splitRect = document.querySelector('.split').getBoundingClientRect();
+    const topPosition = containerRect.bottom - splitRect.top + 20; // 20px gap
+
+    // Set the top position
+    $splitAfter.style.top = topPosition + 'px';
 
     gsap.to($topImage, {
         y: -300,

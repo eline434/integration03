@@ -9,6 +9,8 @@
     --color-accent: #E20613;
     --color-neutral-light: #f1f1f1;
     --color-icon: #131313;
+    --color-preloader-bg: #131313;
+    --color-preloader-text: #FAFAFA;
 
     /* Typography */
     --font-primary: "Kumbh Sans", sans-serif;
@@ -48,6 +50,7 @@
     --max-width-text: 21.25rem;
 
     /* Z-index */
+    --z-preloader: 9999;
     --z-behind: -2;
     --z-content: 1;
 }
@@ -126,11 +129,11 @@ a:hover {
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
-    height: 1px;
+    height: 0.0625rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: 0.0625rem;
 }
 
 .bigscreen--only {
@@ -253,6 +256,7 @@ a:hover {
 .carousel__animation {
     position: relative;
     overflow-x: clip;
+    margin-top: 20rem;
 }
 
 .carousel__section {
@@ -323,11 +327,12 @@ a:hover {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     overflow: hidden;
-    justify-content: center;
+    justify-items: center;
+    align-items: center;
     z-index: 1;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -35%);
+    transform: translate(-50%, -50%);
 }
 
 .intro__item {
@@ -346,7 +351,6 @@ a:hover {
     font-weight: var(--font-weight-bold);
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
-    padding-top: 5.5rem;
 }
 
 .intro__item--subtext {
@@ -366,7 +370,6 @@ a:hover {
     -webkit-text-stroke-width: 0.941875rem;
     -webkit-text-stroke-color: var(--color-bg);
     font-size: 11vw;
-    max-width: 80rem;
     margin-top: -.3vw;
     color: var(--color-accent);
     font-family: var(--font-display);
@@ -387,6 +390,11 @@ a:hover {
     font-family: var(--font-display);
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
+}
+
+.intro__subtext--3 {
+    color: transparent;
+    -webkit-text-stroke-color: transparent;
 }
 
 /* ==========================================
@@ -455,7 +463,10 @@ a:hover {
 .geschiedenis__vragen {
     display: grid;
     grid-template-rows: repeat(2, max-content);
-    gap: 4rem;
+    gap: 8rem;
+    background-color: var(--color-bg);
+    padding-top: 4rem;
+    padding-bottom: 3rem;
 }
 
 .geschiedenis__vraag {
@@ -534,11 +545,9 @@ a:hover {
 
 .split__after {
     position: absolute;
-    top: 32rem;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    z-index: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(5deg);
+    z-index: 3;
     box-shadow: 0 0.25rem 3.125rem 0.25rem rgba(0, 0, 0, 0.25);
     width: fit-content;
     opacity: 0;
@@ -569,7 +578,7 @@ a:hover {
 
 .IMGgroup__img {
     border-radius: 0.59638rem;
-    box-shadow: 0 1.908px 23.856px 1.908px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.11925rem 1.491rem 0.11925rem rgba(0, 0, 0, 0.25);
     opacity: 0;
 }
 
@@ -705,6 +714,10 @@ a:hover {
     align-items: stretch;
     max-width: 100vw;
     /* overflow-x: hidden; */
+    background-image: url(../../assets/img/bikkembergsbackground-big-L.png), url(../../assets/img/bikkembergsbackground-big-R.png);
+    background-position: left -20vw, right -20vw;
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto 100vw, auto 100vw;
 }
 
 .catwalk {
@@ -740,15 +753,15 @@ a:hover {
 
 .final-character {
     position: absolute;
-    width: 250px;
-    height: 600px;
+    width: 15.625rem;
+    height: 37.5rem;
     background-image: image-set("../../assets/img/outfits.avif"
             type("image/avif"),
             "assets/outfits.jpg"
             type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 600px;
-    background-position: -250px 0;
+    background-size: auto 37.5rem;
+    background-position: -15.625rem 0;
     opacity: 0;
     transition: transform 0.8s ease;
     z-index: -1;
@@ -765,14 +778,14 @@ a:hover {
 }
 
 .outfit {
-    width: 250px;
-    height: 600px;
+    width: 15.625rem;
+    height: 37.5rem;
     background-image: image-set("../../assets/img/outfits.avif"
             type("image/avif"),
             "assets/outfits.jpg"
             type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 600px;
+    background-size: auto 37.5rem;
     background-color: var(--color-text);
     cursor: pointer;
     position: relative;
@@ -788,11 +801,11 @@ a:hover {
 .outfit.hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
-    height: 1px;
+    height: 0.0625rem;
     overflow: hidden;
     position: absolute;
     white-space: nowrap;
-    width: 1px;
+    width: 0.0625rem;
 }
 
 .outfit.final-choice {
@@ -825,7 +838,7 @@ a:hover {
     background-size: cover;
     background-position: left;
     z-index: -1;
-    padding-top: calc(200vw - 740px);
+    padding-top: calc(200vw - 46.25rem);
 }
 
 .outfits__text--container {
@@ -844,17 +857,26 @@ a:hover {
 
 .beeld__text {
     display: grid;
-    grid-template-rows: repeat(2, max-content);
+    grid-template-rows: repeat(2, minmax(min-content, max-content));
     gap: 1.5rem;
-    padding: 0rem 1.5rem;
+    padding: 0 1.5rem;
+    padding-left: 10vw;
+}
+
+.beeld__imgs {
+    display: flex;
+    margin-top: -5rem;
+    padding-bottom: 30rem;
+    position: relative;
+    z-index: 1;
 }
 
 .beeld__img {
     width: fit-content;
     height: 19.2rem;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
     align-content: center;
     text-align: center;
 }
@@ -904,7 +926,7 @@ a:hover {
 .beeld__nummer {
     transform: rotate(16.103deg);
     color: transparent;
-    -webkit-text-stroke-width: 10px;
+    -webkit-text-stroke-width: 0.625rem;
     -webkit-text-stroke-color: transparent;
     paint-order: stroke fill;
     -webkit-paint-order: stroke fill;
@@ -915,12 +937,23 @@ a:hover {
     -webkit-text-stroke-color: #FAFAFA;
 }
 
+.beeld__path {
+    position: relative;
+    z-index: 0;
+    margin-top: -50vw;
+    margin-left: -10vw;
+    height: auto;
+    width: 114vw;
+    rotate: 6deg;
+}
+
 .sport {
     display: grid;
     grid-template-rows: repeat(4, max-content);
     gap: 1.5rem;
     padding: 0rem 1.5rem;
-    padding-top: 15rem;
+    padding-top: 30vw;
+    margin-top: -30vw;
     padding-bottom: 7rem;
     background:
         linear-gradient(rgba(252, 252, 252, 0.75), rgba(252, 252, 252, 0.75)),
@@ -958,21 +991,21 @@ a:hover {
 
 .mannelijkheid__vragen {
     padding-top: 7.5rem;
-}
-
-.mannelijkheid__vragen .js-only {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     white-space: nowrap;
     padding-bottom: 3em;
     align-items: center;
-    max-width: 100vw;
-    overflow-x: hidden;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    min-height: 20vh;
 }
 
 .mannelijkheid__vraag {
     padding-bottom: 2rem;
+    flex-shrink: 0;
 }
 
 .mannelijkheid__vraag--1 {
@@ -1171,7 +1204,7 @@ a:hover {
     .intro__item--text {
         font-size: 11rem;
         -webkit-text-stroke-width: 1.125rem;
-        margin-top: -4.4rem;
+        padding-top: 2.5rem;
     }
 
     .intro__item--subtext {
@@ -1283,7 +1316,8 @@ a:hover {
     }
 
     .split__after {
-        top: 45.6rem;
+        position: relative;
+        top: -5rem;
     }
 
     .IMGgroup {
@@ -1598,13 +1632,14 @@ a:hover {
     .intro__item--text {
         font-size: 16.875rem;
         -webkit-text-stroke-width: 1.6875rem;
-        margin-top: -6.7rem;
+        padding-top: 0;
+        margin-top: -1.8rem;
     }
 
     .intro__item--subtext {
         font-size: 3.125rem;
         -webkit-text-stroke-width: 1.25rem;
-        margin-left: 1rem;
+        margin-left: 5rem;
     }
 
     .intro__title {
@@ -1743,7 +1778,7 @@ a:hover {
     .outfits__background {
         background-image: none;
         padding: 0;
-        padding-top: calc(100vw - 1040px);
+        padding-top: calc(100vw - 65rem);
     }
 
     .outfits__text--container {
