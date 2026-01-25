@@ -943,7 +943,8 @@ a:hover {
     grid-template-rows: repeat(4, max-content);
     gap: 1.5rem;
     padding: 0rem 1.5rem;
-    padding-top: 15rem;
+    padding-top: 30rem;
+    margin-top: -25rem;
     padding-bottom: 7rem;
     background:
         linear-gradient(rgba(252, 252, 252, 0.75), rgba(252, 252, 252, 0.75)),
