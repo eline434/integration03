@@ -269,25 +269,53 @@ const initGeschiedenisVragen = () => {
 const initLichaamVragen = () => {
     if (prefersReducedMotion()) return;
 
-    const vragen = [
-        { el: '.lichaam__vraag--1', rotation: -6.946, start: "-15% top" },
-        { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
-        { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
-    ];
+    const mm = gsap.matchMedia();
 
-    vragen.forEach(({ el, rotation, start }) => {
-        gsap.set(el, { opacity: 0, scale: 0, rotation });
+    mm.add(breakpoints.tablet, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-13% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
+        ];
 
-        gsap.to(el, {
-            opacity: 1,
-            scale: 1,
-            rotation,
-            duration: 0.3,
-            scrollTrigger: {
-                trigger: ".lichaam__vragen",
-                start,
-                toggleActions: "play none none reverse"
-            }
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-30% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "-10% top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "10% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
     });
 };
