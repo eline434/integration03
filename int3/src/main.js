@@ -205,56 +205,117 @@ const initSectionTextAnimation = () => {
 const initGeschiedenisVragen = () => {
     if (prefersReducedMotion()) return;
 
-    gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
-        opacity: 0,
-        scale: 0,
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
+
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
     });
 
-    gsap.to('.geschiedenis__vraag--1', {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        scrollTrigger: {
-            trigger: ".geschiedenis__vragen",
-            start: "-10% top",
-            toggleActions: "play none none reverse"
-        }
-    });
+    mm.add(breakpoints.mobile, () => {
+        gsap.set(['.geschiedenis__vraag--1', '.geschiedenis__vraag--2'], {
+            opacity: 0,
+            scale: 0,
+        });
 
-    gsap.to('.geschiedenis__vraag--2', {
-        opacity: 1,
-        scale: 1,
-        duration: 0.3,
-        scrollTrigger: {
-            trigger: ".geschiedenis__vragen",
-            start: "10% top",
-            toggleActions: "play none none reverse"
-        }
+        gsap.to('.geschiedenis__vraag--1', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-30% top",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        gsap.to('.geschiedenis__vraag--2', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.3,
+            scrollTrigger: {
+                trigger: ".geschiedenis__vragen",
+                start: "-10% top",
+                toggleActions: "play none none reverse"
+            }
+        });
     });
 };
 
 const initLichaamVragen = () => {
     if (prefersReducedMotion()) return;
 
-    const vragen = [
-        { el: '.lichaam__vraag--1', rotation: -6.946, start: "-15% top" },
-        { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
-        { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
-    ];
+    const mm = gsap.matchMedia();
 
-    vragen.forEach(({ el, rotation, start }) => {
-        gsap.set(el, { opacity: 0, scale: 0, rotation });
+    mm.add(breakpoints.tablet, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-13% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "top top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "15% top" }
+        ];
 
-        gsap.to(el, {
-            opacity: 1,
-            scale: 1,
-            rotation,
-            duration: 0.3,
-            scrollTrigger: {
-                trigger: ".lichaam__vragen",
-                start,
-                toggleActions: "play none none reverse"
-            }
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+    });
+
+    mm.add(breakpoints.mobile, () => {
+        const vragen = [
+            { el: '.lichaam__vraag--1', rotation: -6.946, start: "-30% top" },
+            { el: '.lichaam__vraag--2', rotation: 8.17, start: "-10% top" },
+            { el: '.lichaam__vraag--3', rotation: -3.023, start: "10% top" }
+        ];
+
+        vragen.forEach(({ el, rotation, start }) => {
+            gsap.set(el, { opacity: 0, scale: 0, rotation });
+
+            gsap.to(el, {
+                opacity: 1,
+                scale: 1,
+                rotation,
+                duration: 0.3,
+                scrollTrigger: {
+                    trigger: ".lichaam__vragen",
+                    start,
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
     });
 };
@@ -304,23 +365,49 @@ const initMannelijkheidScroll = () => {
 };
 
 const initBallAnimation = () => {
-    let tlball = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".sport",
-            start: "10% top",
-            end: "bottom 30%",
-            scrub: true,
-        }
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "10% top",
+                end: "bottom 30%",
+                scrub: true,
+            }
+        });
+
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: 1300, y: 600 });
+
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -143.629 });
+
+        tlball.from('.sport__text--2', { x: 1300, y: -600 });
+        tlball.to('.sport__text--2', {});
     });
 
-    tlball.from('.sport__text--1', {});
-    tlball.to('.sport__text--1', { x: 1300, y: 600 });
+    mm.add(breakpoints.mobile, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "top top",
+                end: "bottom 40%",
+                scrub: true,
+            }
+        });
 
-    tlball.from('.sport__img', {});
-    tlball.to('.sport__img', { rotate: -143.629 });
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: window.innerWidth * 0.8, y: 540 });
 
-    tlball.from('.sport__text--2', { x: 1300, y: -600 });
-    tlball.to('.sport__text--2', {});
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -170.629 });
+
+        tlball.from('.sport__text--2', { x: window.innerWidth * 0.8, y: -590 });
+        tlball.to('.sport__text--2', {});
+    });
 };
 
 
