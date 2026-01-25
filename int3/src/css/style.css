@@ -855,12 +855,20 @@ a:hover {
     padding: 0rem 1.5rem;
 }
 
+.beeld__imgs {
+    display: flex;
+    margin-top: -5rem;
+    padding-bottom: 30rem;
+    position: relative;
+    z-index: 1;
+}
+
 .beeld__img {
     width: fit-content;
     height: 19.2rem;
     cursor: pointer;
-    position: relative;
-    z-index: 1;
+    position: absolute;
+    z-index: 2;
     align-content: center;
     text-align: center;
 }
@@ -919,6 +927,11 @@ a:hover {
 .beeld__img:hover .beeld__nummer {
     color: var(--color-accent);
     -webkit-text-stroke-color: #FAFAFA;
+}
+
+.beeld__path {
+    position: absolute;
+    z-index: 0;
 }
 
 .sport {
