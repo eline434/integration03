@@ -966,6 +966,11 @@ a:hover {
     transform: rotate(-37.05deg);
     justify-self: right;
     margin-right: -8rem;
+    z-index: 1;
+}
+
+.sport__text--2 {
+    z-index: 0;
 }
 
 .blik {

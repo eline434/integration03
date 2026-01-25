@@ -6,9 +6,6 @@ import { prefersReducedMotion, getResponsiveRadius, breakpoints } from "./utils/
 
 gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
-/**
- * Progressive enhancement: verwijder js-only classes
- */
 const enableJSFeatures = () => {
     document.querySelectorAll('.js-only').forEach(el => {
         el.classList.remove('js-only');
@@ -16,9 +13,6 @@ const enableJSFeatures = () => {
     document.querySelector('.intro')?.classList.add('intro-js');
 };
 
-/**
- * Catwalk SVG draw animation
- */
 const initCatwalkDrawSVG = () => {
     if (prefersReducedMotion()) return;
 
@@ -40,9 +34,6 @@ const initCatwalkDrawSVG = () => {
     });
 };
 
-/**
- * Carousel animation met responsive breakpoints
- */
 const initCarouselAnimation = () => {
     const $carousel = document.getElementById('carousel');
     const $items = document.querySelectorAll('.carousel__item');
@@ -75,13 +66,10 @@ const initCarouselAnimation = () => {
         });
     };
 
-    // Initial positioning
     positionItems();
 
-    // Gebruik gsap.matchMedia voor responsive animaties
     const mm = gsap.matchMedia();
 
-    // Carousel rotation animation - werkt op alle breakpoints
     mm.add("(min-width: 1px)", () => {
         if (prefersReducedMotion()) return;
 
@@ -101,7 +89,6 @@ const initCarouselAnimation = () => {
         });
     });
 
-    // Split animation - alleen op tablet+
     mm.add(breakpoints.tablet, () => {
         if (prefersReducedMotion()) return;
 
@@ -124,7 +111,6 @@ const initCarouselAnimation = () => {
         }, 0);
     });
 
-    // Mobile: fade out carousel
     mm.add(breakpoints.mobile, () => {
         if (prefersReducedMotion()) return;
 
@@ -145,13 +131,11 @@ const initIntroTextAnimation = () => {
     const $introtext = document.querySelectorAll('.intro__maintext');
     const $intro = document.querySelector('.intro');
 
-    // Initial setup
     $introtext.forEach(text => gsap.set(text, { scale: 0 }));
     gsap.set('.intro__text--1', { scale: 1, opacity: 0 });
     gsap.set('.intro__subtext--1', { scale: 1, opacity: 0 });
     gsap.set('.intro__subtext--2', { scale: 0 });
 
-    // Fade in first text
     gsap.to(['.intro__text--1', '.intro__subtext--1'], {
         opacity: 1,
         duration: 0.3,
@@ -162,7 +146,6 @@ const initIntroTextAnimation = () => {
         }
     });
 
-    // Text swap timeline
     const tlIntro = gsap.timeline({
         scrollTrigger: {
             trigger: ".carousel__section",
@@ -170,19 +153,15 @@ const initIntroTextAnimation = () => {
             end: "bottom bottom",
             scrub: true,
             onEnter: () => {
-                // Verwijder visually-hidden als animatie start
                 $intro?.classList.remove('visually-hidden');
             },
             onLeave: () => {
-                // Voeg visually-hidden toe als we voorbij de sectie scrollen
                 $intro?.classList.add('visually-hidden');
             },
             onEnterBack: () => {
-                // Verwijder visually-hidden als we terugscrolling
                 $intro?.classList.remove('visually-hidden');
             },
             onLeaveBack: () => {
-                // Optioneel: voeg toe als we terug naar boven scrollen
                 $intro?.classList.remove('visually-hidden');
             }
         }
@@ -324,6 +303,27 @@ const initMannelijkheidScroll = () => {
     });
 };
 
+const initBallAnimation = () => {
+    let tlball = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".sport",
+            start: "10% top",
+            end: "bottom 30%",
+            scrub: true,
+        }
+    });
+
+    tlball.from('.sport__text--1', {});
+    tlball.to('.sport__text--1', { x: 1300, y: 600 });
+
+    tlball.from('.sport__img', {});
+    tlball.to('.sport__img', { rotate: -143.629 });
+
+    tlball.from('.sport__text--2', { x: 1300, y: -600 });
+    tlball.to('.sport__text--2', {});
+};
+
+
 const init = () => {
     enableJSFeatures();
     initCarouselAnimation();
@@ -332,9 +332,9 @@ const init = () => {
     initGeschiedenisVragen();
     initLichaamVragen();
     initCatwalkDrawSVG();
+    initBallAnimation();
     initMannelijkheidScroll();
 
-    // Refresh ScrollTrigger after content loads
     window.addEventListener('load', () => {
         ScrollTrigger.refresh();
     });
