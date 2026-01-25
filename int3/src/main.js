@@ -272,7 +272,79 @@ gsap.to('.geschiedenis__vraag--2', {
     }
 })
 
+gsap.set('.lichaam__vraag--1',
+    {
+        opacity: 0,
+        scale: 0,
+        rotation: -6.946
+    }
+)
 
+gsap.set('.lichaam__vraag--2',
+    {
+        opacity: 0,
+        scale: 0,
+        rotation: 8.17
+    }
+)
+
+gsap.set('.lichaam__vraag--3',
+    {
+        opacity: 0,
+        scale: 0,
+        rotation: -3.023
+    }
+)
+
+gsap.to('.lichaam__vraag--1', {
+    opacity: 1,
+    scale: 1,
+    rotation: -6.946,
+    duration: 0.3,
+    scrollTrigger: {
+        trigger: ".lichaam__vragen",
+        start: "-15% top",
+        toggleActions: "play none none reverse"
+    }
+})
+
+gsap.to('.lichaam__vraag--2', {
+    opacity: 1,
+    scale: 1,
+    rotation: 8.17,
+    duration: 0.3,
+    scrollTrigger: {
+        trigger: ".lichaam__vragen",
+        start: "top top",
+        toggleActions: "play none none reverse"
+    }
+})
+
+gsap.to('.lichaam__vraag--3', {
+    opacity: 1,
+    scale: 1,
+    rotation: -3.023,
+    duration: 0.3,
+    scrollTrigger: {
+        trigger: ".lichaam__vragen",
+        start: "15% top",
+        toggleActions: "play none none reverse"
+    }
+})
+
+// Refresh ScrollTrigger after all content is loaded
+window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+});
+
+// Extra refresh after images are loaded
+if (document.readyState === 'complete') {
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+} else {
+    window.addEventListener('load', () => {
+        setTimeout(() => ScrollTrigger.refresh(), 100);
+    });
+}
 
 
 positionItems();
