@@ -24,12 +24,12 @@ const showFinalResult = () => {
         $outfit2.classList.add('hidden');
         $outfit1.classList.add('final-choice');
         $chosen = $outfit1;
-        $final.style.backgroundPosition = `-${outfitpos1 * 500 + 250}px 0`;
+        $final.style.backgroundPosition = `${outfitpos1 * 14.285714285 * 2 + 14.285714285}% 0`;
     } else {
         $outfit1.classList.add('hidden');
         $outfit2.classList.add('final-choice');
         $chosen = $outfit2;
-        $final.style.backgroundPosition = `-${outfitpos2 * 500 + 250}px 0`;
+        $final.style.backgroundPosition = `${outfitpos2 * 14.285714285 * 2 + 14.285714285}% 0`;
     }
 
     $final.classList.add('visible');
@@ -56,7 +56,7 @@ const init = () => {
         if (outfitpos1 == outfitpos2) {
             outfitpos2 = (outfitpos2 + 1) % maxoutfits;
         }
-        $outfit2.style.backgroundPosition = `-${outfitpos2 * 500}px 0`;
+        $outfit2.style.backgroundPosition = `${outfitpos2 * 14.285714285 * 2}% 0`;
 
         if (clicks === 3) {
             showFinalResult();
@@ -74,7 +74,7 @@ const init = () => {
         while (outfitpos1 > 0 && outfitpos1 <= outfitpos2) {
             outfitpos1 = (outfitpos1 + 1) % maxoutfits;
         }
-        $outfit1.style.backgroundPosition = `-${outfitpos1 * 500}px 0`;
+        $outfit1.style.backgroundPosition = `${outfitpos1 * 14.285714285 * 2}% 0`;
 
         if (clicks === 3) {
             showFinalResult();

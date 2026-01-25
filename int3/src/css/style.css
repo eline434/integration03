@@ -751,26 +751,29 @@ a:hover {
     font-weight: 700;
 }
 
-.final-character {
-    position: absolute;
-    width: 15.625rem;
-    height: 37.5rem;
+.img__outfit {
+    width: calc(26.4rem/2.4);
+    height: 26.4rem;
     background-image: image-set("../../src/assets/img/outfits.avif"
             type("image/avif"),
             "src/assets/img/outfits.jpg"
             type("image/jpeg"));
     background-repeat: no-repeat;
-    background-size: auto 37.5rem;
-    background-position: -15.625rem 0;
-    opacity: 0;
-    transition: transform 0.8s ease;
-    z-index: -1;
+    background-size: auto 100%;
 }
 
 @supports (background-image: url('test.avif')) {
-    .final-character {
+    .img__outfit {
         background-image: url('../../src/assets/img/outfits.avif');
     }
+}
+
+.final-character {
+    position: absolute;
+    background-position: 14.285714285% 0;
+    opacity: 0;
+    transition: transform 0.8s ease;
+    z-index: -1;
 }
 
 .final-character.visible {
@@ -778,24 +781,10 @@ a:hover {
 }
 
 .outfit {
-    width: 15.625rem;
-    height: 37.5rem;
-    background-image: image-set("../../src/assets/img/outfits.avif"
-            type("image/avif"),
-            "src/assets/img/outfits.jpg"
-            type("image/jpeg"));
-    background-repeat: no-repeat;
-    background-size: auto 37.5rem;
     background-color: var(--color-text);
     cursor: pointer;
     position: relative;
     z-index: 1;
-}
-
-@supports (background-image: url('test.avif')) {
-    .outfit {
-        background-image: url('../../src/assets/img/outfits.avif');
-    }
 }
 
 .outfit.hidden {
@@ -823,11 +812,11 @@ a:hover {
 }
 
 .outfit-1 {
-    background-position: 0 0;
+    background-position: 0% 0;
 }
 
 .outfit-2 {
-    background-position: -16rem 0;
+    background-position: calc(14.285714285% *2) 0;
 }
 
 .outfits__background {
@@ -1433,25 +1422,8 @@ a:hover {
         grid-column: 3;
     }
 
-    .final-character {
-        width: 11rem;
-        height: 26.4rem;
-        background-size: auto 26.4rem;
-        background-position: -11rem 0;
-    }
-
     .outfits__background {
         background-image: url(../../src/assets/img/bikkembergsbackground-medium.png);
-    }
-
-    .outfit {
-        width: 11rem;
-        height: 26.4rem;
-        background-size: auto 26.4rem;
-    }
-
-    .outfit-2 {
-        background-position: -22rem 0;
     }
 
     .outfits-container {
@@ -1759,21 +1731,9 @@ a:hover {
         height: auto;
     }
 
-    .final-character {
+    .img__outfit {
         width: 15.625rem;
         height: 37.5rem;
-        background-size: auto 37.5rem;
-        background-position: -15.625rem 0;
-    }
-
-    .outfit {
-        width: 15.625rem;
-        height: 37.5rem;
-        background-size: auto 37.5rem;
-    }
-
-    .outfit-2 {
-        background-position: -31.25rem 0;
     }
 
     .outfits-container {
