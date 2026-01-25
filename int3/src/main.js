@@ -304,23 +304,49 @@ const initMannelijkheidScroll = () => {
 };
 
 const initBallAnimation = () => {
-    let tlball = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".sport",
-            start: "10% top",
-            end: "bottom 30%",
-            scrub: true,
-        }
+    if (prefersReducedMotion()) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add(breakpoints.tablet, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "10% top",
+                end: "bottom 30%",
+                scrub: true,
+            }
+        });
+
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: 1300, y: 600 });
+
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -143.629 });
+
+        tlball.from('.sport__text--2', { x: 1300, y: -600 });
+        tlball.to('.sport__text--2', {});
     });
 
-    tlball.from('.sport__text--1', {});
-    tlball.to('.sport__text--1', { x: 1300, y: 600 });
+    mm.add(breakpoints.mobile, () => {
+        const tlball = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sport",
+                start: "top top",
+                end: "bottom 40%",
+                scrub: true,
+            }
+        });
 
-    tlball.from('.sport__img', {});
-    tlball.to('.sport__img', { rotate: -143.629 });
+        tlball.from('.sport__text--1', {});
+        tlball.to('.sport__text--1', { x: window.innerWidth * 0.8, y: 540 });
 
-    tlball.from('.sport__text--2', { x: 1300, y: -600 });
-    tlball.to('.sport__text--2', {});
+        tlball.from('.sport__img', {});
+        tlball.to('.sport__img', { rotate: -170.629 });
+
+        tlball.from('.sport__text--2', { x: window.innerWidth * 0.8, y: -590 });
+        tlball.to('.sport__text--2', {});
+    });
 };
 
 
