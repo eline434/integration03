@@ -79,8 +79,18 @@ function performSplit() {
         ease: 'power2.inOut'
     });
 
+    const windowWidth = window.innerWidth;
+    let initialY;
+    if (windowWidth >= 1024) {
+        initialY = -850;  // Desktop
+    } else if (windowWidth >= 768) {
+        initialY = -450;  // Tablet
+    } else {
+        initialY = -250;  // Mobile
+    }
+
     gsap.set($splitAfter, {
-        y: -850,
+        y: initialY,
     });
 
     gsap.to($splitAfter, {
@@ -101,8 +111,6 @@ function performSplit() {
     const imgGroupCenterY = imgGroupRect.top + imgGroupRect.height / 2;
     const offsetToImgGroupEnd = imgGroupBottom - splitAfterCenterY;
     const offsetToImgGroupCenter = imgGroupCenterY - splitAfterCenterY;
-
-    const windowWidth = window.innerWidth;
 
     let splitAfterX, splitAfterY, splitAfterRotation;
     if (windowWidth >= 768) {
