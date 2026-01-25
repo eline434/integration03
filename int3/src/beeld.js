@@ -16,8 +16,8 @@ beeldImages.forEach((img, i) => {
     const endX = -2000;
     const centerY = window.innerHeight * 0.2;
 
-    gsap.set(img, { 
-        x: startX, 
+    gsap.set(img, {
+        x: startX,
         y: centerY,
         zIndex: 100
     });
@@ -37,3 +37,5 @@ beeldImages.forEach((img, i) => {
         }
     });
 });
+
+

@@ -1,3 +1,9 @@
+import { gsap } from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
+
 const maxoutfits = 4;
 var outfitpos1 = 0;
 var outfitpos2 = 1;
