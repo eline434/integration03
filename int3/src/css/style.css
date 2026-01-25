@@ -981,21 +981,21 @@ a:hover {
 
 .mannelijkheid__vragen {
     padding-top: 7.5rem;
-}
-
-.mannelijkheid__vragen .js-only {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     white-space: nowrap;
     padding-bottom: 3em;
     align-items: center;
-    max-width: 100vw;
-    overflow-x: hidden;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    min-height: 20vh;
 }
 
 .mannelijkheid__vraag {
     padding-bottom: 2rem;
+    flex-shrink: 0;
 }
 
 .mannelijkheid__vraag--1 {

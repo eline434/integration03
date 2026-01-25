@@ -332,6 +332,77 @@ gsap.to('.lichaam__vraag--3', {
     }
 })
 
+// Mannelijkheid horizontal scroll animation
+const mannelijkheidScroll = () => {
+    const vragen = gsap.utils.toArray(".mannelijkheid__vraag");
+    const $section = document.querySelector('.mannelijkheid__vragen');
+
+    /*---- setup (to end state) ----*/
+    gsap.set(vragen[0], {
+        transformOrigin: '0% 50%',
+        y: 0,
+        x: -200,
+        rotation: 3.136,
+    });
+
+    gsap.set(vragen[1], {
+        transformOrigin: '0% 50%',
+        y: 50,
+        x: -600,
+        rotation: -4.199,
+    });
+
+    gsap.set(vragen[2], {
+        transformOrigin: '0% 50%',
+        y: -30,
+        x: -950,
+        rotation: 10.696,
+    });
+
+    gsap.set(vragen[3], {
+        transformOrigin: '0% 50%',
+        y: 40,
+        x: -1300,
+        rotation: 1.623,
+    });
+
+    gsap.set(vragen[4], {
+        transformOrigin: '0% 50%',
+        y: -20,
+        x: -1600,
+        rotation: -3.9,
+    });
+
+    gsap.set(vragen[5], {
+        transformOrigin: '0% 50%',
+        y: 35,
+        x: -2050,
+        rotation: 10.28,
+    });
+
+    // Create horizontal scroll animation through the clipped viewport
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: $section,
+            start: 'top 20%',
+            end: 'bottom 40%',
+            scrub: 1,
+        }
+    });
+
+    // Calculate total distance to scroll all text through
+    const totalDistance = window.innerWidth + 2400;
+
+    vragen.forEach((vraag, index) => {
+        tl.to(vraag, {
+            x: `+=${totalDistance}`,
+            ease: 'none',
+        }, 0);
+    });
+};
+
+mannelijkheidScroll();
+
 // Refresh ScrollTrigger after all content is loaded
 window.addEventListener('load', () => {
     ScrollTrigger.refresh();
